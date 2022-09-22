@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Motaweroon Restaurant App</string>
+    <string name="facebook_app_id">3237505083162635</string>
+    <string name="fb_login_protocol_scheme">fb3237505083162635</string>
+    <string name="facebook_client_token">6529322b4023f5c8f99291cbfb96b201</string>
+</resources>

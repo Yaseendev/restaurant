@@ -1,0 +1,11 @@
+name: flavor
+description: Flavor for Clients.
+version: 1.0.0
+publish_to: none
+
+environment:
+  sdk: ">=2.17.6 <3.0.0"
+
+dependencies:
+  restaurant_app:
+    path: ../../restaurant_app

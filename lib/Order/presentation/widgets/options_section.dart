@@ -1,0 +1,71 @@
+import 'package:flutter/material.dart';
+
+import 'extra_option_tile.dart';
+
+class OptionsSection extends StatefulWidget {
+  final Function(num total) onUpdate;
+  const OptionsSection({
+    Key? key,
+    required this.onUpdate,
+  }) : super(key: key);
+
+  @override
+  State<OptionsSection> createState() => _OptionsSectionState();
+}
+
+class _OptionsSectionState extends State<OptionsSection> {
+  num totalOptions = 0;
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 12),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text.rich(
+            TextSpan(
+              text: 'Extra Options ',
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+              ),
+              children: [
+                TextSpan(
+                    text: '(Optional)',
+                    style: TextStyle(
+                      fontSize: 14,
+                      color: Colors.grey,
+                    )),
+              ],
+            ),
+          ),
+          SizedBox(height: 12),
+          ExtraOptionTile(
+            optionName: 'Extra Onion',
+            price: 5,
+            onUpdate: (selected) {
+              selected ? totalOptions += 5 : totalOptions -= 5;
+              widget.onUpdate(totalOptions);
+            },
+          ),
+          ExtraOptionTile(
+            optionName: 'Extra Tomato',
+            price: 8,
+            onUpdate: (selected) {
+              selected ? totalOptions += 8 : totalOptions -= 8;
+              widget.onUpdate(totalOptions);
+            },
+          ),
+          ExtraOptionTile(
+            optionName: 'Add More Meat',
+            price: 20,
+            onUpdate: (selected) {
+              selected ? totalOptions += 20 : totalOptions -= 20;
+              widget.onUpdate(totalOptions);
+            },
+          ),
+        ],
+      ),
+    );
+  }
+}
