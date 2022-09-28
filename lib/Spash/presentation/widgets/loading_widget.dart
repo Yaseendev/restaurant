@@ -8,10 +8,11 @@ class LoadingWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return HeartbeatProgressIndicator(
-      child: Image.asset(
+        child:Image.asset(
         AppImages.APPLOGO,
-        scale: .8,
-      ),
+        width: MediaQuery.of(context).size.width * .25,
+        height: MediaQuery.of(context).size.height * .25,
+        ),
     );
   }
 }

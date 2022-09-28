@@ -18,7 +18,8 @@ class RestaurantHeader extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            ' Zad',
+            ' Pizza Master',
+            //' Zad',
             //' Abo Saleh',
             //' HeatAttack',
             //' Tata\s Sons',
@@ -54,6 +55,7 @@ class RestaurantHeader extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
+               //' Hyper Market',
                 ' Fast Food',
                 style: TextStyle(color: AppColors.PRIMARY_COLOR),
               ),

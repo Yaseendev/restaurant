@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:restaurant_app/Offers/presentation/screens/offers_screen.dart';
-import 'offer_card_small.dart';
+import '../../../../Offers/presentation/widgets/offer_card_small.dart';
 import 'photo_show.dart';
 import 'restaurant_card.dart';
 import 'search_box.dart';

@@ -33,7 +33,8 @@ class RestaurantCard extends StatelessWidget {
               ),
             ),
             Text(
-             'Zad',
+            'Pizza Master',
+            // 'Zad',
              //'Abo Saleh',
              // 'HeatAttack',
               // 'TATA',
@@ -47,6 +48,7 @@ class RestaurantCard extends StatelessWidget {
             Column(
               children: [
                 Text(
+                  //'Hyper Market',
                   'Fast Food',
                   style: TextStyle(
                     fontSize: 12,

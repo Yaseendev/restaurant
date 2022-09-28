@@ -28,7 +28,7 @@ class OfferCardSmall extends StatelessWidget {
                 AppImages.OFFER,
                 height: 100,
                 width: double.infinity,
-                fit: BoxFit.fill,
+                fit: BoxFit.cover,
               ),
             ),
           ),
@@ -37,11 +37,14 @@ class OfferCardSmall extends StatelessWidget {
               backgroundImage: AssetImage(AppImages.APPLOGO),
             ),
             title: Text(
-              'Zad'
+              'Pizza Master',
+              // 'Zad'
               //'Abo Saleh'
               //'HeatAttack'
-              ),
+            ),
             subtitle: Text(
+              //'Hyper Market',
+              //'Pastry & Bakery',
               'Fast Food',
               style: TextStyle(color: AppColors.PRIMARY_COLOR),
             ),

@@ -1,4 +1,3 @@
-import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:restaurant_app/User/data/models/name.dart';
 import 'package:restaurant_app/utils/services/api_service.dart';
 import 'package:restaurant_app/utils/services/database_service.dart';
@@ -18,20 +17,20 @@ class AccoountRepository {
 
   Future<User?> loginWithFacebook() async {
     //TODO: move to api class
-    final result = await FacebookAuth.i.login(
-      permissions: [
-        'email',
-        'public_profile',
-        'user_gender',
-      ],
-    );
-    if (result.status == LoginStatus.success) {
-      final requestData = await FacebookAuth.i
-          .getUserData(fields: "name,email,picture.width(200),gender");
-      print(requestData);
-      return User.fromJson(requestData);
-    }
-    return null;
+    // final result = await FacebookAuth.i.login(
+    //   permissions: [
+    //     'email',
+    //     'public_profile',
+    //     'user_gender',
+    //   ],
+    // );
+    // if (result.status == LoginStatus.success) {
+    //   final requestData = await FacebookAuth.i
+    //       .getUserData(fields: "name,email,picture.width(200),gender");
+    //   print(requestData);
+    //   return User.fromJson(requestData);
+    // }
+    // return null;
   }
 
   Future<User?> registerUser({

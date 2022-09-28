@@ -23,13 +23,15 @@ class PlaceCard extends StatelessWidget {
                 backgroundImage: AssetImage(AppImages.APPLOGO),
               ),
               title: Text(
-               'Zad',
+               'Pizza Master',
+               //'Zad',
                //'Abo Saleh'
                // 'HeatAttack'
                 //'Tata\s Sons'
                 //'Burger King'
                 ),
               subtitle: Text(
+               //'Hyper Market',
                 'Fast Food',
                 style: TextStyle(color: AppColors.PRIMARY_COLOR),
               ),

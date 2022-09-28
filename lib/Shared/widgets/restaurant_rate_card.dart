@@ -27,7 +27,8 @@ class RestaurantRateCard extends StatelessWidget {
             radius: 35,
           ),
           title: Text( 
-            'Zad',
+            'Pizza Master',
+            //'Zad',
             //'Abo Saleh',
             //'HeatAttack',
             //'Tata\s Sons',
@@ -38,6 +39,7 @@ class RestaurantRateCard extends StatelessWidget {
             ),
           ),
           subtitle: Text(
+           //'Hyper Market',
             'Fast Food',
             style: TextStyle(color: AppColors.PRIMARY_COLOR),
           ),

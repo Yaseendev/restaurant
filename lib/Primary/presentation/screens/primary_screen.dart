@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:restaurant_app/Home/presentation/screens/home_screen.dart';
 import 'package:restaurant_app/Map/presentation/screens/map_screen.dart';
 import 'package:restaurant_app/Order/presentation/screens/orders_screen.dart';
 import 'package:restaurant_app/Shared/widgets/custom_app_bar.dart';
 import 'package:restaurant_app/QR/presentation/screens/qr_screen.dart';
-import 'package:restaurant_app/User/blocs/account_bloc/account_bloc.dart';
 import 'package:restaurant_app/User/presentation/screen/account_screen.dart';
 import '../widgets/notched_bottom_bar.dart';
 

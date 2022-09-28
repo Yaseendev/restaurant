@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 import 'package:restaurant_app/User/blocs/account_bloc/account_bloc.dart';
 
 import '../screen/signUP_screen.dart';
@@ -57,14 +55,14 @@ class LoginWithWidget extends StatelessWidget {
           width: double.maxFinite,
           child: ElevatedButton.icon(
             onPressed: () {
-              GoogleSignIn(
+              //GoogleSignIn(
                       // scopes: [
                       //   'email',
                       //   'https://www.googleapis.com/auth/contacts.readonly',
                       // ],
-                      )
-                  .signIn()
-                  .then((value) => print(value));
+                     // )
+                  // .signIn()
+                  // .then((value) => print(value));
             },
             icon: Icon(FontAwesomeIcons.google),
             label: Text(

@@ -30,7 +30,8 @@ class OrderCard extends StatelessWidget {
                   backgroundImage: AssetImage(AppImages.APPLOGO),
                 ),
                 title: Text(
-                  'Zad',
+                  'Pizza Master',
+                  //'Zad',
                   //'Abo Saleh',
                   //'HeatAttack',
                   // 'Tata\s Sons',

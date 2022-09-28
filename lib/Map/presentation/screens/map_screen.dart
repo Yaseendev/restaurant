@@ -3,7 +3,6 @@ import 'package:flavor/flavor_assets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import '../widgets/category_chip.dart';
 import '../widgets/place_card.dart';
 
 class MapScreen extends StatefulWidget {

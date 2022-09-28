@@ -1,5 +1,4 @@
-//import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_core/firebase_core.dart';
+import 'dart:io';
 import 'package:flavor/flavor_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -10,24 +9,16 @@ import 'package:restaurant_app/utils/constants.dart';
 import 'Primary/presentation/screens/primary_screen.dart';
 import 'Spash/presentation/screens/splash_screen.dart';
 import 'User/blocs/account_bloc/account_bloc.dart';
-//import 'firebase_options.dart';
 import 'utils/locator.dart';
+import 'utils/services/http_override.dart';
 
-// void main_common(String title) {
-//   WidgetsFlutterBinding.ensureInitialized();
-//   runApp( MyApp(title: title,));
-
-// }
 
 void main(List<String> arguments) async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
-  await locatorsSetup();
+ // await Firebase.initializeApp();
+  await locatorsSetup();  
   await Hive.initFlutter();
-  //HttpOverrides.global = MyHttpOverrides();
-//   await Firebase.initializeApp(
-//     options: DefaultFirebaseOptions.currentPlatform,
-// );
+  HttpOverrides.global = MyHttpOverrides(); 
   runApp(MyApp(
     title: arguments.isEmpty ? 'Restaurant App' : arguments[0],
   ));
