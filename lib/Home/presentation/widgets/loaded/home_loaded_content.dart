@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:restaurant_app/Offers/presentation/screens/offers_screen.dart';
-import '../../../../Offers/presentation/widgets/offer_card_small.dart';
+import 'package:restaurant_app/Offers/presentation/widgets/offer_card_small.dart';
+import 'package:restaurant_app/Product/presentation/widgets/category_card.dart';
+import 'package:restaurant_app/Product/presentation/widgets/product_card.dart';
+import 'package:restaurant_app/Restaurant/presenation/screens/restaurant_screen.dart';
 import 'photo_show.dart';
 import 'restaurant_card.dart';
 import 'search_box.dart';
@@ -31,7 +34,72 @@ class HomeLoadedWidget extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              DefaultTabController(
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'Hey, what are you looking for?',
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  Directionality(
+                    textDirection: TextDirection.rtl,
+                    child: TextButton.icon(
+                      onPressed: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (ctx) => RestaurantScreen()));
+                      },
+                      label: Text('See All'),
+                      icon: Icon(
+                        Icons.arrow_back,
+                        size: 20,
+                      ),
+                      style: ButtonStyle(
+                        padding: MaterialStateProperty.all(EdgeInsets.zero),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: [
+                    CategoryCard(
+                      image: 'assets/images/cat2.png',
+                      title: 'cat1',
+                      index: 0,
+                    ),
+                    CategoryCard(
+                      image: 'assets/images/cat3.png',
+                      title: 'cat2',
+                      index: 1,
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(height: 12),
+              Text(
+                'Our Branches',
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              SizedBox(height: 6),
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: [
+                    //ProductCard(),
+                    RestaurantCard(),
+                    RestaurantCard(),
+                  ],
+                ),
+              ),
+              /* DefaultTabController(
                 length: 2,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -80,7 +148,7 @@ class HomeLoadedWidget extends StatelessWidget {
                               //scrollDirection: Axis.horizontal,
                               // shrinkWrap: true,
                               children: [
-                                RestaurantCard(),
+                                ProductCard(),
                                 RestaurantCard(),
                               ],
                             ),
@@ -103,7 +171,7 @@ class HomeLoadedWidget extends StatelessWidget {
                     ),
                   ],
                 ),
-              ),
+              ),*/
               SizedBox(height: 12),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,

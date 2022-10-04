@@ -3,13 +3,16 @@ import 'package:flavor/flavor_assets.dart';
 import 'package:flavor/flavor_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:restaurant_app/Restaurant/presenation/widgets/restaurant_stats_widget.dart';
-import 'package:restaurant_app/utils/constants.dart';
 import '../widgets/items_listView.dart';
 import '../widgets/restaurant_app_bar.dart';
 import '../widgets/restaurant_header.dart';
 
 class RestaurantScreen extends StatefulWidget {
-  const RestaurantScreen({Key? key}) : super(key: key);
+  final int initIndex;
+  const RestaurantScreen({
+    Key? key,
+    this.initIndex = 0,
+  }) : super(key: key);
 
   @override
   State<RestaurantScreen> createState() => _RestaurantScreenState();
@@ -21,8 +24,9 @@ class _RestaurantScreenState extends State<RestaurantScreen>
   bool isContolled = true;
   @override
   void initState() {
-    _tabController = TabController(length: 4, vsync: this);
-   
+    _tabController =
+        TabController(length: 4, initialIndex: widget.initIndex, vsync: this);
+
     super.initState();
   }
 

@@ -10,8 +10,8 @@ class RestaurantCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.of(context)
-            .push(MaterialPageRoute(builder: (_) => RestaurantScreen()));
+        // Navigator.of(context)
+        //     .push(MaterialPageRoute(builder: (_) => RestaurantScreen()));
       },
       child: Card(
         color: Color(0xFFF0F9FD),
@@ -33,10 +33,10 @@ class RestaurantCard extends StatelessWidget {
               ),
             ),
             Text(
-            'Pizza Master',
-            // 'Zad',
-             //'Abo Saleh',
-             // 'HeatAttack',
+              'Pizza Master',
+              // 'Zad',
+              //'Abo Saleh',
+              // 'HeatAttack',
               // 'TATA',
               //'KFC',
               style: TextStyle(
@@ -44,28 +44,31 @@ class RestaurantCard extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            SizedBox(height: 10),
-            Column(
-              children: [
-                Text(
-                  //'Hyper Market',
-                  'Fast Food',
-                  style: TextStyle(
-                    fontSize: 12,
-                    color: Theme.of(context).primaryColor,
+            SizedBox(height: 8),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 8.0),
+              child: Column(
+                children: [
+                  Text(
+                    //'Hyper Market',
+                    'Fast Food',
+                    style: TextStyle(
+                      fontSize: 12,
+                      color: Theme.of(context).primaryColor,
+                    ),
                   ),
-                ),
-                RatingBar.builder(
-                  itemBuilder: (context, _) => Icon(
-                    Icons.star,
-                    color: Colors.amber,
+                  RatingBar.builder(
+                    itemBuilder: (context, _) => Icon(
+                      Icons.star,
+                      color: Colors.amber,
+                    ),
+                    onRatingUpdate: (value) {},
+                    ignoreGestures: true,
+                    itemSize: 12,
+                    initialRating: 3,
                   ),
-                  onRatingUpdate: (value) {},
-                  ignoreGestures: true,
-                  itemSize: 12,
-                  initialRating: 3,
-                ),
-              ],
+                ],
+              ),
             ),
           ],
         ),
