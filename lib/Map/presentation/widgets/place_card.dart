@@ -5,68 +5,81 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:restaurant_app/utils/constants.dart';
 
 class PlaceCard extends StatelessWidget {
-  const PlaceCard({Key? key}) : super(key: key);
+  final VoidCallback onPress;
+  final String address;
+  const PlaceCard({
+    Key? key,
+    required this.address,
+    required this.onPress,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: 266, 
-      child: Card(
-        color: Colors.white,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            ListTile(
-              leading: CircleAvatar(
-                backgroundColor: Colors.white,
-                backgroundImage: AssetImage(AppImages.APPLOGO),
-              ),
-              title: Text(
-               'Pizza Master',
-               //'Zad',
-               //'Abo Saleh'
-               // 'HeatAttack'
-                //'Tata\s Sons'
-                //'Burger King'
+    return GestureDetector(
+      onTap: onPress,
+      child: SizedBox(
+        width: 270,
+        height: 150,
+        child: Card(
+          color: Colors.white,
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              ListTile(
+                leading: CircleAvatar(
+                  backgroundColor: Colors.white,
+                  backgroundImage: AssetImage(AppImages.APPLOGO),
                 ),
-              subtitle: Text(
-               //'Hyper Market',
-                'Fast Food',
-                style: TextStyle(color: AppColors.PRIMARY_COLOR),
-              ),
-              trailing: Padding(
-                padding: const EdgeInsets.only(top: 25),
-                child: RatingBar.builder(
-                  itemBuilder: (context, _) => Icon(
-                    Icons.star,
-                    color: Colors.amber,
-                  ),
-                  onRatingUpdate: (value) {},
-                  ignoreGestures: true,
-                  itemSize: 12,
-                  initialRating: 3.5,
-                  allowHalfRating: true,
+                title: Text(
+                  'Gad Restaurant',
+                  //'Zad',
+                  //'Abo Saleh'
+                  // 'HeatAttack'
+                  //'Tata\s Sons'
+                  //'Burger King'
                 ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8),
-              child: Chip(
-                label: Text.rich(TextSpan(
-                  text: '1.4 KM ',
-                  children: [
-                    TextSpan(
-                      text: 'from your location',
-                      style: TextStyle(color: Color(0xFF00A2D7)),
+                subtitle: Text(
+                  //'Hyper Market',
+                  address,
+                  style: TextStyle(color: AppColors.PRIMARY_COLOR),
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                ),
+                trailing: Padding(
+                  padding: const EdgeInsets.only(top: 25),
+                  child: RatingBar.builder(
+                    itemBuilder: (context, _) => Icon(
+                      Icons.star,
+                      color: Colors.amber,
                     ),
-                  ],
-                )),
-                padding: const EdgeInsets.all(8),
-                backgroundColor: const Color(0xFFE6F4F9),
+                    onRatingUpdate: (value) {},
+                    ignoreGestures: true,
+                    itemSize: 12,
+                    initialRating: 3.5,
+                    allowHalfRating: true,
+                  ),
+                ),
               ),
-            ),
-          ],
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8),
+                child: Chip(
+                  label: Text.rich(TextSpan(
+                    text: '1.4 KM ',
+                    children: [
+                      TextSpan(
+                        text: 'from your location',
+                        style: TextStyle(color: Color(0xFF00A2D7)),
+                      ),
+                    ],
+                  )),
+                  //padding: const EdgeInsets.all(8),
+                  backgroundColor: const Color(0xFFE6F4F9),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

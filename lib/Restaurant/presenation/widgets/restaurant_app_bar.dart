@@ -70,57 +70,57 @@ class RestaurantAppBar extends StatelessWidget {
                     width: 86,
                     height: 86,
                   ),
-                  Row(
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.only(top: 7.h),
-                        child: ElevatedButton(
-                          style: ButtonStyle(
-                            elevation: MaterialStateProperty.all(15),
-                            shape: MaterialStateProperty.all(
-                              CircleBorder(),
-                            ),
-                            padding:
-                                MaterialStateProperty.all(EdgeInsets.all(8)),
-                            backgroundColor:
-                                MaterialStateProperty.all(Colors.white),
-                          ),
-                          onPressed: () {
-                            Navigator.of(context)
-                                .push(MaterialPageRoute(builder: (ctx) {
-                              return RestauantInfoScreen();
-                            }));
-                          },
-                          child: Icon(
-                            Icons.info,
-                            size: 35,
-                            color: Theme.of(context).textTheme.bodyText1!.color,
-                          ),
+                  Padding(
+                    padding: EdgeInsets.only(bottom: 4.h),
+                    child: ElevatedButton(
+                      style: ButtonStyle(
+                        elevation: MaterialStateProperty.all(15),
+                        shape: MaterialStateProperty.all(
+                          CircleBorder(),
                         ),
+                        padding: MaterialStateProperty.all(EdgeInsets.all(8)),
+                        backgroundColor:
+                            MaterialStateProperty.all(Colors.white),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.only(bottom: 22 ),
-                        child: ElevatedButton(
-                          style: ButtonStyle(
-                            elevation: MaterialStateProperty.all(15),
-                            shape: MaterialStateProperty.all(
-                              CircleBorder(),
-                            ),
-                            padding:
-                                MaterialStateProperty.all(EdgeInsets.all(8)),
-                            backgroundColor:
-                                MaterialStateProperty.all(Colors.white),
-                          ),
-                          onPressed: onFavTap,
-                          child: Icon(
-                            Icons.favorite_outline_rounded,
-                            size: 35,
-                            color: Theme.of(context).textTheme.bodyText1!.color,
-                          ),
-                        ),
+                      onPressed: () {
+                        Navigator.of(context)
+                            .push(MaterialPageRoute(builder: (ctx) {
+                          return RestauantInfoScreen();
+                        }));
+                      },
+                      child: Icon(
+                        Icons.info,
+                        size: 35,
+                        color: Theme.of(context).textTheme.bodyText1!.color,
                       ),
-                    ],
+                    ),
                   ),
+                  // Row(
+                  //   children: [
+
+                  //     Padding(
+                  //       padding: const EdgeInsets.only(bottom: 22),
+                  //       child: ElevatedButton(
+                  //         style: ButtonStyle(
+                  //           elevation: MaterialStateProperty.all(15),
+                  //           shape: MaterialStateProperty.all(
+                  //             CircleBorder(),
+                  //           ),
+                  //           padding:
+                  //               MaterialStateProperty.all(EdgeInsets.all(8)),
+                  //           backgroundColor:
+                  //               MaterialStateProperty.all(Colors.white),
+                  //         ),
+                  //         onPressed: onFavTap,
+                  //         child: Icon(
+                  //           Icons.favorite_outline_rounded,
+                  //           size: 35,
+                  //           color: Theme.of(context).textTheme.bodyText1!.color,
+                  //         ),
+                  //       ),
+                  //     ),
+                  //   ],
+                  // ),
                 ],
               ),
             ),

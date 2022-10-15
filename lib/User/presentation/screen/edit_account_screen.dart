@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get_utils/src/get_utils/get_utils.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:restaurant_app/Shared/widgets/custom_app_bar.dart';
+import 'package:restaurant_app/Shared/presentation/widgets/custom_app_bar.dart';
 import 'package:restaurant_app/User/data/models/user.dart';
 import 'package:restaurant_app/utils/constants.dart';
 

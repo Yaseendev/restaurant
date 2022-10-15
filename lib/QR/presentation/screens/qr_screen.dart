@@ -2,9 +2,8 @@ import 'package:flavor/flavor_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
-import 'package:restaurant_app/Shared/widgets/custom_app_bar.dart';
+import 'package:restaurant_app/Shared/presentation/widgets/custom_app_bar.dart';
 import 'package:restaurant_app/QR/presentation/widgets/flash_button.dart';
-import 'package:restaurant_app/utils/constants.dart';
 
 class QRScreen extends StatefulWidget {
   const QRScreen({Key? key}) : super(key: key);

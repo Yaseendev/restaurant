@@ -1,22 +1,31 @@
 import 'package:flavor/flavor_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:restaurant_app/Order/models/order_item.dart';
+import 'package:restaurant_app/Product/models/product.dart';
+import 'package:restaurant_app/Shared/blocs/cubit/cart_cubit.dart';
 import 'package:restaurant_app/utils/constants.dart';
 
 class OrderReviewCard extends StatefulWidget {
-  const OrderReviewCard({Key? key}) : super(key: key);
+  final OrderItem order;
+  const OrderReviewCard({
+    Key? key,
+    required this.order,
+  }) : super(key: key);
 
   @override
   State<OrderReviewCard> createState() => _OrderReviewCardState();
 }
 
 class _OrderReviewCardState extends State<OrderReviewCard> {
-  int quantity = 1;
+  // int quantity = 1;
   @override
   Widget build(BuildContext context) {
     return ListTile(
       contentPadding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 6),
       title: Text(
-        'Beef Burger',
+        widget.order.product.name,
+        //'Beef Burger',
         style: TextStyle(fontSize: 18),
       ),
       subtitle: Column(
@@ -24,12 +33,12 @@ class _OrderReviewCardState extends State<OrderReviewCard> {
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
           SizedBox(height: 8),
-          Text('Large, Extra Onion, Add more meat'),
+          //Text('Large, Extra Onion, Add more meat'), //TODO: Implement
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text.rich(TextSpan(
-                text: '75.25',
+                text: '${(widget.order.totalPrice / widget.order.quantity)}',
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 18,
@@ -50,12 +59,16 @@ class _OrderReviewCardState extends State<OrderReviewCard> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   IconButton(
-                    onPressed: quantity == 1
-                        ? null
+                    onPressed: widget.order.quantity <= 1
+                        ? () =>
+                            context.read<CartCubit>().removeItem(widget.order)
                         : () {
-                            if (quantity > 1) {
+                            if (widget.order.quantity > 1) {
                               setState(() {
-                                --quantity;
+                                // --quantity;
+                                context
+                                    .read<CartCubit>()
+                                    .reduceItemQnt(widget.order);
                               });
                               // widget.onUpdate(ammount);
                             }
@@ -68,7 +81,7 @@ class _OrderReviewCardState extends State<OrderReviewCard> {
                     disabledColor: Color(0xFFF5A7AB),
                   ),
                   Text(
-                    '$quantity',
+                    '${widget.order.quantity}', //TODO: Implement
                     style: TextStyle(
                       fontSize: 22,
                       fontWeight: FontWeight.bold,
@@ -79,7 +92,9 @@ class _OrderReviewCardState extends State<OrderReviewCard> {
                   IconButton(
                     onPressed: () {
                       setState(() {
-                        ++quantity;
+                        //TODO: Implement
+                        //++quantity;
+                        context.read<CartCubit>().increaseItemQnt(widget.order);
                       });
                       // widget.onUpdate(ammount);
                     },
@@ -96,7 +111,10 @@ class _OrderReviewCardState extends State<OrderReviewCard> {
         ],
       ),
       isThreeLine: true,
-      trailing: Image.asset('assets/images/burger.png'),
+      trailing: Image.asset(
+        widget.order.product.imgUrl,
+        fit: BoxFit.fill,
+      ),
     );
   }
 }

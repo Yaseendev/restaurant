@@ -56,8 +56,6 @@ class _ItemScreenState extends State<ItemScreen> {
                       ),
                     ),
                     Align(
-                      // bottom: 0, //-6,
-                      // right: 6,
                       alignment: Alignment.bottomRight,
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),

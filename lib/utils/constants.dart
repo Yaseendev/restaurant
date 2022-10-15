@@ -2,8 +2,6 @@ import 'package:hive_flutter/hive_flutter.dart';
 
 import '../User/data/models/user.dart';
 
-enum ProductSize { small, medium, large }
-
 class Urls {
   static const String DOMAIN = 'https://food.almotawer.net';
   static const String BASE_API = DOMAIN + '/api';
@@ -24,3 +22,6 @@ class Boxes {
   }
 
 }
+
+enum PickupOption {delivery, takeaway}
+enum PaymentMethod {cash, creditCard}

@@ -18,7 +18,8 @@ class RestaurantHeader extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            ' Pizza Master',
+            ' Gad Restaurant',
+            //' Pizza Master',
             //' Zad',
             //' Abo Saleh',
             //' HeatAttack',

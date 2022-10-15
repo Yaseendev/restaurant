@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 
 class BrachTile extends StatelessWidget {
-  const BrachTile({Key? key}) : super(key: key);
+  final String title;
+  final String details;
+  const BrachTile({Key? key,
+  required this.title,
+  required this.details
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +29,7 @@ class BrachTile extends StatelessWidget {
                   Row(
                     children: [
                       Text(
-                        'Title',
+                        title,
                         style: TextStyle(fontSize: 16),
                         textAlign: TextAlign.left,
                       ),
@@ -45,7 +50,7 @@ class BrachTile extends StatelessWidget {
                     crossAxisAlignment: WrapCrossAlignment.center,
                     children: [
                       Text(
-                        'Hello',
+                        details,
                         style: const TextStyle(
                           color: Colors.grey,
                         ),

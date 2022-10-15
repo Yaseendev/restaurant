@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:restaurant_app/Order/models/order_item.dart';
+import 'package:restaurant_app/Product/models/product.dart';
 
 class CartButton extends StatelessWidget {
   final VoidCallback onPress;
-  final List<num> orders; //FIXME
+  final List<OrderItem> orders; //FIXME
   const CartButton({
     Key? key,
     required this.onPress,
@@ -57,7 +59,8 @@ class CartButton extends StatelessWidget {
               Text.rich(
                 TextSpan(
                   text: orders
-                      .reduce((value, element) => value + element)
+                      .fold(
+                          0, (num value, element) => value + element.totalPrice)
                       .toString(),
                   children: [
                     TextSpan(

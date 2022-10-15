@@ -37,17 +37,17 @@ class OfferCardSmall extends StatelessWidget {
               backgroundImage: AssetImage(AppImages.APPLOGO),
             ),
             title: Text(
-              'Pizza Master',
+              'Super Offer',
               // 'Zad'
               //'Abo Saleh'
               //'HeatAttack'
             ),
-            subtitle: Text(
-              //'Hyper Market',
-              //'Pastry & Bakery',
-              'Fast Food',
-              style: TextStyle(color: AppColors.PRIMARY_COLOR),
-            ),
+            // subtitle: Text(
+            //   //'Hyper Market',
+            //   //'Pastry & Bakery',
+            //   'Fast Food',
+            //   style: TextStyle(color: AppColors.PRIMARY_COLOR),
+            // ),
             trailing: Padding(
               padding: const EdgeInsets.only(top: 25),
               child: RatingBar.builder(

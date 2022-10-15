@@ -1,11 +1,14 @@
 import 'package:flavor/flavor_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:restaurant_app/Product/models/product.dart';
 import 'package:restaurant_app/utils/constants.dart';
 
 class DescriptionSection extends StatefulWidget {
+  final Product item;
   final Function(int value) onUpdate;
   const DescriptionSection({
     Key? key,
+    required this.item,
     required this.onUpdate,
   }) : super(key: key);
 
@@ -22,14 +25,15 @@ class _DescriptionSectionState extends State<DescriptionSection> {
       children: [
         ListTile(
           title: Text(
-            'Beef Burger',
+            widget.item.name,
             style: TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.bold,
             ),
           ),
           subtitle: Text(
-            'A simply delicious grilled 100% beef patty with onions, pickles, mustard and a dollop',
+            //'A simply delicious grilled 100% beef patty with onions, pickles, mustard and a dollop',
+            widget.item.desc,
             strutStyle: StrutStyle(height: 1.6),
           ),
         ),
@@ -55,26 +59,26 @@ class _DescriptionSectionState extends State<DescriptionSection> {
                   Expanded(
                     child: Row(
                       children: [
+                        // Text.rich(TextSpan(
+                        //   text: '${widget.item.price}',
+                        //   style: TextStyle(
+                        //     color: Colors.grey,
+                        //     fontWeight: FontWeight.bold,
+                        //     decoration: TextDecoration.lineThrough,
+                        //   ),
+                        //   children: [
+                        //     TextSpan(
+                        //       text: ' EGP',
+                        //       style: TextStyle(
+                        //         fontWeight: FontWeight.normal,
+                        //         fontSize: 12,
+                        //       ),
+                        //     ),
+                        //   ],
+                        // )),
+                        //SizedBox(width: 15),
                         Text.rich(TextSpan(
-                          text: '90',
-                          style: TextStyle(
-                            color: Colors.grey,
-                            fontWeight: FontWeight.bold,
-                            decoration: TextDecoration.lineThrough,
-                          ),
-                          children: [
-                            TextSpan(
-                              text: ' EGP',
-                              style: TextStyle(
-                                fontWeight: FontWeight.normal,
-                                fontSize: 12,
-                              ),
-                            ),
-                          ],
-                        )),
-                        SizedBox(width: 15),
-                        Text.rich(TextSpan(
-                          text: '75.25',
+                          text: '${widget.item.price}',//'75.25',
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 18,

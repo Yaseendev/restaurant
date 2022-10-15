@@ -67,8 +67,12 @@ class HomeLoadingWidget extends StatelessWidget {
             ),
             Row(
               children: [
-                RestaurantCard(),
-                RestaurantCard(),
+                RestaurantCard(
+                  address: '',
+                ),
+                RestaurantCard(
+                  address: '',
+                ),
               ],
             ),
             SizedBox(height: 8),

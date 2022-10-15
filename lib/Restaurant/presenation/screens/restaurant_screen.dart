@@ -1,8 +1,17 @@
+import 'package:badges/badges.dart';
 import 'package:extended_nested_scroll_view/extended_nested_scroll_view.dart';
 import 'package:flavor/flavor_assets.dart';
 import 'package:flavor/flavor_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:restaurant_app/Order/models/order_item.dart';
+import 'package:restaurant_app/Order/presentation/screens/order_review_screen.dart';
+import 'package:restaurant_app/Order/presentation/widgets/cart_button.dart';
+import 'package:restaurant_app/Product/models/product.dart';
+import 'package:restaurant_app/Product/models/product_option.dart';
 import 'package:restaurant_app/Restaurant/presenation/widgets/restaurant_stats_widget.dart';
+import 'package:restaurant_app/Shared/blocs/cubit/cart_cubit.dart';
 import '../widgets/items_listView.dart';
 import '../widgets/restaurant_app_bar.dart';
 import '../widgets/restaurant_header.dart';
@@ -22,10 +31,11 @@ class _RestaurantScreenState extends State<RestaurantScreen>
     with SingleTickerProviderStateMixin {
   TabController? _tabController;
   bool isContolled = true;
+  final List<num> orders = [];
   @override
   void initState() {
     _tabController =
-        TabController(length: 4, initialIndex: widget.initIndex, vsync: this);
+        TabController(length: 3, initialIndex: widget.initIndex, vsync: this);
 
     super.initState();
   }
@@ -34,6 +44,46 @@ class _RestaurantScreenState extends State<RestaurantScreen>
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        // floatingActionButton: Badge(
+        //   badgeContent: Text(
+        //     _count.toString(),
+        //     style: TextStyle(
+        //       color: Colors.white,
+        //       fontSize: 16,
+        //       fontWeight: FontWeight.bold,
+        //     ),
+        //   ),
+        //   showBadge: _count > 0,
+        //   position: BadgePosition.topEnd(
+        //     end: -5,
+        //   ),
+        //   shape: BadgeShape.square,
+        //   borderRadius: BorderRadius.circular(6),
+        //   child: ElevatedButton(
+        //     child: Icon(FontAwesomeIcons.basketShopping),
+        //     style: ElevatedButton.styleFrom(
+        //       padding: const EdgeInsets.all(14),
+        //       shape: RoundedRectangleBorder(
+        //         borderRadius: BorderRadius.circular(16),
+        //       ),
+        //     ),
+        //     onPressed: () {
+        //       setState(() {
+        //         _count++;
+        //       });
+        //     },
+        //   ),
+        // FloatingActionButton.extended(
+        //   label: Text('Cart'),
+        //   icon: Icon(Icons.shopping_cart_rounded),
+        //   onPressed: () {
+        //     setState(() {
+        //       _count++;
+        //     });
+        //   },
+        //   //child: ,
+        // ),
+        // ),
         body: ExtendedNestedScrollView(
           //controller: _listScroll,
           //onlyOneScrollInBody: true,
@@ -111,7 +161,8 @@ class _RestaurantScreenState extends State<RestaurantScreen>
                                             tiles: [
                                               ListTile(
                                                 title: Text(
-                                                  'Burger Sandwiches',
+                                                  'Fool',
+                                                 // 'Burger Sandwiches',
                                                   style:
                                                       TextStyle(fontSize: 16),
                                                 ),
@@ -126,7 +177,7 @@ class _RestaurantScreenState extends State<RestaurantScreen>
                                               ),
                                               ListTile(
                                                 title: Text(
-                                                  'Meals',
+                                                  'Taameya',
                                                   style:
                                                       TextStyle(fontSize: 16),
                                                 ),
@@ -141,12 +192,12 @@ class _RestaurantScreenState extends State<RestaurantScreen>
                                               ),
                                               ListTile(
                                                 title: Text(
-                                                  'Kids Meals',
+                                                  'Pizza',
                                                   style:
                                                       TextStyle(fontSize: 16),
                                                 ),
                                                 trailing: Text(
-                                                  '20',
+                                                  '5',
                                                   style:
                                                       TextStyle(fontSize: 18),
                                                 ),
@@ -154,21 +205,21 @@ class _RestaurantScreenState extends State<RestaurantScreen>
                                                   Navigator.pop(context, 2);
                                                 },
                                               ),
-                                              ListTile(
-                                                title: Text(
-                                                  'Burger Sandwiches',
-                                                  style:
-                                                      TextStyle(fontSize: 16),
-                                                ),
-                                                trailing: Text(
-                                                  '7',
-                                                  style:
-                                                      TextStyle(fontSize: 18),
-                                                ),
-                                                onTap: () {
-                                                  Navigator.pop(context, 3);
-                                                },
-                                              ),
+                                              // ListTile(
+                                              //   title: Text(
+                                              //     'Burger Sandwiches',
+                                              //     style:
+                                              //         TextStyle(fontSize: 16),
+                                              //   ),
+                                              //   trailing: Text(
+                                              //     '7',
+                                              //     style:
+                                              //         TextStyle(fontSize: 18),
+                                              //   ),
+                                              //   onTap: () {
+                                              //     Navigator.pop(context, 3);
+                                              //   },
+                                              // ),
                                             ],
                                           ),
                                         ],
@@ -188,23 +239,23 @@ class _RestaurantScreenState extends State<RestaurantScreen>
                       Expanded(
                         child: TabBar(
                           controller: _tabController,
-                          isScrollable: true,
+                          isScrollable: _tabController!.length > 3,
                           labelColor: Colors.black,
                           indicatorPadding:
                               EdgeInsets.symmetric(horizontal: 16),
                           tabs: [
                             Tab(
-                              text: 'Burger Sandwiches',
+                              text: 'Fool',
                             ),
                             Tab(
-                              text: 'Meals',
+                              text: 'Taameya',
                             ),
                             Tab(
-                              text: 'Kids Meals',
+                              text: 'Pizza',
                             ),
-                            Tab(
-                              text: 'Burger Sandwiches',
-                            ),
+                            // Tab(
+                            //   text: 'Burger Sandwiches',
+                            // ),
                           ],
                         ),
                       ),
@@ -218,7 +269,7 @@ class _RestaurantScreenState extends State<RestaurantScreen>
                   background: Column(
                     children: [
                       RestaurantAppBar(
-                        coverUri: 'assets/images/cover.png',
+                        coverUri: AppImages.COVER,
                         profileUri: AppImages.TRANSAPPLOGO,
                         onFavTap: () {},
                       ),
@@ -237,17 +288,179 @@ class _RestaurantScreenState extends State<RestaurantScreen>
             controller: _tabController,
             children: [
               ItemsListView(
-                title: 'Burger Sandwiches',
+                title: 'Fool',
+                items: [
+                  Product(
+                  name: 'Gad Fool',
+                  desc:
+                      'Stew of cooked fava beans served with olive oil',
+                  imgUrl: 'flavor/assets/images/fool.jpg',
+                  price: 12,
+                  sizes: [
+                    ProductOption(
+                      name: 'Shami',
+                      price: 4,
+                    ),
+                    ProductOption(
+                      name: 'Plate',
+                      price: 12,
+                    ),
+                    // ProductOption(
+                    //   name: 'Large',
+                    //   price: 75.25,
+                    // ),
+                  ],
+                  options: null,
+                  // [
+                  //   ProductOption(
+                  //     name: 'Extra Onion',
+                  //     price: 5,
+                  //   ),
+                  //   ProductOption(
+                  //     name: 'Extra Tomato',
+                  //     price: 8,
+                  //   ),
+                  //   ProductOption(
+                  //     name: 'Add More Meat',
+                  //     price: 20,
+                  //   ),
+                  // ],
+                 // discount: 14.5,
+                  likes: 2100,
+                ),
+                  Product(
+                  name: 'Fool With Lemmon',
+                  desc:
+                      'Stew of cooked fava beans served with olive oil and lemmon',
+                  imgUrl: 'flavor/assets/images/fool.jpg',
+                  price: 14,
+                  sizes: [
+                    ProductOption(
+                      name: 'Shami',
+                      price: 5,
+                    ),
+                    ProductOption(
+                      name: 'Plate',
+                      price: 14,
+                    ),
+                  ],
+                  options: null,
+                  likes: 2100,
+                ),
+                  Product(
+                  name: 'Hot Spicy Fool',
+                  desc:
+                      'Stew of cooked fava beans served with olive oil and hot chilly sauce',
+                  imgUrl: 'flavor/assets/images/fool.jpg',
+                  price: 14,
+                  sizes: [
+                    ProductOption(
+                      name: 'Shami',
+                      price: 5,
+                    ),
+                    ProductOption(
+                      name: 'Plate',
+                      price: 14,
+                    ),
+                  ],
+                  options: null,
+                  likes: 2100,
+                ),
+                ],
+                onProductOrder: (order) {
+                  setState(() {
+                    orders.add(order);
+                  });
+                },
               ),
               ItemsListView(
-                title: 'Meals',
+                title: 'Taamey', //'Meals',
+                items: [
+                  Product(
+                  name: 'Dynamite',
+                  desc:
+                      'Fool, Taameya, Eggplants, Potato Chips',
+                  imgUrl: 'flavor/assets/images/tamey.jpg',
+                  price: 9,
+                  sizes:null,
+                  options: null,
+                  likes: 2100,
+                ),
+                  Product(
+                  name: 'Tahabeesh Taameya',
+                  desc:
+                      'Taameya, Eggplants, Potato Chips, Hot Pepper',
+                  imgUrl: 'flavor/assets/images/tamey.jpg',
+                  price: 8,
+                  sizes:null,
+                  options: null,
+                  likes: 2100,
+                ),
+                  Product(
+                  name: 'Magnom Taameya',
+                  desc:
+                      'Taameya, Eggplants, Potato Chips, Roomy Cheese',
+                  imgUrl: 'flavor/assets/images/tamey.jpg',
+                  price: 8,
+                  sizes: null,
+                  options: null,
+                  likes: 2100,
+                ),
+                ],
+                onProductOrder: (order) { 
+                  setState(() {
+                    orders.add(order);
+                  });
+                },
               ),
               ItemsListView(
-                title: 'Kids Meals',
+                title: 'Pizza',
+                items: [
+                  Product(
+                  name: 'Pizza Margherita',
+                  desc:
+                      'Pizza dough, tomato sauce, fresh mozzarella, olive oil, basil',
+                  imgUrl: 'flavor/assets/images/pizza.png',
+                  price: 40,
+                  sizes:null,
+                  options: null,
+                  likes: 2100,
+                ),
+                  Product(
+                  name: 'Tuna Pizza',
+                  desc:
+                      'Pizza dough, tomato sauce, fresh mozzarella, olive oil, basil, Tuna',
+                  imgUrl: 'flavor/assets/images/pizza.png',
+                  price: 52,
+                  sizes:null,
+                  options: null,
+                  likes: 2100,
+                ),
+                  Product(
+                  name: 'Quatro Cheese Pizza',
+                  desc:
+                      'Pizza dough, tomato sauce, fresh mozzarella, olive oil, basil, different types of cheese',
+                  imgUrl: 'flavor/assets/images/pizza.png',
+                  price: 55,
+                  sizes: null,
+                  options: null,
+                  likes: 2100,
+                ),
+                ],
+                onProductOrder: (order) {
+                  setState(() {
+                    orders.add(order);
+                  });
+                },
               ),
-              ItemsListView(
-                title: 'Burger Sandwiches',
-              ),
+              // ItemsListView(
+              //   title: 'Burger Sandwiches',
+              //   onProductOrder: (order) {
+              //     setState(() {
+              //       orders.add(order);
+              //     });
+              //   },
+              // ),
             ],
           ),
 
@@ -306,6 +519,23 @@ class _RestaurantScreenState extends State<RestaurantScreen>
           // },
           // itemCount: 30,
         ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        floatingActionButton: BlocBuilder<CartCubit, List<OrderItem>>(
+          builder: (context, state) {
+            return state.isEmpty ? Container()
+            : CartButton(
+                orders: state,
+                onPress: () {
+                  Navigator.of(context).push(MaterialPageRoute(builder: (ctx) {
+                    return OrderReviewScreen();
+                  }));
+                },
+              );
+
+          },
+        )
+            
+            ,
       ),
     );
   }

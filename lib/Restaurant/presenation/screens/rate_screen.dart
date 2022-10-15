@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:restaurant_app/Shared/screens/add_rate_screen.dart';
-import 'package:restaurant_app/Shared/widgets/custom_app_bar.dart';
-import 'package:restaurant_app/Shared/widgets/footer_action_button.dart';
+import 'package:restaurant_app/Shared/presentation/screens/add_rate_screen.dart';
+import 'package:restaurant_app/Shared/presentation/widgets/custom_app_bar.dart';
+import 'package:restaurant_app/Shared/presentation/widgets/footer_action_button.dart';
 import '../widgets/rate_card.dart';
 
 class RateScreen extends StatelessWidget {

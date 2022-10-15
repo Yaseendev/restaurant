@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:restaurant_app/Product/models/product.dart';
+import 'package:restaurant_app/Product/models/product_option.dart';
 import 'package:vertical_tab_bar_view/vertical_tab_bar_view.dart';
 import 'item_tile.dart';
 
@@ -69,7 +71,44 @@ class _RestaurantMenuWidgetState extends State<RestaurantMenuWidget>
             controller: _tabController,
             physics: NeverScrollableScrollPhysics(),
             children: [
-              for (int i = 0; i < 4; i++) ItemTile(),
+              for (int i = 0; i < 4; i++) ItemTile(
+                item: Product(
+                  name: 'Beef Burger',
+                  desc: 'A simply delicious grilled 100% beef patty with onions, pickles, mustard and a dollop',
+                  imgUrl: 'assets/images/burger.png',
+                  price: 90,
+                  sizes: [
+                    ProductOption(
+                      name: 'Small',
+                      price: 33,
+                    ),
+                    ProductOption(
+                      name: 'Medium',
+                      price: 64,
+                    ),
+                    ProductOption(
+                      name: 'Large',
+                      price: 75.25,
+                    ),
+                    ],
+                  options: [
+                    ProductOption(
+                      name: 'Extra Onion',
+                      price: 5,
+                    ),
+                    ProductOption(
+                      name: 'Extra Tomato',
+                      price: 8,
+                    ),
+                    ProductOption(
+                      name: 'Add More Meat',
+                      price: 20,
+                    ),
+                    ],
+                  discount: 14.5,
+                  likes: 2100,
+                ),
+              ),
             ],
           ),
         ),

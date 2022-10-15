@@ -75,6 +75,7 @@ class LoginWithWidget extends StatelessWidget {
               ),
             ),
             style: ElevatedButton.styleFrom(
+              backgroundColor: Color(0xFFE6242E),
               padding: const EdgeInsets.all(16),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(8),

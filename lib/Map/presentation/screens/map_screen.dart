@@ -33,19 +33,19 @@ class _MapScreenState extends State<MapScreen> {
             markerId: const MarkerId('marker1'),
             icon: BitmapDescriptor.fromBytes(
               markerIcon,
-              size:const Size(140, 140),
+              size: const Size(140, 140),
             ),
             draggable: false,
             position: const LatLng(30.079699731937378, 31.19522407650948),
           ),
-          Marker( 
+          Marker(
             markerId: const MarkerId('marker2'),
             icon: BitmapDescriptor.fromBytes(markerIcon),
             draggable: false,
             position: const LatLng(30.056090672183135, 31.222061924636368),
           ),
           Marker(
-            markerId:const MarkerId('marker3'),
+            markerId: const MarkerId('marker3'),
             icon: BitmapDescriptor.fromBytes(markerIcon),
             draggable: false,
             position: const LatLng(30.05731441015454, 31.246071718633175),
@@ -75,15 +75,14 @@ class _MapScreenState extends State<MapScreen> {
           onTap: (pos) => print('Location $pos'),
           markers: markers,
         ),
-       //CategoriesBaner(),
+        //CategoriesBaner(),
         ScreenUtil().orientation == Orientation.portrait
             ? Align(
                 alignment: Alignment.bottomCenter,
                 child: BlurryContainer(
                   color: Colors.white.withOpacity(0.0),
                   //filter: ui.ImageFilter.blur(sigmaX: 4.0, sigmaY: 4.0),
-                  height: MediaQuery.of(context).size.height * .25
-                  ,
+                  height: MediaQuery.of(context).size.height * .26,
                   width: MediaQuery.of(context).size.width,
                   blur: 5,
                   elevation: 0,
@@ -94,7 +93,7 @@ class _MapScreenState extends State<MapScreen> {
                         Padding(
                           padding: const EdgeInsets.only(left: 8, bottom: 8),
                           child: Text(
-                            'Nearst Places',
+                            'Nearst Branches',
                             style: TextStyle(
                               color: Colors.black,
                               fontWeight: FontWeight.bold,
@@ -108,10 +107,45 @@ class _MapScreenState extends State<MapScreen> {
                           child: SingleChildScrollView(
                             scrollDirection: Axis.horizontal,
                             child: Row(
-                              children: List.filled(
-                                4,
-                                PlaceCard(),
-                              ),
+                              children: [
+                                PlaceCard(
+                                  address:
+                                      '63ش فريد سميكة-ميدان الحجاز ,مصر الجديدة',
+                                  onPress: () {
+                                    googleMapController.animateCamera(
+                                        CameraUpdate.newLatLng(LatLng(
+                                            30.079699731937378,
+                                            31.19522407650948)));
+                                  },
+                                ),
+                                PlaceCard(
+                                  address: '97ش التحرير ,الدقى',
+                                  onPress: () {
+                                    googleMapController.animateCamera(
+                                        CameraUpdate.newLatLng(LatLng(
+                                            30.056090672183135,
+                                            31.222061924636368)));
+                                  },
+                                ),
+                                PlaceCard(
+                                  address: 'ش الشيراتون , سقالة , الغردقة',
+                                  onPress: () {
+                                    googleMapController.animateCamera(
+                                        CameraUpdate.newLatLng(LatLng(
+                                            30.056090672183135,
+                                            31.222061924636368)));
+                                  },
+                                ),
+                                PlaceCard(
+                                  address: 'السوق التجارى القديم , شرم الشيخ',
+                                  onPress: () {
+                                    googleMapController.animateCamera(
+                                        CameraUpdate.newLatLng(LatLng(
+                                            30.05731441015454,
+                                            31.246071718633175)));
+                                  },
+                                ),
+                              ],
                             ),
                           ),
                         ),
@@ -130,7 +164,7 @@ class _MapScreenState extends State<MapScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Nearst Places',
+                        'Nearst Branches',
                         style: TextStyle(
                           color: Colors.black,
                           fontWeight: FontWeight.bold,
@@ -141,14 +175,49 @@ class _MapScreenState extends State<MapScreen> {
                         child: SingleChildScrollView(
                           physics: AlwaysScrollableScrollPhysics(),
                           scrollDirection: Axis.vertical,
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: List.filled(
-                                  4,
-                                  PlaceCard(),
-                                ),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              PlaceCard(
+                                address:
+                                    '63ش فريد سميكة-ميدان الحجاز ,مصر الجديدة',
+                                onPress: () {
+                                  googleMapController.animateCamera(
+                                      CameraUpdate.newLatLng(LatLng(
+                                          30.079699731937378,
+                                          31.19522407650948)));
+                                },
                               ),
-                            ),
+                              PlaceCard(
+                                address: '97ش التحرير ,الدقى',
+                                onPress: () {
+                                  googleMapController.animateCamera(
+                                      CameraUpdate.newLatLng(LatLng(
+                                          30.056090672183135,
+                                          31.222061924636368)));
+                                },
+                              ),
+                              PlaceCard(
+                                address: 'ش الشيراتون , سقالة , الغردقة',
+                                onPress: () {
+                                  googleMapController.animateCamera(
+                                      CameraUpdate.newLatLng(LatLng(
+                                          30.056090672183135,
+                                          31.222061924636368)));
+                                },
+                              ),
+                              PlaceCard(
+                                address: 'السوق التجارى القديم , شرم الشيخ',
+                                onPress: () {
+                                  googleMapController.animateCamera(
+                                      CameraUpdate.newLatLng(LatLng(
+                                          30.05731441015454,
+                                          31.246071718633175)));
+                                },
+                              ),
+                            ],
+                          ),
+                        ),
                       ),
                     ],
                   ),

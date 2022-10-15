@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
-
+import 'package:restaurant_app/Product/models/product_option.dart';
 import 'extra_option_tile.dart';
 
 class OptionsSection extends StatefulWidget {
-  final Function(num total) onUpdate;
+  final List<ProductOption> options;
+  final Function(List<ProductOption> selectedOptions) onUpdate;
   const OptionsSection({
     Key? key,
+    required this.options,
     required this.onUpdate,
   }) : super(key: key);
 
@@ -14,7 +16,7 @@ class OptionsSection extends StatefulWidget {
 }
 
 class _OptionsSectionState extends State<OptionsSection> {
-  num totalOptions = 0;
+  Set<ProductOption> totalOptions = Set<ProductOption>();
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -40,30 +42,31 @@ class _OptionsSectionState extends State<OptionsSection> {
             ),
           ),
           SizedBox(height: 12),
-          ExtraOptionTile(
-            optionName: 'Extra Onion',
-            price: 5,
+          ...widget.options.map((option) => ExtraOptionTile(
+            optionName: option.name,
+            price: option.price,
             onUpdate: (selected) {
-              selected ? totalOptions += 5 : totalOptions -= 5;
-              widget.onUpdate(totalOptions);
+              selected ? totalOptions.add(option) : totalOptions.remove(option);
+              widget.onUpdate(totalOptions.toList());
             },
-          ),
-          ExtraOptionTile(
-            optionName: 'Extra Tomato',
-            price: 8,
-            onUpdate: (selected) {
-              selected ? totalOptions += 8 : totalOptions -= 8;
-              widget.onUpdate(totalOptions);
-            },
-          ),
-          ExtraOptionTile(
-            optionName: 'Add More Meat',
-            price: 20,
-            onUpdate: (selected) {
-              selected ? totalOptions += 20 : totalOptions -= 20;
-              widget.onUpdate(totalOptions);
-            },
-          ),
+          ),),
+          
+          // ExtraOptionTile(
+          //   optionName: 'Extra Tomato',
+          //   price: 8,
+          //   onUpdate: (selected) {
+          //     selected ? totalOptions += 8 : totalOptions -= 8;
+          //     widget.onUpdate(totalOptions);
+          //   },
+          // ),
+          // ExtraOptionTile(
+          //   optionName: 'Add More Meat',
+          //   price: 20,
+          //   onUpdate: (selected) {
+          //     selected ? totalOptions += 20 : totalOptions -= 20;
+          //     widget.onUpdate(totalOptions);
+          //   },
+          // ),
         ],
       ),
     );

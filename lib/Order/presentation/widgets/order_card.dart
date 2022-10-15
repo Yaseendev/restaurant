@@ -1,6 +1,7 @@
 import 'package:flavor/flavor_assets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:restaurant_app/Shared/presentation/screens/add_rate_screen.dart';
 import '../screens/order_screen.dart';
 
 class OrderCard extends StatelessWidget {
@@ -10,8 +11,8 @@ class OrderCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.of(context)
-            .push(MaterialPageRoute(builder: (context) => OrderScreen()));
+        // Navigator.of(context)
+        //     .push(MaterialPageRoute(builder: (context) => OrderScreen()));
       },
       child: SizedBox(
         width: 142.w,
@@ -30,7 +31,8 @@ class OrderCard extends StatelessWidget {
                   backgroundImage: AssetImage(AppImages.APPLOGO),
                 ),
                 title: Text(
-                  'Pizza Master',
+                  'Gad Restaurant',
+                  //'Pizza Master',
                   //'Zad',
                   //'Abo Saleh',
                   //'HeatAttack',
@@ -53,7 +55,7 @@ class OrderCard extends StatelessWidget {
                 horizontalTitleGap: 2,
                 contentPadding: const EdgeInsets.symmetric(horizontal: 20),
                 title: Text(
-                  'Beef Burger',
+                  'Gad Fool',
                   textAlign: TextAlign.left,
                   style: TextStyle(fontSize: 18),
                 ),
@@ -68,7 +70,7 @@ class OrderCard extends StatelessWidget {
                 horizontalTitleGap: 2,
                 contentPadding: const EdgeInsets.symmetric(horizontal: 20),
                 title: Text(
-                  'Cheese Burger',
+                  'Quatro Cheese Pizza',
                   textAlign: TextAlign.left,
                   style: TextStyle(fontSize: 18),
                 ),
@@ -85,7 +87,10 @@ class OrderCard extends StatelessWidget {
                     Directionality(
                       textDirection: TextDirection.rtl,
                       child: TextButton.icon(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (_) => AddRateScreen()));
+                        },
                         icon: Icon(Icons.arrow_back),
                         label: Text('Rate'),
                       ),

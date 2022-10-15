@@ -7,7 +7,7 @@ import 'package:restaurant_app/Restaurant/presenation/widgets/restaurant_stats_w
 import '../widgets/order_footer_buttons.dart';
 import '../widgets/orders_switch.dart';
 import '../widgets/previous_order_card.dart';
-import 'products_screen.dart';
+import '../../../Product/presentation/screens/products_screen.dart';
 
 enum OrderType { previous, current }
 

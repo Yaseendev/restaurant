@@ -9,4 +9,5 @@ class AppImages {
   static const String RESTAURANT_HOME_CARD_PIC = ROOTURI + 'kfc.png';
   static const String MAP_PIN = ROOTURI + 'pin.png';
   static const String TRANSAPPLOGO = ROOTURI + 'Burger_King_logo.png';
+  static const String COVER = ROOTURI + 'cover.png';
 }
