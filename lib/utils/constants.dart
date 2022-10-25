@@ -1,6 +1,7 @@
 import 'package:hive_flutter/hive_flutter.dart';
-
 import '../User/data/models/user.dart';
+
+const String appName = 'Khabzino';
 
 class Urls {
   static const String DOMAIN = 'https://food.almotawer.net';
@@ -13,15 +14,14 @@ class Urls {
 }
 
 class Boxes {
-
   static Future<Box<User>> getUserBox() async {
     if (Hive.isBoxOpen('userBox'))
       return Hive.box('userBox');
     else
       return await Hive.openBox('userBox');
   }
-
 }
 
-enum PickupOption {delivery, takeaway}
-enum PaymentMethod {cash, creditCard}
+enum PickupOption { delivery, takeaway }
+
+enum PaymentMethod { cash, creditCard }

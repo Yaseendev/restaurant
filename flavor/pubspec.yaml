@@ -8,4 +8,4 @@ environment:
 
 dependencies:
   restaurant_app:
-    path: ../../restaurant_app
+    path: ../../restaurant

@@ -26,6 +26,7 @@ class _ProductScreenState extends State<ProductScreen> {
   @override
   void initState() {
     size = widget.product.sizes?.last;
+    options = widget.product.options;
     super.initState();
   }
 
@@ -172,9 +173,11 @@ class _ProductScreenState extends State<ProductScreen> {
                   0,
                   (num previousValue, element) =>
                       previousValue + element.price) +
-              (size != null ? size!.price : 0 )) *
+              (size != null ? size!.price : 0)) *
           ammount;
-    } else
+    } else if (size != null)
       return size!.price * ammount;
+    else
+      return widget.product.price;
   }
 }

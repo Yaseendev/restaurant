@@ -42,7 +42,7 @@ class PhotoShow extends StatelessWidget {
               width: double.maxFinite,
             ),
           ),
-        ), 
+        ),
         Container(
           margin: EdgeInsets.all(5.0),
           child: ClipRRect(
@@ -56,7 +56,7 @@ class PhotoShow extends StatelessWidget {
         ),
       ],
       options: CarouselOptions(
-        viewportFraction: 0.75,
+        viewportFraction: 0.9,
         height: ScreenUtil().orientation == Orientation.portrait ? 40.h : 80.w,
         aspectRatio: 2.5,
         enlargeCenterPage: false,

@@ -64,7 +64,9 @@ class LoginWithWidget extends StatelessWidget {
                   // .signIn()
                   // .then((value) => print(value));
             },
-            icon: Icon(FontAwesomeIcons.google),
+            icon: Icon(FontAwesomeIcons.google,
+            color: Colors.white,
+            ),
             label: Text(
               'Google',
               style: TextStyle(
@@ -72,14 +74,15 @@ class LoginWithWidget extends StatelessWidget {
                     ? 10.sp
                     : 15.sp,
                 fontWeight: FontWeight.bold,
+                color: Colors.white,
               ),
             ),
-            style: ElevatedButton.styleFrom(
-              backgroundColor: Color(0xFFE6242E),
-              padding: const EdgeInsets.all(16),
-              shape: RoundedRectangleBorder(
+            style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all( Color(0xFFE6242E)),
+              padding: MaterialStateProperty.all(const EdgeInsets.all(16)),
+              shape: MaterialStateProperty.all(RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(8),
-              ),
+              )),
             ),
           ),
         ),
@@ -90,7 +93,9 @@ class LoginWithWidget extends StatelessWidget {
             onPressed: () {
               context.read<AccountBloc>().add(LoginWithFacebookEvent());
             },
-            icon: Icon(FontAwesomeIcons.facebookF),
+            icon: Icon(FontAwesomeIcons.facebookF,
+            color: Colors.white,
+            ),
             label: Text(
               'Facebook',
               style: TextStyle(
@@ -98,6 +103,7 @@ class LoginWithWidget extends StatelessWidget {
                     ? 10.sp
                     : 15.sp,
                 fontWeight: FontWeight.bold,
+                color: Colors.white,
               ),
             ),
             style: ButtonStyle(
@@ -117,7 +123,9 @@ class LoginWithWidget extends StatelessWidget {
               // await FacebookAuth.i.logOut();
               onEmailPress();
             },
-            icon: Icon(Icons.email),
+            icon: Icon(Icons.email,
+            color: Colors.white,
+            ),
             label: Text(
               'E-mail',
               style: TextStyle(
@@ -125,6 +133,7 @@ class LoginWithWidget extends StatelessWidget {
                     ? 10.sp
                     : 15.sp,
                 fontWeight: FontWeight.bold,
+                color: Colors.white,
               ),
             ),
             style: ButtonStyle(

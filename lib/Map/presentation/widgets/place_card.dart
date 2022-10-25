@@ -33,7 +33,9 @@ class PlaceCard extends StatelessWidget {
                   backgroundImage: AssetImage(AppImages.APPLOGO),
                 ),
                 title: Text(
-                  'Gad Restaurant',
+                  appName,
+                  //'Exception'
+                 // 'Gad Restaurant',
                   //'Zad',
                   //'Abo Saleh'
                   // 'HeatAttack'

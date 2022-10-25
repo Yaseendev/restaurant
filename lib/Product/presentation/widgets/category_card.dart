@@ -33,7 +33,7 @@ class CategoryCard extends StatelessWidget {
               Image.asset(
                 image,
                 height: 60,
-                width: 75,
+                width: 70,
               ),
               SizedBox(
                 height: 10,

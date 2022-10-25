@@ -1,3 +1,4 @@
+import 'package:flavor/flavor_assets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:restaurant_app/Offers/presentation/screens/offers_screen.dart';
@@ -71,18 +72,18 @@ class HomeLoadedWidget extends StatelessWidget {
                   children: [
                     CategoryCard(
                       //TODO: Add to flavor consts
-                      image: 'flavor/assets/images/beans.png',
-                      title: 'Fool',
+                      image: AppImages.CAT1,
+                      title: 'Pizza',
                       index: 0,
                     ),
                     CategoryCard(
-                      image: 'flavor/assets/images/falafel.png',
-                      title: 'Taameya',
+                      image: AppImages.CAT2,
+                      title: 'Macaroni',
                       index: 1,
                     ),
                     CategoryCard(
-                      image: 'flavor/assets/images/pizzaLogo.png',
-                      title: 'Pizza',
+                      image: AppImages.CAT3,
+                      title: 'Sandwiches',
                       index: 2,
                     ),
                   ],
@@ -125,10 +126,10 @@ class HomeLoadedWidget extends StatelessWidget {
                     //TODO
                     HomeProductCard(
                       product: Product(
-                        name: 'Pizza',
-                        desc: 'Cheese, Tomatos, Onions, Cold meats',
-                        imgUrl: 'flavor/assets/images/pizza.png',
-                        price: 90,
+                        name: 'Pizza Margherita',
+                        desc: 'Tomatoes, Mozzarella cheese, basil, olive oil',
+                        imgUrl: AppImages.POP1,
+                        price: 265,
                         discount: 14.5,
                         likes: 2100,
                         options: [],
@@ -137,10 +138,10 @@ class HomeLoadedWidget extends StatelessWidget {
                     ),
                     HomeProductCard(
                       product: Product(
-                        name: 'Pasta',
-                        desc: 'Macaroni, Mozzarella, Mushrooms',
-                        imgUrl: 'flavor/assets/images/pasta.png',
-                        price: 40,
+                        name: 'Bolonis Spagetti',
+                        desc: 'Meat, Red Sauce',
+                        imgUrl: AppImages.POP2,
+                        price: 24,
                         discount: 14.5,
                         likes: 2100,
                         options: [],
@@ -178,10 +179,12 @@ class HomeLoadedWidget extends StatelessWidget {
                   children: [
                     //ProductCard(),
                     RestaurantCard(
-                      address: '63ش فريد سميكة-ميدان الحجاز ,مصر الجديدة',
+                      addressName: 'حدائق الأهرام',
+                      address: '196 ب، شارع جاردينيا، البوابة الأولى',
                     ),
                     RestaurantCard(
-                      address: '97ش التحرير ,الدقى',
+                      addressName: 'Faisal',
+                      address: '423 فيصل الرئيسى، محطة مدكور، أمام العشرين',
                     ),
                   ],
                 ),

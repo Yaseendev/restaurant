@@ -3,7 +3,6 @@ import 'package:flavor/flavor_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:restaurant_app/Spash/blocs/initroute_bloc/initroute_bloc.dart';
 import 'package:restaurant_app/utils/constants.dart';
@@ -20,10 +19,10 @@ void main(List<String> arguments) async {
   await locatorsSetup();
   await Hive.initFlutter();
   HttpOverrides.global = MyHttpOverrides();
- Stripe.publishableKey = 'pk_test_51Ls01HLynaEsGmGgB9VxL3iMEtwxRMMizxseDFzlCg3dnZvpaHids2hdnDitGN1ppzUSjmCnsH25BbovwfiHkT5h00Or9YzRrG';
- await Stripe.instance.applySettings();
+ //Stripe.publishableKey = 'pk_test_51Ls01HLynaEsGmGgB9VxL3iMEtwxRMMizxseDFzlCg3dnZvpaHids2hdnDitGN1ppzUSjmCnsH25BbovwfiHkT5h00Or9YzRrG';
+ //await Stripe.instance.applySettings();
   runApp(MyApp(
-    title: arguments.isEmpty ? 'Restaurant App' : arguments[0],
+    title: appName, //arguments.isEmpty ? 'Restaurant App' : arguments[0],
   ));
 }
 

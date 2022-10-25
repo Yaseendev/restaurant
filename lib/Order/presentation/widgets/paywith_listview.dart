@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_stripe/flutter_stripe.dart' as StripeLib;
+//import 'package:flutter_stripe/flutter_stripe.dart' as StripeLib;
 import 'package:restaurant_app/utils/constants.dart';
 
 class PaywithListView extends StatefulWidget {
@@ -67,13 +67,13 @@ class _PaywithListViewState extends State<PaywithListView> {
                         ),
                       ),
                       Divider(),
-                      StripeLib.CardFormField(
-                        style: StripeLib.CardFormStyle(
-                          textColor: Colors.black,
-                          placeholderColor: Colors.black,
-                        ),
-                        controller: StripeLib.CardFormEditController(),
-                      ),
+                      // StripeLib.CardFormField(
+                      //   style: StripeLib.CardFormStyle(
+                      //     textColor: Colors.black,
+                      //     placeholderColor: Colors.black,
+                      //   ),
+                      //   controller: StripeLib.CardFormEditController(),
+                      // ),
                       SizedBox(
                         width: MediaQuery.of(context).size.width,
                         child: Padding(

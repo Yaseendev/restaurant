@@ -82,11 +82,11 @@ class _MapScreenState extends State<MapScreen> {
                 child: BlurryContainer(
                   color: Colors.white.withOpacity(0.0),
                   //filter: ui.ImageFilter.blur(sigmaX: 4.0, sigmaY: 4.0),
-                  height: MediaQuery.of(context).size.height * .26,
+                  height: MediaQuery.of(context).size.height * .28,
                   width: MediaQuery.of(context).size.width,
                   blur: 5,
                   elevation: 0,
-                  padding: const EdgeInsets.symmetric(horizontal: 12),
+                  padding: const EdgeInsets.symmetric(horizontal: 4),
                   child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -109,8 +109,7 @@ class _MapScreenState extends State<MapScreen> {
                             child: Row(
                               children: [
                                 PlaceCard(
-                                  address:
-                                      '63ش فريد سميكة-ميدان الحجاز ,مصر الجديدة',
+                                  address: 'حدائق الأهرام',
                                   onPress: () {
                                     googleMapController.animateCamera(
                                         CameraUpdate.newLatLng(LatLng(
@@ -119,7 +118,7 @@ class _MapScreenState extends State<MapScreen> {
                                   },
                                 ),
                                 PlaceCard(
-                                  address: '97ش التحرير ,الدقى',
+                                  address: 'Faisal',
                                   onPress: () {
                                     googleMapController.animateCamera(
                                         CameraUpdate.newLatLng(LatLng(
@@ -128,7 +127,7 @@ class _MapScreenState extends State<MapScreen> {
                                   },
                                 ),
                                 PlaceCard(
-                                  address: 'ش الشيراتون , سقالة , الغردقة',
+                                  address: '196 ب، شارع جاردينيا، البوابة الأولى',
                                   onPress: () {
                                     googleMapController.animateCamera(
                                         CameraUpdate.newLatLng(LatLng(
@@ -137,7 +136,7 @@ class _MapScreenState extends State<MapScreen> {
                                   },
                                 ),
                                 PlaceCard(
-                                  address: 'السوق التجارى القديم , شرم الشيخ',
+                                  address: '423 فيصل الرئيسى، محطة مدكور، أمام العشرين',
                                   onPress: () {
                                     googleMapController.animateCamera(
                                         CameraUpdate.newLatLng(LatLng(
@@ -179,42 +178,41 @@ class _MapScreenState extends State<MapScreen> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               PlaceCard(
-                                address:
-                                    '63ش فريد سميكة-ميدان الحجاز ,مصر الجديدة',
-                                onPress: () {
-                                  googleMapController.animateCamera(
-                                      CameraUpdate.newLatLng(LatLng(
-                                          30.079699731937378,
-                                          31.19522407650948)));
-                                },
-                              ),
-                              PlaceCard(
-                                address: '97ش التحرير ,الدقى',
-                                onPress: () {
-                                  googleMapController.animateCamera(
-                                      CameraUpdate.newLatLng(LatLng(
-                                          30.056090672183135,
-                                          31.222061924636368)));
-                                },
-                              ),
-                              PlaceCard(
-                                address: 'ش الشيراتون , سقالة , الغردقة',
-                                onPress: () {
-                                  googleMapController.animateCamera(
-                                      CameraUpdate.newLatLng(LatLng(
-                                          30.056090672183135,
-                                          31.222061924636368)));
-                                },
-                              ),
-                              PlaceCard(
-                                address: 'السوق التجارى القديم , شرم الشيخ',
-                                onPress: () {
-                                  googleMapController.animateCamera(
-                                      CameraUpdate.newLatLng(LatLng(
-                                          30.05731441015454,
-                                          31.246071718633175)));
-                                },
-                              ),
+                                  address: 'حدائق الأهرام',
+                                  onPress: () {
+                                    googleMapController.animateCamera(
+                                        CameraUpdate.newLatLng(LatLng(
+                                            30.079699731937378,
+                                            31.19522407650948)));
+                                  },
+                                ),
+                                PlaceCard(
+                                  address: 'Faisal',
+                                  onPress: () {
+                                    googleMapController.animateCamera(
+                                        CameraUpdate.newLatLng(LatLng(
+                                            30.056090672183135,
+                                            31.222061924636368)));
+                                  },
+                                ),
+                                PlaceCard(
+                                  address: '196 ب، شارع جاردينيا، البوابة الأولى',
+                                  onPress: () {
+                                    googleMapController.animateCamera(
+                                        CameraUpdate.newLatLng(LatLng(
+                                            30.056090672183135,
+                                            31.222061924636368)));
+                                  },
+                                ),
+                                PlaceCard(
+                                  address: '423 فيصل الرئيسى، محطة مدكور، أمام العشرين',
+                                  onPress: () {
+                                    googleMapController.animateCamera(
+                                        CameraUpdate.newLatLng(LatLng(
+                                            30.05731441015454,
+                                            31.246071718633175)));
+                                  },
+                                ),
                             ],
                           ),
                         ),

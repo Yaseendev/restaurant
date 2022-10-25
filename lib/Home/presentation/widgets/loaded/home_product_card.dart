@@ -15,6 +15,7 @@ class HomeProductCard extends StatelessWidget {
     return GestureDetector(
       child: SizedBox(
         width: 142.w,
+        height: 65.h,
         child: Card(
           elevation: 2.0,
           shape:
@@ -22,6 +23,7 @@ class HomeProductCard extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 Image.asset(
                   product.imgUrl,
@@ -36,6 +38,7 @@ class HomeProductCard extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                     color: Theme.of(context).primaryColor,
                   ),
+                  textAlign: TextAlign.center,
                 ),
                 SizedBox(height: 5),
                 Text(

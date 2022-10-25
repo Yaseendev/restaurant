@@ -1,9 +1,11 @@
+import 'package:flavor/flavor_assets.dart';
 import 'package:flavor/flavor_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:restaurant_app/Order/models/order_item.dart';
 import 'package:restaurant_app/Product/models/product.dart';
+import 'package:restaurant_app/Product/models/product_option.dart';
 import 'package:restaurant_app/Shared/blocs/cubit/cart_cubit.dart';
 import 'package:restaurant_app/Shared/presentation/widgets/custom_app_bar.dart';
 import '../../../Order/presentation/widgets/cart_button.dart';
@@ -28,7 +30,7 @@ class _ProductsScreenState extends State<ProductsScreen>
   @override
   void initState() {
     _tabController =
-        TabController(length: 4, initialIndex: widget.initIndex, vsync: this);
+        TabController(length: 3, initialIndex: widget.initIndex, vsync: this);
     super.initState();
   }
 
@@ -100,7 +102,8 @@ class _ProductsScreenState extends State<ProductsScreen>
                                       tiles: [
                                         ListTile(
                                           title: Text(
-                                            'Burger Sandwiches',
+                                            'Pizza',
+                                            // 'Burger Sandwiches',
                                             style: TextStyle(fontSize: 16),
                                           ),
                                           trailing: Text(
@@ -113,7 +116,7 @@ class _ProductsScreenState extends State<ProductsScreen>
                                         ),
                                         ListTile(
                                           title: Text(
-                                            'Meals',
+                                            'Macaroni',
                                             style: TextStyle(fontSize: 16),
                                           ),
                                           trailing: Text(
@@ -126,28 +129,15 @@ class _ProductsScreenState extends State<ProductsScreen>
                                         ),
                                         ListTile(
                                           title: Text(
-                                            'Kids Meals',
+                                            'Sandwiches',
                                             style: TextStyle(fontSize: 16),
                                           ),
                                           trailing: Text(
-                                            '20',
+                                            '5',
                                             style: TextStyle(fontSize: 18),
                                           ),
                                           onTap: () {
                                             Navigator.pop(context, 2);
-                                          },
-                                        ),
-                                        ListTile(
-                                          title: Text(
-                                            'Burger Sandwiches',
-                                            style: TextStyle(fontSize: 16),
-                                          ),
-                                          trailing: Text(
-                                            '7',
-                                            style: TextStyle(fontSize: 18),
-                                          ),
-                                          onTap: () {
-                                            Navigator.pop(context, 3);
                                           },
                                         ),
                                       ],
@@ -169,21 +159,18 @@ class _ProductsScreenState extends State<ProductsScreen>
                 Expanded(
                   child: TabBar(
                     controller: _tabController,
-                    isScrollable: true,
+                    isScrollable: _tabController!.length > 3,
                     labelColor: Colors.black,
                     indicatorPadding: EdgeInsets.symmetric(horizontal: 16),
                     tabs: [
                       Tab(
-                        text: 'Burger Sandwiches',
+                        text: 'Pizza',
                       ),
                       Tab(
-                        text: 'Meals',
+                        text: 'Macaroni',
                       ),
                       Tab(
-                        text: 'Kids Meals',
-                      ),
-                      Tab(
-                        text: 'Burger Sandwiches',
+                        text: 'Sandwiches',
                       ),
                     ],
                   ),
@@ -196,7 +183,64 @@ class _ProductsScreenState extends State<ProductsScreen>
               controller: _tabController,
               children: [
                 ProductsListView(
-                  title: 'Burger Sandwiches',
+                  title: 'Pizza',
+                  products: [
+                    Product(
+                      name: 'Pizza Margherita',
+                      desc:
+                          'San Marzano tomatoes, mozzarella cheese, fresh basil, salt, and extra-virgin olive oil',
+                      imgUrl: AppImages.CAT1_POP1,
+                      price: 80,
+                      sizes: [
+                        ProductOption(
+                          name: 'Small',
+                          price: 38,
+                        ),
+                        ProductOption(
+                          name: 'Medium',
+                          price: 61,
+                        ),
+                        ProductOption(
+                          name: 'Large',
+                          price: 80,
+                        ),
+                      ],
+                      options: null,
+                      likes: 2100,
+                    ),
+                    Product(
+                      name: 'Cheese Mix',
+                      desc: 'Mozzarella cheese, Cheddar Cheese, Kiri, Romi',
+                      imgUrl: AppImages.CAT1_POP2,
+                      price: 99,
+                      sizes: [
+                        ProductOption(
+                          name: 'Small',
+                          price: 50,
+                        ),
+                        ProductOption(
+                          name: 'Medium',
+                          price: 75,
+                        ),
+                        ProductOption(
+                          name: 'Large',
+                          price: 99,
+                        ),
+                      ],
+                      options: null,
+                      likes: 2100,
+                    ),
+                    // Product(
+                    //   name: 'Mixed Chocolate Cake',
+                    //   desc:
+                    //       'طبقات من كيكة الشكولاته الاسفنجية حشو كريمة شوكولاتة حشو مكسرات الفنش : مكس شوكولاتة ( كيت كات – ماكرون – مالتيزارز- اوريو)',
+                    //   imgUrl: 'flavor/assets/images/cake3.jpg',
+                    //   price: 130,
+                    //   sizes: null,
+                    //   options: null,
+                    //   likes: 2100,
+                    // ),
+                  ],
                   onProducrOrder: (ordersList) {
                     print('added');
                     setState(() {
@@ -205,7 +249,36 @@ class _ProductsScreenState extends State<ProductsScreen>
                   },
                 ),
                 ProductsListView(
-                  title: 'Meals',
+                  title: 'Macaroni',
+                  products: [
+                    Product(
+                      name: 'Bolonis Spagetti',
+                      desc: 'Meat, Red Sauce',
+                      price: 42,
+                      sizes: null,
+                      options: null,
+                      imgUrl: AppImages.CAT2_POP1,
+                      likes: 2000,
+                    ),
+                    Product(
+                      name: 'Arabitta Macaroni',
+                      desc: 'Bitta with tomato sauce',
+                      price: 27,
+                      sizes: null,
+                      options: null,
+                      imgUrl: AppImages.CAT2_POP2,
+                      likes: 2000,
+                    ),
+                    Product(
+                      name: 'Pasta with Sauces',
+                      desc: 'Pasta, Red Sauce',
+                      price: 42,
+                      sizes: null,
+                      options: null,
+                      imgUrl: AppImages.CAT2_POP3,
+                      likes: 2000,
+                    ),
+                  ],
                   onProducrOrder: (ordersList) {
                     setState(() {
                       orders.addAll(ordersList);
@@ -213,15 +286,66 @@ class _ProductsScreenState extends State<ProductsScreen>
                   },
                 ),
                 ProductsListView(
-                  title: 'Kids Meals',
-                  onProducrOrder: (ordersList) {
-                    setState(() {
-                      orders.addAll(ordersList);
-                    });
-                  },
-                ),
-                ProductsListView(
-                  title: 'Burger Sandwiches',
+                  title: 'Sandwiches',
+                  products: [
+                    Product(
+                      name: 'Chicken Roll',
+                      desc:
+                          'Chiken Breasts wraped with cheese, olive and sauces',
+                      price: 56,
+                      sizes: [
+                        ProductOption(
+                          name: 'Medium',
+                          price: 41,
+                        ),
+                        ProductOption(
+                          name: 'Large',
+                          price: 56,
+                        ),
+                      ],
+                      options: null,
+                      imgUrl: AppImages.CAT3_POP1,
+                      likes: 2000,
+                    ),
+                    Product(
+                      name: 'Atork Chicken',
+                      desc:
+                          'Chicken Pieces, Hot dog, Mushroom, Mozzarella, Sauce Khabzino',
+                      price: 55,
+                      sizes: [
+                        ProductOption(
+                          name: 'Medium',
+                          price: 42,
+                        ),
+                        ProductOption(
+                          name: 'Large',
+                          price: 55,
+                        ),
+                      ],
+                      options: null,
+                      imgUrl: AppImages.CAT3_POP2,
+                      likes: 2000,
+                    ),
+                    Product(
+                      name: 'Super Crunchy',
+                      desc:
+                          'Spicy Chicken Pieces, Cheddar, Romi, Salami, Kabotcha, Mayonis',
+                      price: 57,
+                      sizes: [
+                        ProductOption(
+                          name: 'Medium',
+                          price: 43,
+                        ),
+                        ProductOption(
+                          name: 'Large',
+                          price: 57,
+                        ),
+                      ],
+                      options: null,
+                      imgUrl: AppImages.CAT3_POP3,
+                      likes: 2000,
+                    ),
+                  ],
                   onProducrOrder: (ordersList) {
                     setState(() {
                       orders.addAll(ordersList);

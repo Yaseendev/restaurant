@@ -28,7 +28,7 @@ class OfferCardSmall extends StatelessWidget {
                 AppImages.OFFER,
                 height: 100,
                 width: double.infinity,
-                fit: BoxFit.cover,
+                fit: BoxFit.fill,
               ),
             ),
           ),

@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:restaurant_app/Primary/presentation/screens/primary_screen.dart';
 import 'package:restaurant_app/Spash/blocs/initroute_bloc/initroute_bloc.dart';
 import 'package:restaurant_app/User/blocs/account_bloc/account_bloc.dart';
-
 import '../widgets/loading_widget.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -49,7 +48,8 @@ class _SplashScreenState extends State<SplashScreen> {
         }
       },
       child: Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: Theme.of(context).primaryColor,
+        //Colors.white,
         body: Center(
           child: LoadingWidget(),
         ),

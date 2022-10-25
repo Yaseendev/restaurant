@@ -1,11 +1,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.restaurant_app">
+    package="com.example.restaurant">
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
    <application
-        android:label="restaurant_app"
+        android:label="Khabzino"
         android:name="${applicationName}"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/launcher_icon">
         <activity
             android:name=".MainActivity"
             android:exported="true"
@@ -33,7 +33,5 @@
             android:name="flutterEmbedding"
             android:value="2" />
         <meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyCL6RVPhwEVfCCl2CGgBdqMo0UGwFip2Dg"/>
-<meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/>
-<meta-data android:name="com.facebook.sdk.ClientToken" android:value="@string/facebook_client_token"/>
     </application>
 </manifest>

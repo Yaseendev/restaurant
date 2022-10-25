@@ -4,9 +4,12 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:restaurant_app/Restaurant/presenation/screens/restaurant_screen.dart';
 
 class RestaurantCard extends StatelessWidget {
+  final String addressName;
   final String address;
-  const RestaurantCard({Key? key,
-  required this.address,
+  const RestaurantCard({
+    Key? key,
+    this.addressName = '',
+    required this.address,
   }) : super(key: key);
 
   @override
@@ -18,7 +21,7 @@ class RestaurantCard extends StatelessWidget {
       },
       child: SizedBox(
         width: 140,
-        height: 215,
+        height: 216,
         child: Card(
           color: Color(0xFFF0F9FD),
           child: Column(
@@ -40,7 +43,9 @@ class RestaurantCard extends StatelessWidget {
                 ),
               ),
               Text(
-                'Gad Restaurant',
+                this.addressName,
+                //'Exception',
+                //'Gad Restaurant',
                 // 'Zad',
                 //'Abo Saleh',
                 // 'HeatAttack',
@@ -51,18 +56,18 @@ class RestaurantCard extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-             //SizedBox(height: 8),
-                    Text(
-                      //'Hyper Market',
-                      address,
-                      style: TextStyle(
-                        fontSize: 12,
-                        color: Theme.of(context).primaryColor,
-                      ),
-                      textAlign: TextAlign.center,
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                    ),
+              //SizedBox(height: 8),
+              Text(
+                //'Hyper Market',
+                address,
+                style: TextStyle(
+                  fontSize: 12,
+                  color: Theme.of(context).primaryColor,
+                ),
+                textAlign: TextAlign.center,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+              ),
               Padding(
                 padding: const EdgeInsets.only(bottom: 8.0),
                 child: Column(
