@@ -37,13 +37,13 @@ class RestaurantHeader extends StatelessWidget {
                 Icons.location_pin,
                 color: AppColors.PRIMARY_COLOR,
               ),
-              Text('Intersection of Elgeish St. '),
+              Text('Nasr City. '),
               Chip(
                 label: Text.rich(TextSpan(
                   text: 'and ',
                   children: [
                     TextSpan(
-                        text: '12',
+                        text: '2',
                         style: TextStyle(fontWeight: FontWeight.bold)),
                     TextSpan(text: ' more'),
                   ],
@@ -57,8 +57,8 @@ class RestaurantHeader extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-               //' Hyper Market',
-                ' Fast Food',
+                //' Hyper Market',
+                ' Caffee Shop',
                 style: TextStyle(color: AppColors.PRIMARY_COLOR),
               ),
               Row(
@@ -71,7 +71,7 @@ class RestaurantHeader extends StatelessWidget {
                     onRatingUpdate: (value) {},
                     ignoreGestures: true,
                     itemSize: 14,
-                    initialRating: 4,
+                    initialRating: 5,
                     allowHalfRating: true,
                   ),
                   SizedBox(width: 10),

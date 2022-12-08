@@ -26,7 +26,7 @@ class ProductsScreen extends StatefulWidget {
 class _ProductsScreenState extends State<ProductsScreen>
     with SingleTickerProviderStateMixin {
   TabController? _tabController;
-  final List<num> orders = []; //FIXME
+
   @override
   void initState() {
     _tabController =
@@ -102,12 +102,12 @@ class _ProductsScreenState extends State<ProductsScreen>
                                       tiles: [
                                         ListTile(
                                           title: Text(
-                                            'Pizza',
+                                            'Hot Drinks',
                                             // 'Burger Sandwiches',
                                             style: TextStyle(fontSize: 16),
                                           ),
                                           trailing: Text(
-                                            '3',
+                                            '20',
                                             style: TextStyle(fontSize: 18),
                                           ),
                                           onTap: () {
@@ -116,11 +116,11 @@ class _ProductsScreenState extends State<ProductsScreen>
                                         ),
                                         ListTile(
                                           title: Text(
-                                            'Macaroni',
+                                            'Cold Drinks',
                                             style: TextStyle(fontSize: 16),
                                           ),
                                           trailing: Text(
-                                            '2',
+                                            '20',
                                             style: TextStyle(fontSize: 18),
                                           ),
                                           onTap: () {
@@ -129,11 +129,11 @@ class _ProductsScreenState extends State<ProductsScreen>
                                         ),
                                         ListTile(
                                           title: Text(
-                                            'Sandwiches',
+                                            'Baked Goods',
                                             style: TextStyle(fontSize: 16),
                                           ),
                                           trailing: Text(
-                                            '5',
+                                            '10',
                                             style: TextStyle(fontSize: 18),
                                           ),
                                           onTap: () {
@@ -164,13 +164,13 @@ class _ProductsScreenState extends State<ProductsScreen>
                     indicatorPadding: EdgeInsets.symmetric(horizontal: 16),
                     tabs: [
                       Tab(
-                        text: 'Pizza',
+                        text: 'Hot Drinks',
                       ),
                       Tab(
-                        text: 'Macaroni',
+                        text: 'Cold Drinks',
                       ),
                       Tab(
-                        text: 'Sandwiches',
+                        text: 'Baked Goods',
                       ),
                     ],
                   ),
@@ -183,96 +183,95 @@ class _ProductsScreenState extends State<ProductsScreen>
               controller: _tabController,
               children: [
                 ProductsListView(
-                  title: 'Pizza',
+                  title: 'Hot Drinks',
                   products: [
                     Product(
-                      name: 'Pizza Margherita',
-                      desc:
-                          'San Marzano tomatoes, mozzarella cheese, fresh basil, salt, and extra-virgin olive oil',
-                      imgUrl: AppImages.CAT1_POP1,
-                      price: 80,
+                      name: 'Tea',
+                      desc: 'Hot Fresh Tea',
+                      imgUrl: AppImages.POP1,
+                      price: 20,
                       sizes: [
                         ProductOption(
-                          name: 'Small',
-                          price: 38,
-                        ),
-                        ProductOption(
                           name: 'Medium',
-                          price: 61,
+                          price: 10,
                         ),
                         ProductOption(
                           name: 'Large',
-                          price: 80,
+                          price: 20,
                         ),
                       ],
                       options: null,
                       likes: 2100,
                     ),
                     Product(
-                      name: 'Cheese Mix',
-                      desc: 'Mozzarella cheese, Cheddar Cheese, Kiri, Romi',
+                      name: 'French Coffee',
+                      desc: 'Hot French Coffee',
                       imgUrl: AppImages.CAT1_POP2,
-                      price: 99,
+                      price: 25,
                       sizes: [
                         ProductOption(
-                          name: 'Small',
-                          price: 50,
-                        ),
-                        ProductOption(
                           name: 'Medium',
-                          price: 75,
+                          price: 15,
                         ),
                         ProductOption(
                           name: 'Large',
-                          price: 99,
+                          price: 25,
                         ),
                       ],
                       options: null,
                       likes: 2100,
                     ),
-                    // Product(
-                    //   name: 'Mixed Chocolate Cake',
-                    //   desc:
-                    //       'طبقات من كيكة الشكولاته الاسفنجية حشو كريمة شوكولاتة حشو مكسرات الفنش : مكس شوكولاتة ( كيت كات – ماكرون – مالتيزارز- اوريو)',
-                    //   imgUrl: 'flavor/assets/images/cake3.jpg',
-                    //   price: 130,
-                    //   sizes: null,
-                    //   options: null,
-                    //   likes: 2100,
-                    // ),
+                    Product(
+                      name: 'Flat White',
+                      desc: 'Hot Flat White',
+                      imgUrl: AppImages.CAT1_POP3,
+                      price: 35,
+                      sizes: [
+                        ProductOption(
+                          name: 'Medium',
+                          price: 25,
+                        ),
+                        ProductOption(
+                          name: 'Large',
+                          price: 35,
+                        ),
+                      ],
+                      options: null,
+                      likes: 2100,
+                    ),
                   ],
                   onProducrOrder: (ordersList) {
                     print('added');
-                    setState(() {
-                      orders.addAll(ordersList);
-                    });
+                    // setState(() {
+                    //   orders.addAll(ordersList);
+                    // });
                   },
                 ),
                 ProductsListView(
-                  title: 'Macaroni',
+                  title: 'Cold Drinks',
                   products: [
                     Product(
-                      name: 'Bolonis Spagetti',
-                      desc: 'Meat, Red Sauce',
-                      price: 42,
+                      name: 'Oreo Milkshake',
+                      desc: 'Fresh Oreo Milkshake',
+                      price: 30,
                       sizes: null,
                       options: null,
                       imgUrl: AppImages.CAT2_POP1,
                       likes: 2000,
                     ),
                     Product(
-                      name: 'Arabitta Macaroni',
-                      desc: 'Bitta with tomato sauce',
-                      price: 27,
+                      name: 'American Ice Coffee',
+                      desc: 'Cold American Ice Coffee',
+                      price: 35,
                       sizes: null,
                       options: null,
                       imgUrl: AppImages.CAT2_POP2,
                       likes: 2000,
                     ),
                     Product(
-                      name: 'Pasta with Sauces',
-                      desc: 'Pasta, Red Sauce',
-                      price: 42,
+                      name: 'Redbull',
+                      desc: 'Cold Redbull',
+                      price: 30,
                       sizes: null,
                       options: null,
                       imgUrl: AppImages.CAT2_POP3,
@@ -280,82 +279,52 @@ class _ProductsScreenState extends State<ProductsScreen>
                     ),
                   ],
                   onProducrOrder: (ordersList) {
-                    setState(() {
-                      orders.addAll(ordersList);
-                    });
+                    // setState(() {
+                    //   orders.addAll(ordersList);
+                    // });
                   },
                 ),
                 ProductsListView(
-                  title: 'Sandwiches',
+                  title: 'Baked Goods',
                   products: [
                     Product(
-                      name: 'Chicken Roll',
-                      desc:
-                          'Chiken Breasts wraped with cheese, olive and sauces',
-                      price: 56,
-                      sizes: [
-                        ProductOption(
-                          name: 'Medium',
-                          price: 41,
-                        ),
-                        ProductOption(
-                          name: 'Large',
-                          price: 56,
-                        ),
-                      ],
+                      name: 'Romi Croissants',
+                      desc: 'Croissants with romi cheese',
+                      price: 15,
+                      sizes: null,
                       options: null,
                       imgUrl: AppImages.CAT3_POP1,
                       likes: 2000,
                     ),
                     Product(
-                      name: 'Atork Chicken',
-                      desc:
-                          'Chicken Pieces, Hot dog, Mushroom, Mozzarella, Sauce Khabzino',
-                      price: 55,
-                      sizes: [
-                        ProductOption(
-                          name: 'Medium',
-                          price: 42,
-                        ),
-                        ProductOption(
-                          name: 'Large',
-                          price: 55,
-                        ),
-                      ],
+                      name: 'Cheese Pateh',
+                      desc: 'Pateh with white cheese',
+                      price: 12,
+                      sizes: null,
                       options: null,
                       imgUrl: AppImages.CAT3_POP2,
                       likes: 2000,
                     ),
                     Product(
-                      name: 'Super Crunchy',
-                      desc:
-                          'Spicy Chicken Pieces, Cheddar, Romi, Salami, Kabotcha, Mayonis',
-                      price: 57,
-                      sizes: [
-                        ProductOption(
-                          name: 'Medium',
-                          price: 43,
-                        ),
-                        ProductOption(
-                          name: 'Large',
-                          price: 57,
-                        ),
-                      ],
+                      name: 'Chocolate Muffin',
+                      desc: 'Tasty Chocolate Muffin',
+                      price: 16,
+                      sizes: null,
                       options: null,
                       imgUrl: AppImages.CAT3_POP3,
                       likes: 2000,
                     ),
                   ],
                   onProducrOrder: (ordersList) {
-                    setState(() {
-                      orders.addAll(ordersList);
-                    });
+                    // setState(() {
+                    //   orders.addAll(ordersList);
+                    // });
                   },
                 ),
               ],
             ),
           ),
-          SizedBox(height: orders.isEmpty ? 0 : 14.h),
+          //SizedBox(height: orders.isEmpty ? 0 : 14.h),
         ],
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,

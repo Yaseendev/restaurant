@@ -22,7 +22,7 @@ class ProductsListView extends StatefulWidget {
 }
 
 class _ProductsListViewState extends State<ProductsListView> {
-  final List<num> orders = []; //FIXME
+  
 
   @override
   Widget build(BuildContext context) {

@@ -58,7 +58,7 @@ class OrderCard extends StatelessWidget {
                 horizontalTitleGap: 2,
                 contentPadding: const EdgeInsets.symmetric(horizontal: 20),
                 title: Text(
-                  'Bolonis Spagetti',
+                  'Tea',
                   textAlign: TextAlign.left,
                   style: TextStyle(fontSize: 18),
                 ),
@@ -73,7 +73,7 @@ class OrderCard extends StatelessWidget {
                 horizontalTitleGap: 2,
                 contentPadding: const EdgeInsets.symmetric(horizontal: 20),
                 title: Text(
-                  'Pizza Margherita',
+                  'Chocolate Muffin',
                   textAlign: TextAlign.left,
                   style: TextStyle(fontSize: 18),
                 ),

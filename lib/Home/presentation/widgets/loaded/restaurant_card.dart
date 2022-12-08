@@ -37,7 +37,7 @@ class RestaurantCard extends StatelessWidget {
                       alignment: Alignment.center,
                       height: 96,
                       width: 96,
-                      fit: BoxFit.cover,
+                      fit: BoxFit.fill,
                     ),
                   ),
                 ),
@@ -55,6 +55,7 @@ class RestaurantCard extends StatelessWidget {
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
                 ),
+                textAlign: TextAlign.center,
               ),
               //SizedBox(height: 8),
               Text(

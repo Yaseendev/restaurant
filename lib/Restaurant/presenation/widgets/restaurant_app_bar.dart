@@ -1,3 +1,4 @@
+import 'package:flavor/flavor_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../screens/restaurant_info_screen.dart';
@@ -65,7 +66,7 @@ class RestaurantAppBar extends StatelessWidget {
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       image: DecorationImage(image: AssetImage(profileUri)),
-                      color: Colors.white,
+                      color: AppColors.PRIMARY_COLOR,
                     ),
                     width: 86,
                     height: 86,

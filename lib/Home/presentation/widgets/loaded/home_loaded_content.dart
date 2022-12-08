@@ -71,19 +71,18 @@ class HomeLoadedWidget extends StatelessWidget {
                 child: Row(
                   children: [
                     CategoryCard(
-                      //TODO: Add to flavor consts
                       image: AppImages.CAT1,
-                      title: 'Pizza',
+                      title: 'Hot Drinks',
                       index: 0,
                     ),
                     CategoryCard(
                       image: AppImages.CAT2,
-                      title: 'Macaroni',
+                      title: 'Cold Drinks',
                       index: 1,
                     ),
                     CategoryCard(
                       image: AppImages.CAT3,
-                      title: 'Sandwiches',
+                      title: 'Baked Goods',
                       index: 2,
                     ),
                   ],
@@ -126,11 +125,11 @@ class HomeLoadedWidget extends StatelessWidget {
                     //TODO
                     HomeProductCard(
                       product: Product(
-                        name: 'Pizza Margherita',
-                        desc: 'Tomatoes, Mozzarella cheese, basil, olive oil',
+                        name: 'Tea',
+                        desc: 'Fresh Hot Tea',
                         imgUrl: AppImages.POP1,
-                        price: 265,
-                        discount: 14.5,
+                        price: 12,
+                        discount: 1,
                         likes: 2100,
                         options: [],
                         sizes: null,
@@ -138,11 +137,11 @@ class HomeLoadedWidget extends StatelessWidget {
                     ),
                     HomeProductCard(
                       product: Product(
-                        name: 'Bolonis Spagetti',
-                        desc: 'Meat, Red Sauce',
+                        name: 'Chocolate Muffin',
+                        desc: 'Baked Chocolate Muffin',
                         imgUrl: AppImages.POP2,
-                        price: 24,
-                        discount: 14.5,
+                        price: 16,
+                        discount: 1,
                         likes: 2100,
                         options: [],
                         sizes: null,
@@ -179,12 +178,12 @@ class HomeLoadedWidget extends StatelessWidget {
                   children: [
                     //ProductCard(),
                     RestaurantCard(
-                      addressName: 'حدائق الأهرام',
-                      address: '196 ب، شارع جاردينيا، البوابة الأولى',
+                      addressName: 'Rehab (Estern Sooq)',
+                      address: 'أمام بوابه الدخول',
                     ),
                     RestaurantCard(
-                      addressName: 'Faisal',
-                      address: '423 فيصل الرئيسى، محطة مدكور، أمام العشرين',
+                      addressName: 'Nasr City',
+                      address: 'شرق مدينة نصر',
                     ),
                   ],
                 ),

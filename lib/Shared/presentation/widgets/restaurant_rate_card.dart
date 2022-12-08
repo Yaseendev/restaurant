@@ -42,7 +42,7 @@ class RestaurantRateCard extends StatelessWidget {
           ),
           subtitle: Text(
             //'Hyper Market',
-            'Fast Food',
+            'Coffee Shop',
             style: TextStyle(color: AppColors.PRIMARY_COLOR),
           ),
           trailing: withRating
@@ -54,7 +54,7 @@ class RestaurantRateCard extends StatelessWidget {
                   onRatingUpdate: (value) {},
                   ignoreGestures: true,
                   itemSize: 13,
-                  initialRating: 3,
+                  initialRating: 5,
                 )
               : SizedBox(),
         ),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class AppColors {
-  static const Color PRIMARY_COLOR = Color(0xffa4e7f4);
+  static const Color PRIMARY_COLOR = Color(0xff682a13);
   // ignore: non_constant_identifier_names
   static final MaterialColor PRIMARY_SWATCH = MaterialColor(
     AppColors.PRIMARY_COLOR.value,

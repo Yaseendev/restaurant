@@ -14,7 +14,7 @@ class MapScreen extends StatefulWidget {
 
 class _MapScreenState extends State<MapScreen> {
   static const CameraPosition _initialCameraPosition = CameraPosition(
-    target: LatLng(30.0504132, 31.2073222),
+    target: LatLng(30.07505431363671, 31.50397582446508),
     zoom: 12.5,
   );
   late final GoogleMapController googleMapController;
@@ -36,19 +36,19 @@ class _MapScreenState extends State<MapScreen> {
               size: const Size(140, 140),
             ),
             draggable: false,
-            position: const LatLng(30.079699731937378, 31.19522407650948),
+            position: const LatLng(30.0653609,31.4544301),
           ),
           Marker(
             markerId: const MarkerId('marker2'),
             icon: BitmapDescriptor.fromBytes(markerIcon),
             draggable: false,
-            position: const LatLng(30.056090672183135, 31.222061924636368),
+            position: const LatLng(30.07505431363671, 31.50397582446508),
           ),
           Marker(
             markerId: const MarkerId('marker3'),
             icon: BitmapDescriptor.fromBytes(markerIcon),
             draggable: false,
-            position: const LatLng(30.05731441015454, 31.246071718633175),
+            position: const LatLng(30.0326172,31.3032934),
           ),
         });
       });
@@ -109,41 +109,38 @@ class _MapScreenState extends State<MapScreen> {
                             child: Row(
                               children: [
                                 PlaceCard(
-                                  address: 'حدائق الأهرام',
+                                  address: 'الرحاب ( السوق الشرقي )',
                                   onPress: () {
                                     googleMapController.animateCamera(
                                         CameraUpdate.newLatLng(LatLng(
-                                            30.079699731937378,
-                                            31.19522407650948)));
+                                            30.0653609,31.4544301)));
                                   },
                                 ),
                                 PlaceCard(
-                                  address: 'Faisal',
+                                  address: 'الرحاب 2',
                                   onPress: () {
                                     googleMapController.animateCamera(
                                         CameraUpdate.newLatLng(LatLng(
-                                            30.056090672183135,
-                                            31.222061924636368)));
+                                            30.07505431363671, 31.50397582446508)));
                                   },
                                 ),
                                 PlaceCard(
-                                  address: '196 ب، شارع جاردينيا، البوابة الأولى',
+                                  address: 'مدينة نصر',
                                   onPress: () {
                                     googleMapController.animateCamera(
                                         CameraUpdate.newLatLng(LatLng(
-                                            30.056090672183135,
-                                            31.222061924636368)));
+                                            30.0326172,31.3032934)));
                                   },
                                 ),
-                                PlaceCard(
-                                  address: '423 فيصل الرئيسى، محطة مدكور، أمام العشرين',
-                                  onPress: () {
-                                    googleMapController.animateCamera(
-                                        CameraUpdate.newLatLng(LatLng(
-                                            30.05731441015454,
-                                            31.246071718633175)));
-                                  },
-                                ),
+                                // PlaceCard(
+                                //   address: '423 فيصل الرئيسى، محطة مدكور، أمام العشرين',
+                                //   onPress: () {
+                                //     googleMapController.animateCamera(
+                                //         CameraUpdate.newLatLng(LatLng(
+                                //             30.05731441015454,
+                                //             31.246071718633175)));
+                                //   },
+                                // ),
                               ],
                             ),
                           ),
@@ -178,39 +175,27 @@ class _MapScreenState extends State<MapScreen> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               PlaceCard(
-                                  address: 'حدائق الأهرام',
+                                  address: 'الرحاب ( السوق الشرقي )',
                                   onPress: () {
                                     googleMapController.animateCamera(
                                         CameraUpdate.newLatLng(LatLng(
-                                            30.079699731937378,
-                                            31.19522407650948)));
+                                            30.0653609,31.4544301)));
                                   },
                                 ),
                                 PlaceCard(
-                                  address: 'Faisal',
+                                  address: 'الرحاب 2',
                                   onPress: () {
                                     googleMapController.animateCamera(
                                         CameraUpdate.newLatLng(LatLng(
-                                            30.056090672183135,
-                                            31.222061924636368)));
+                                            30.07505431363671, 31.50397582446508)));
                                   },
                                 ),
                                 PlaceCard(
-                                  address: '196 ب، شارع جاردينيا، البوابة الأولى',
+                                  address: 'مدينة نصر',
                                   onPress: () {
                                     googleMapController.animateCamera(
                                         CameraUpdate.newLatLng(LatLng(
-                                            30.056090672183135,
-                                            31.222061924636368)));
-                                  },
-                                ),
-                                PlaceCard(
-                                  address: '423 فيصل الرئيسى، محطة مدكور، أمام العشرين',
-                                  onPress: () {
-                                    googleMapController.animateCamera(
-                                        CameraUpdate.newLatLng(LatLng(
-                                            30.05731441015454,
-                                            31.246071718633175)));
+                                            30.0326172,31.3032934)));
                                   },
                                 ),
                             ],

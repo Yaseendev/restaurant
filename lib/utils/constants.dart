@@ -1,7 +1,7 @@
 import 'package:hive_flutter/hive_flutter.dart';
 import '../User/data/models/user.dart';
 
-const String appName = 'Khabzino';
+const String appName = 'Cafe up';
 
 class Urls {
   static const String DOMAIN = 'https://food.almotawer.net';

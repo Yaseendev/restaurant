@@ -69,7 +69,7 @@ class _ProductScreenState extends State<ProductScreen> {
                     Align(
                       alignment: Alignment.topCenter,
                       child: Image.asset(
-                        widget.product.imgUrl, //TODO: Change to this later
+                        widget.product.imgUrl,
                         //'assets/images/cover.png',
                         fit: BoxFit.fill,
                         height: MediaQuery.of(context).size.height * .3,

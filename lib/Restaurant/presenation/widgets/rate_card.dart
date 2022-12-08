@@ -1,3 +1,4 @@
+import 'package:flavor/flavor_assets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
@@ -14,7 +15,7 @@ class RateCard extends StatelessWidget {
         children: [
           ListTile(
             leading: CircleAvatar(
-              backgroundImage: AssetImage('assets/images/burger.png'),
+              backgroundImage: AssetImage(AppImages.APPLOGO),
               backgroundColor: Colors.white,
               radius: 30,
             ),

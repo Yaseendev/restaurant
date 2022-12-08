@@ -161,13 +161,13 @@ class _RestaurantScreenState extends State<RestaurantScreen>
                                             tiles: [
                                               ListTile(
                                                 title: Text(
-                                                  'Fool',
-                                                 // 'Burger Sandwiches',
+                                                  'Hot Drinks',
+                                                  // 'Burger Sandwiches',
                                                   style:
                                                       TextStyle(fontSize: 16),
                                                 ),
                                                 trailing: Text(
-                                                  '3',
+                                                  '20',
                                                   style:
                                                       TextStyle(fontSize: 18),
                                                 ),
@@ -177,12 +177,12 @@ class _RestaurantScreenState extends State<RestaurantScreen>
                                               ),
                                               ListTile(
                                                 title: Text(
-                                                  'Taameya',
+                                                  'Cold Drinks',
                                                   style:
                                                       TextStyle(fontSize: 16),
                                                 ),
                                                 trailing: Text(
-                                                  '2',
+                                                  '20',
                                                   style:
                                                       TextStyle(fontSize: 18),
                                                 ),
@@ -192,12 +192,12 @@ class _RestaurantScreenState extends State<RestaurantScreen>
                                               ),
                                               ListTile(
                                                 title: Text(
-                                                  'Pizza',
+                                                  'Baked Goods',
                                                   style:
                                                       TextStyle(fontSize: 16),
                                                 ),
                                                 trailing: Text(
-                                                  '5',
+                                                  '10',
                                                   style:
                                                       TextStyle(fontSize: 18),
                                                 ),
@@ -245,13 +245,13 @@ class _RestaurantScreenState extends State<RestaurantScreen>
                               EdgeInsets.symmetric(horizontal: 16),
                           tabs: [
                             Tab(
-                              text: 'Cake',
+                              text: 'Hot Drinks',
                             ),
                             Tab(
-                              text: 'Ice Cream',
+                              text: 'Cold Drinks',
                             ),
                             Tab(
-                              text: 'Chocolate',
+                              text: 'Baked Goods',
                             ),
                             // Tab(
                             //   text: 'Burger Sandwiches',
@@ -288,38 +288,62 @@ class _RestaurantScreenState extends State<RestaurantScreen>
             controller: _tabController,
             children: [
               ItemsListView(
-                title: 'Cake',
+                title: 'Hot Drinks',
                 items: [
                   Product(
-                      name: 'Festival Chocolate Cake',
-                      desc:
-                          'طبقات من كيكة الفادج حشو موس الشيكولاته حشو مكسرات الفنش شيكولاته ومكسرات',
-                      imgUrl: 'flavor/assets/images/cake1.jpg',
-                      price: 230,
-                      sizes: null,
-                      options: null,
-                      likes: 2100,
-                    ),
-                    Product(
-                      name: 'Galaxy Chocolate Cake',
-                      desc:
-                          'طبقات من كيكة الشكولاتة الاسفنجيه حشو كريمه الجلاكسى الفنش اجلاسيه الجلاكسى',
-                      imgUrl: 'flavor/assets/images/cake2.jpg',
-                      price: 290,
-                      sizes: null,
-                      options: null,
-                      likes: 2100,
-                    ),
-                    Product(
-                      name: 'Mixed Chocolate Cake',
-                      desc:
-                          'طبقات من كيكة الشكولاته الاسفنجية حشو كريمة شوكولاتة حشو مكسرات الفنش : مكس شوكولاتة ( كيت كات – ماكرون – مالتيزارز- اوريو)',
-                      imgUrl: 'flavor/assets/images/cake3.jpg',
-                      price: 130,
-                      sizes: null,
-                      options: null,
-                      likes: 2100,
-                    ),
+                    name: 'Tea',
+                    desc: 'Hot Fresh Tea',
+                    imgUrl: AppImages.POP1,
+                    price: 20,
+                    sizes: [
+                      ProductOption(
+                        name: 'Medium',
+                        price: 10,
+                      ),
+                      ProductOption(
+                        name: 'Large',
+                        price: 20,
+                      ),
+                    ],
+                    options: null,
+                    likes: 2100,
+                  ),
+                  Product(
+                    name: 'French Coffee',
+                    desc: 'Hot French Coffee',
+                    imgUrl: AppImages.CAT1_POP2,
+                    price: 25,
+                    sizes: [
+                      ProductOption(
+                        name: 'Medium',
+                        price: 15,
+                      ),
+                      ProductOption(
+                        name: 'Large',
+                        price: 25,
+                      ),
+                    ],
+                    options: null,
+                    likes: 2100,
+                  ),
+                  Product(
+                    name: 'Flat White',
+                    desc: 'Hot Flat White',
+                    imgUrl: AppImages.CAT1_POP3,
+                    price: 35,
+                    sizes: [
+                      ProductOption(
+                        name: 'Medium',
+                        price: 25,
+                      ),
+                      ProductOption(
+                        name: 'Large',
+                        price: 35,
+                      ),
+                    ],
+                    options: null,
+                    likes: 2100,
+                  ),
                 ],
                 onProductOrder: (order) {
                   setState(() {
@@ -328,72 +352,72 @@ class _RestaurantScreenState extends State<RestaurantScreen>
                 },
               ),
               ItemsListView(
-                title: 'Ice Cream', //'Meals',
+                title: 'Cold Drinks',
                 items: [
-                 Product(
-                      name: 'Ice Cake Nutella & Oreo',
-                      desc: 'تورته ايس نص نوتيلا ونص اوريو',
-                      price: 275,
-                      sizes: null,
-                      options: null,
-                      imgUrl: 'flavor/assets/images/icecream1.jpg',
-                      likes: 2000,
-                    ),
-                    Product(
-                      name: 'Raspberry Yogurt Ice Cake',
-                      desc: 'Raspberry Yogurt Ice Cake',
-                      price: 275,
-                      sizes: null,
-                      options: null,
-                      imgUrl: 'flavor/assets/images/icecream2.jpg',
-                      likes: 2000,
-                    ),
-                    Product(
-                      name: 'Chocolate Box',
-                      desc: 'Chocolate Box 650g',
-                      price: 80,
-                      sizes: null,
-                      options: null,
-                      imgUrl: 'flavor/assets/images/icecream3.jpg',
-                      likes: 2000,
-                    ),
+                  Product(
+                    name: 'Oreo Milkshake',
+                    desc: 'Fresh Oreo Milkshake',
+                    price: 30,
+                    sizes: null,
+                    options: null,
+                    imgUrl: AppImages.CAT2_POP1,
+                    likes: 2000,
+                  ),
+                  Product(
+                    name: 'American Ice Coffee',
+                    desc: 'Cold American Ice Coffee',
+                    price: 35,
+                    sizes: null,
+                    options: null,
+                    imgUrl: AppImages.CAT2_POP2,
+                    likes: 2000,
+                  ),
+                  Product(
+                    name: 'Redbull',
+                    desc: 'Cold Redbull',
+                    price: 30,
+                    sizes: null,
+                    options: null,
+                    imgUrl: AppImages.CAT2_POP3,
+                    likes: 2000,
+                  ),
                 ],
-                onProductOrder: (order) { 
+                onProductOrder: (order) {
                   setState(() {
                     orders.add(order);
                   });
                 },
               ),
               ItemsListView(
-                title: 'Chocolate',
+                title: 'Baked Goods',
                 items: [
                   Product(
-                      name: 'Rocher Chocolate',
-                      desc: 'Rocher Chocolate Box',
-                      price: 295,
-                      sizes: null,
-                      options: null,
-                      imgUrl: 'flavor/assets/images/chocolate1.jpg',
-                      likes: 2000,
-                    ),
-                    Product(
-                      name: 'Mixed Chocolate',
-                      desc: 'Mixed Chocolate Box',
-                      price: 375,
-                      sizes: null,
-                      options: null,
-                      imgUrl: 'flavor/assets/images/chocolate2.jpg',
-                      likes: 2000,
-                    ),
-                    Product(
-                      name: 'Arabisc Chocolate',
-                      desc: 'Wooden Arabisc Chocolate Box',
-                      price: 410,
-                      sizes: null,
-                      options: null,
-                      imgUrl: 'flavor/assets/images/chocolate3.jpg',
-                      likes: 2000,
-                    ),
+                    name: 'Romi Croissants',
+                    desc: 'Croissants with romi cheese',
+                    price: 15,
+                    sizes: null,
+                    options: null,
+                    imgUrl: AppImages.CAT3_POP1,
+                    likes: 2000,
+                  ),
+                  Product(
+                    name: 'Cheese Pateh',
+                    desc: 'Pateh with white cheese',
+                    price: 12,
+                    sizes: null,
+                    options: null,
+                    imgUrl: AppImages.CAT3_POP2,
+                    likes: 2000,
+                  ),
+                  Product(
+                    name: 'Chocolate Muffin',
+                    desc: 'Tasty Chocolate Muffin',
+                    price: 16,
+                    sizes: null,
+                    options: null,
+                    imgUrl: AppImages.CAT3_POP3,
+                    likes: 2000,
+                  ),
                 ],
                 onProductOrder: (order) {
                   setState(() {
@@ -470,20 +494,19 @@ class _RestaurantScreenState extends State<RestaurantScreen>
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         floatingActionButton: BlocBuilder<CartCubit, List<OrderItem>>(
           builder: (context, state) {
-            return state.isEmpty ? Container()
-            : CartButton(
-                orders: state,
-                onPress: () {
-                  Navigator.of(context).push(MaterialPageRoute(builder: (ctx) {
-                    return OrderReviewScreen();
-                  }));
-                },
-              );
-
+            return state.isEmpty
+                ? Container()
+                : CartButton(
+                    orders: state,
+                    onPress: () {
+                      Navigator.of(context)
+                          .push(MaterialPageRoute(builder: (ctx) {
+                        return OrderReviewScreen();
+                      }));
+                    },
+                  );
           },
-        )
-            
-            ,
+        ),
       ),
     );
   }

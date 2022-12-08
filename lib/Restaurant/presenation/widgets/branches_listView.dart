@@ -11,20 +11,16 @@ class BranchesListView extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         BrachTile(
-          title: 'جاد - الحجاز - مصر الجديدة',
-          details: '63ش فريد سميكة - ميدان الحجاز , مصر الجديدة',
+          title: 'الرحاب ( السوق الشرقي )',
+          details: 'الرحاب ( السوق الشرقي )  امام بوابه الدخول مباشره',
         ),
         BrachTile(
-          title: 'جاد - الدقى',
-          details: '97ش التحرير , الدقى',
+          title: 'الرحاب',
+          details: 'الرحاب امام بوابه 24',
         ),
         BrachTile(
-         title: 'جاد - السقالة - الغردقة',
-         details: 'ش الشيراتون , سقالة , الغردقة', 
-        ),
-        BrachTile(
-          title: 'جاد - السوق التجارى القديم - شرم الشيخ',
-          details: 'السوق التجارى القديم , شرم الشيخ',
+          title: 'مدينة نصر ',
+          details: 'تقاطع شارع الطاقة مع شارع أكاديمية علوم الرياضةأمام شل اوت',
         ),
       ],
     );

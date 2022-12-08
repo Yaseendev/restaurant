@@ -87,7 +87,7 @@ class AccoountRepository {
   Future logoutUser() async {
     final String? token = await _databaseService.getToken();
      _ApiService.logoutUser(token ?? '');
-    await _databaseService
+     _databaseService
       ..deleteToken()
       ..deleteUser();
   }
