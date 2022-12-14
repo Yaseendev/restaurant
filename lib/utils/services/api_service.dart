@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:restaurant_app/User/data/models/user.dart';
 import '../constants.dart';
 
@@ -20,27 +21,79 @@ class ApiService {
     required String email,
     required String password,
   }) async {
-    Response response =
-        await _dio.post(Urls.LOGIN_USER, data: {
-          'email' : email,
-          'password': password,
-        },);
+    Response response = await _dio.post(
+      Urls.LOGIN_USER,
+      data: {
+        'email': email,
+        'password': password,
+      },
+    );
     return response.data;
   }
 
   Future<dynamic> tokenVerify(String token) async {
-    Response response =
-        await _dio.post(Urls.TOKEN_USER, data: {
-          'token' : token,
-        },);
+    Response response = await _dio.post(
+      Urls.TOKEN_USER,
+      data: {
+        'token': token,
+      },
+    );
     return response.data;
   }
 
   Future logoutUser(String token) async {
-    Response response =
-        await _dio.post(Urls.LOGOUT_USER, data: {
-          'token' : token,
-        },);
+    Response response = await _dio.post(
+      Urls.LOGOUT_USER,
+      data: {
+        'token': token,
+      },
+    );
+    return response.data;
+  }
+
+  Future<dynamic> searchLocation(String text) async {
+    Response response = await Dio().get(
+      Urls.LOCATION_AUTOCOMPLETE,
+      options: Options(
+        contentType: 'application/json',
+      ),
+      queryParameters: {
+        'q': text,
+        'countrycodes': 'eg',
+        'key': locationKey,
+      },
+    );
+    return response.data;
+  }
+
+  Future<Map<String, dynamic>?> reverseGeoLocation(LatLng location) async {
+    Response response = await Dio().get(
+      Urls.LOCATION_REVERSE,
+      queryParameters: {
+        'lat': location.latitude,
+        'lon': location.longitude,
+        'countrycodes': 'eg',
+        'key': locationKey,
+        'format': 'json',
+      },
+      options: Options(
+        contentType: 'application/json',
+      ),
+    );
+    return response.data;
+  }
+
+  Future<Map<String, dynamic>?> getBranchData(LatLng location) async {
+    Response response = await _dio.get(
+      Urls.FIND_BRANCH,
+      queryParameters: {
+        'lat': location.latitude,
+        'lon': location.longitude,
+      },
+      options: Options(
+        contentType: 'application/json',
+      ),
+    );
     return response.data;
   }
 }

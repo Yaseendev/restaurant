@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:restaurant_app/Offers/presentation/screens/offers_screen.dart';
 import 'package:restaurant_app/Offers/presentation/widgets/offer_card_small.dart';
-import 'package:restaurant_app/Product/models/product.dart';
+import 'package:restaurant_app/Product/data/models/product.dart';
 import 'package:restaurant_app/Product/presentation/widgets/category_card.dart';
 import 'package:restaurant_app/Product/presentation/widgets/product_card.dart';
 import 'package:restaurant_app/Restaurant/presenation/screens/restaurant_screen.dart';

@@ -49,26 +49,24 @@ class AccountContent extends StatelessWidget {
         ),
         SizedBox(height: 25),
         Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Expanded(
-              child: AccountFormCard(
-                icon: Icons.favorite_border_outlined,
-                color: Color(0xFF00A2D7),
-                title: 'Favorite',
-                count: 24,
-                subtitle: 'ITEMS',
-              ),
+            AccountFormCard(
+              icon: Icons.favorite_border_outlined,
+              color: Color(0xFF00A2D7),
+              title: 'Favorite',
+              count: 24,
+              subtitle: 'ITEMS',
             ),
-            Expanded(
-              child: AccountFormCard(
-                color: Color(0xFFE6242E),
-                icon: Icons.wallet_outlined,
-                title: 'Wallet',
-                count: 73,
-                subtitle: 'EGP',
-              ),
-            ),
+            // Expanded( TODO: To be handled
+            //   child: AccountFormCard(
+            //     color: Color(0xFFE6242E),
+            //     icon: Icons.wallet_outlined,
+            //     title: 'Wallet',
+            //     count: 73,
+            //     subtitle: 'EGP',
+            //   ),
+            // ),
           ],
         ),
         SizedBox(height: 25),

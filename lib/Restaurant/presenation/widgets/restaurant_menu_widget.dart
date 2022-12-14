@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:restaurant_app/Product/models/product.dart';
-import 'package:restaurant_app/Product/models/product_option.dart';
+import 'package:restaurant_app/Product/data/models/product.dart';
+import 'package:restaurant_app/Product/data/models/product_option.dart';
 import 'package:vertical_tab_bar_view/vertical_tab_bar_view.dart';
 import 'item_tile.dart';
 

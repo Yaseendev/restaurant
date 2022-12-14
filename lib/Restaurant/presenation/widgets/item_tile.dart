@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:numeral/numeral.dart';
 import 'package:restaurant_app/Product/presentation/screens/product_screen.dart';
-import 'package:restaurant_app/Product/models/product.dart';
-import 'package:restaurant_app/Shared/blocs/cubit/cart_cubit.dart';
+import 'package:restaurant_app/Product/data/models/product.dart';
+import 'package:restaurant_app/Shared/Cart/cubit/cart_cubit.dart';
 import '../screens/item_screen.dart';
 
 class ItemTile extends StatelessWidget {

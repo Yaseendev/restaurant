@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:restaurant_app/Order/models/order_item.dart';
+import 'package:restaurant_app/Order/data/models/order_item.dart';
 import 'package:restaurant_app/Order/presentation/widgets/desciption_section.dart';
 import 'package:restaurant_app/Order/presentation/widgets/options_section.dart';
 import 'package:restaurant_app/Order/presentation/widgets/order_footer_button.dart';
-import 'package:restaurant_app/Product/models/product_option.dart';
+import 'package:restaurant_app/Product/data/models/product_option.dart';
 import 'package:restaurant_app/Product/presentation/widgets/size_listView.dart';
-import 'package:restaurant_app/Product/models/product.dart';
+import 'package:restaurant_app/Product/data/models/product.dart';
 
 class ProductScreen extends StatefulWidget {
   final Product product;

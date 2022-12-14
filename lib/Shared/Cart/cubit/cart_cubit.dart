@@ -1,5 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:restaurant_app/Order/models/order_item.dart';
+import 'package:restaurant_app/Order/data/models/order_item.dart';
 
 class CartCubit extends Cubit<List<OrderItem>> {
   CartCubit() : super([]);

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:restaurant_app/Shared/presentation/widgets/custom_app_bar.dart';
+import 'package:restaurant_app/Shared/Rate/presentation/widgets/custom_app_bar.dart';
 import '../widgets/offer_card_large.dart';
 
 class OffersScreen extends StatelessWidget {

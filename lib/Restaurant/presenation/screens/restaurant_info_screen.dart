@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:restaurant_app/Shared/presentation/widgets/custom_app_bar.dart';
-import 'package:restaurant_app/Shared/presentation/widgets/restaurant_rate_card.dart';
+import 'package:restaurant_app/Shared/Rate/presentation/widgets/custom_app_bar.dart';
+import 'package:restaurant_app/Shared/Rate/presentation/widgets/restaurant_rate_card.dart';
 import '../widgets/branches_listView.dart';
 
 class RestauantInfoScreen extends StatelessWidget {

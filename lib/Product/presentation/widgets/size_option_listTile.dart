@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:restaurant_app/Product/models/product_option.dart';
+import 'package:restaurant_app/Product/data/models/product_option.dart';
 import 'package:restaurant_app/utils/constants.dart';
 
 class SizeOptionTile extends StatelessWidget {

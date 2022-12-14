@@ -11,7 +11,6 @@ class LoginWithFacebookEvent extends AccountEvent {
 }
 
 class LoadUserProfileEvent extends AccountEvent {
-
   @override
   List<Object> get props => [];
 }
@@ -21,12 +20,14 @@ class RegisterUserEvent extends AccountEvent {
   final String password;
   final String phoneNum;
   final String email;
+  final String gender;
 
   RegisterUserEvent({
     required this.name,
     required this.password,
     required this.phoneNum,
     required this.email,
+    required this.gender,
   });
 
   @override
@@ -47,7 +48,6 @@ class LoginWithEmailEvent extends AccountEvent {
 }
 
 class LogoutUserEvent extends AccountEvent {
-
   @override
   List<Object> get props => [];
 }

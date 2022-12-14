@@ -1,5 +1,5 @@
-import 'package:restaurant_app/Product/models/product.dart';
-import 'package:restaurant_app/Product/models/product_option.dart';
+import 'package:restaurant_app/Product/data/models/product.dart';
+import 'package:restaurant_app/Product/data/models/product_option.dart';
 
 class OrderItem {
   final Product product;

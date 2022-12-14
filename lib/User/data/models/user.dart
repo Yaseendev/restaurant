@@ -35,16 +35,22 @@ class User extends Equatable {
 
   User.fromJson(Map<String, dynamic> parsedJson)
       : id = parsedJson['id'] ?? '',
-        name = Name.fromString(parsedJson['name']),
+        name = Name(
+          first: parsedJson['first_name'],
+          last: parsedJson['last_name'],
+        ),
+        phoneNumber = parsedJson['phone'],
         email = parsedJson['email'] ?? '',
         gender = parsedJson['gender'] ?? '';
   //photoUrl = parsedJson['picture']['data']['url'];
 
   Map<String, dynamic> toJson([String? password]) {
     final userMap = <String, dynamic>{
-      "name": this.name.first, //TODO: Change to full
+      "first_name": this.name.first,
+      "last_name": this.name.last,
       "email": this.email,
       "phone": this.phoneNumber,
+       "gender": this.gender,
     };
     if (password != null) {
       userMap.addEntries([

@@ -1,6 +1,6 @@
 import 'package:flavor/flavor_colors.dart';
 import 'package:flutter/material.dart';
-import 'package:restaurant_app/Product/models/product.dart';
+import 'package:restaurant_app/Product/data/models/product.dart';
 import 'package:restaurant_app/utils/constants.dart';
 
 class DescriptionSection extends StatefulWidget {

@@ -156,7 +156,7 @@ class _SignUPscreenState extends State<SignUPscreen> {
                 ],
               ),
             ),
-            SizedBox(height: 50),
+            SizedBox(height: 20),
             Form(
               key: _formKey,
               child: Padding(
@@ -512,6 +512,7 @@ class _SignUPscreenState extends State<SignUPscreen> {
                                 password: password,
                                 phoneNum: phoneNum,
                                 email: email,
+                                gender: isMale ? 'male' : 'female',
                               ));
                             }
                           },

@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:dio/dio.dart';
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 import 'package:restaurant_app/User/data/models/name.dart';
@@ -38,7 +39,9 @@ class AccountBloc extends Bloc<AccountEvent, AccountState> {
                   name: event.name,
                   password: event.password,
                   phoneNum: event.phoneNum,
-                  email: event.email)
+                  email: event.email,
+                  gender: event.gender,
+                  )
               .then((result) => emit(AccountLoggedIn(result)))
               .onError((error, stackTrace) => emit(AccountError()));
         } else {
@@ -52,8 +55,15 @@ class AccountBloc extends Bloc<AccountEvent, AccountState> {
                 email: event.email,
                 password: event.password,
               )
-              .then((result) => emit(AccountLoggedIn(result)))
-              .onError((error, stackTrace) => emit(AccountError()));
+              .then((result) => 
+              emit(AccountLoggedIn(result))
+              )
+              .onError((error, stackTrace) {
+            if (error is DioError)
+              emit(AccountError(
+                errMsg: error.response?.data['errors'][0],
+              ));
+          });
         } else {
           emit(AccountNoInternet());
         }

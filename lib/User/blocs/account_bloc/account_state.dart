@@ -4,7 +4,6 @@ part of 'account_bloc.dart';
 abstract class AccountState extends Equatable {}
 
 class AccountInitial extends AccountState {
-
   @override
   List<Object?> get props => [];
 }
@@ -29,6 +28,9 @@ class AccountLoggedIn extends AccountState {
 }
 
 class AccountError extends AccountState {
+  final String? errMsg;
+  AccountError({this.errMsg});
+
   @override
-  List<Object?> get props => [];
+  List<Object?> get props => [errMsg];
 }

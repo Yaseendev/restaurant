@@ -14,12 +14,12 @@ class InitrouteError extends InitrouteState {
   List<Object> get props => [];
 }
 
-class InitrouteInValidToken extends InitrouteState {
+class InitrouteNoLocation extends InitrouteState {
   @override
   List<Object> get props => [];
 }
 
-class InitrouteNoToken extends InitrouteState {
+class InitrouteProceed extends InitrouteState {
   @override
   List<Object> get props => [];
 }
@@ -29,7 +29,3 @@ class InitrouteNoInternet extends InitrouteState {
   List<Object> get props => [];
 }
 
-class InitrouteValidToken extends InitrouteState {
-  @override
-  List<Object> get props => [];
-}

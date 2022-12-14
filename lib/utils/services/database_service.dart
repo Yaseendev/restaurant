@@ -1,15 +1,24 @@
+import 'dart:convert';
+
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:restaurant_app/Shared/Location/data/models/address_location.dart';
 import 'package:restaurant_app/User/data/models/name.dart';
 import 'package:restaurant_app/User/data/models/user.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../constants.dart';
 
 class DatabaseService {
   final FlutterSecureStorage secureStorage;
-  DatabaseService(this.secureStorage) {
+  final SharedPreferences sharedPreferences;
+  DatabaseService({
+    required this.secureStorage,
+    required this.sharedPreferences,
+  }) {
     Hive
-    ..registerAdapter(UserAdapter())
-    ..registerAdapter(NameAdapter());
+      ..registerAdapter(UserAdapter())
+      ..registerAdapter(NameAdapter())
+      ..registerAdapter(AddressLocationAdapter());
   }
 
   Future<void> setToken(String token) async => await secureStorage.write(
@@ -38,5 +47,26 @@ class DatabaseService {
   Future deleteUser() async {
     final userBox = await Boxes.getUserBox();
     return await userBox.delete('currentUser');
+  }
+
+  Future<void> saveLocation(AddressLocation location) async {
+    final locationBox = await Boxes.getLocationBox();
+    await locationBox.add(location);
+  }
+
+  Future<List<AddressLocation>> getSavedLocations() async {
+    final locationBox = await Boxes.getLocationBox();
+    return locationBox.values.toList();
+  }
+
+  Future<bool> setCurrentLocation(AddressLocation location) async =>
+      await sharedPreferences.setString(
+          'currentLocation', jsonEncode(location));
+
+  AddressLocation? getCurrentLocation()  {
+    final String? jsonString = sharedPreferences.getString('currentLocation');
+    if (jsonString == null) return null;
+    final Map<String, dynamic> jsonData = jsonDecode(jsonString);
+    return AddressLocation.fromJson(jsonData);
   }
 }

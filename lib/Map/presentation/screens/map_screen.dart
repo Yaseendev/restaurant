@@ -36,7 +36,7 @@ class _MapScreenState extends State<MapScreen> {
               size: const Size(140, 140),
             ),
             draggable: false,
-            position: const LatLng(30.0653609,31.4544301),
+            position: const LatLng(30.0653609, 31.4544301),
           ),
           Marker(
             markerId: const MarkerId('marker2'),
@@ -48,7 +48,7 @@ class _MapScreenState extends State<MapScreen> {
             markerId: const MarkerId('marker3'),
             icon: BitmapDescriptor.fromBytes(markerIcon),
             draggable: false,
-            position: const LatLng(30.0326172,31.3032934),
+            position: const LatLng(30.0326172, 31.3032934),
           ),
         });
       });
@@ -66,8 +66,8 @@ class _MapScreenState extends State<MapScreen> {
     return Stack(
       children: [
         GoogleMap(
-          myLocationButtonEnabled: true,
-          myLocationEnabled: true,
+          myLocationButtonEnabled: false,
+          myLocationEnabled: false,
           initialCameraPosition: _initialCameraPosition,
           onMapCreated: (controller) {
             googleMapController = controller;
@@ -82,7 +82,7 @@ class _MapScreenState extends State<MapScreen> {
                 child: BlurryContainer(
                   color: Colors.white.withOpacity(0.0),
                   //filter: ui.ImageFilter.blur(sigmaX: 4.0, sigmaY: 4.0),
-                  height: MediaQuery.of(context).size.height * .28,
+                  height: 155.sp,
                   width: MediaQuery.of(context).size.width,
                   blur: 5,
                   elevation: 0,
@@ -112,8 +112,8 @@ class _MapScreenState extends State<MapScreen> {
                                   address: 'الرحاب ( السوق الشرقي )',
                                   onPress: () {
                                     googleMapController.animateCamera(
-                                        CameraUpdate.newLatLng(LatLng(
-                                            30.0653609,31.4544301)));
+                                        CameraUpdate.newLatLng(
+                                            LatLng(30.0653609, 31.4544301)));
                                   },
                                 ),
                                 PlaceCard(
@@ -121,15 +121,16 @@ class _MapScreenState extends State<MapScreen> {
                                   onPress: () {
                                     googleMapController.animateCamera(
                                         CameraUpdate.newLatLng(LatLng(
-                                            30.07505431363671, 31.50397582446508)));
+                                            30.07505431363671,
+                                            31.50397582446508)));
                                   },
                                 ),
                                 PlaceCard(
                                   address: 'مدينة نصر',
                                   onPress: () {
                                     googleMapController.animateCamera(
-                                        CameraUpdate.newLatLng(LatLng(
-                                            30.0326172,31.3032934)));
+                                        CameraUpdate.newLatLng(
+                                            LatLng(30.0326172, 31.3032934)));
                                   },
                                 ),
                                 // PlaceCard(
@@ -175,29 +176,30 @@ class _MapScreenState extends State<MapScreen> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               PlaceCard(
-                                  address: 'الرحاب ( السوق الشرقي )',
-                                  onPress: () {
-                                    googleMapController.animateCamera(
-                                        CameraUpdate.newLatLng(LatLng(
-                                            30.0653609,31.4544301)));
-                                  },
-                                ),
-                                PlaceCard(
-                                  address: 'الرحاب 2',
-                                  onPress: () {
-                                    googleMapController.animateCamera(
-                                        CameraUpdate.newLatLng(LatLng(
-                                            30.07505431363671, 31.50397582446508)));
-                                  },
-                                ),
-                                PlaceCard(
-                                  address: 'مدينة نصر',
-                                  onPress: () {
-                                    googleMapController.animateCamera(
-                                        CameraUpdate.newLatLng(LatLng(
-                                            30.0326172,31.3032934)));
-                                  },
-                                ),
+                                address: 'الرحاب ( السوق الشرقي )',
+                                onPress: () {
+                                  googleMapController.animateCamera(
+                                      CameraUpdate.newLatLng(
+                                          LatLng(30.0653609, 31.4544301)));
+                                },
+                              ),
+                              PlaceCard(
+                                address: 'الرحاب 2',
+                                onPress: () {
+                                  googleMapController.animateCamera(
+                                      CameraUpdate.newLatLng(LatLng(
+                                          30.07505431363671,
+                                          31.50397582446508)));
+                                },
+                              ),
+                              PlaceCard(
+                                address: 'مدينة نصر',
+                                onPress: () {
+                                  googleMapController.animateCamera(
+                                      CameraUpdate.newLatLng(
+                                          LatLng(30.0326172, 31.3032934)));
+                                },
+                              ),
                             ],
                           ),
                         ),

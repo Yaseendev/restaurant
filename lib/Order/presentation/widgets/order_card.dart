@@ -1,7 +1,7 @@
 import 'package:flavor/flavor_assets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:restaurant_app/Shared/presentation/screens/add_rate_screen.dart';
+import 'package:restaurant_app/Shared/Rate/presentation/screens/add_rate_screen.dart';
 import 'package:restaurant_app/utils/constants.dart';
 import '../screens/order_screen.dart';
 

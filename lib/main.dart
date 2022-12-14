@@ -5,8 +5,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:restaurant_app/utils/constants.dart';
+import 'Map/blocs/map_bloc/map_bloc.dart';
 import 'Primary/presentation/screens/primary_screen.dart';
-import 'Shared/blocs/cubit/cart_cubit.dart';
+import 'Shared/Cart/cubit/cart_cubit.dart';
 import 'Splash/blocs/initroute_bloc/initroute_bloc.dart';
 import 'Splash/presentation/screens/splash_screen.dart';
 import 'User/blocs/account_bloc/account_bloc.dart';
@@ -16,11 +17,11 @@ import 'utils/services/http_override.dart';
 void main(List<String> arguments) async {
   WidgetsFlutterBinding.ensureInitialized();
   // await Firebase.initializeApp();
-  await locatorsSetup();
   await Hive.initFlutter();
+  await locatorsSetup();
   HttpOverrides.global = MyHttpOverrides();
- //Stripe.publishableKey = 'pk_test_51Ls01HLynaEsGmGgB9VxL3iMEtwxRMMizxseDFzlCg3dnZvpaHids2hdnDitGN1ppzUSjmCnsH25BbovwfiHkT5h00Or9YzRrG';
- //await Stripe.instance.applySettings();
+  //Stripe.publishableKey = 'pk_test_51Ls01HLynaEsGmGgB9VxL3iMEtwxRMMizxseDFzlCg3dnZvpaHids2hdnDitGN1ppzUSjmCnsH25BbovwfiHkT5h00Or9YzRrG';
+  //await Stripe.instance.applySettings();
   runApp(MyApp(
     title: appName, //arguments.isEmpty ? 'Restaurant App' : arguments[0],
   ));
@@ -41,14 +42,19 @@ class MyApp extends StatelessWidget {
         builder: (context, child) {
           return MultiBlocProvider(
             providers: [
-              BlocProvider<InitrouteBloc>(
-                create: (context) => InitrouteBloc()..add(UserCheckEvent()),
-              ),
               BlocProvider<AccountBloc>(
                 create: (context) => AccountBloc(),
               ),
+              BlocProvider<InitrouteBloc>(
+                create: (context) =>
+                    InitrouteBloc(BlocProvider.of<AccountBloc>(context))
+                      ..add(UserCheckEvent()),
+              ),
               BlocProvider<CartCubit>(
                 create: (context) => CartCubit(),
+              ),
+              BlocProvider<MapBloc>(
+                create: (context) => MapBloc(),
               ),
             ],
             child: MaterialApp(
@@ -58,7 +64,7 @@ class MyApp extends StatelessWidget {
                 //primaryColor: Colors.red,
                 primarySwatch: AppColors.PRIMARY_SWATCH,
               ),
-              home: const SplashScreen(),
+              home: PrimaryScreen(),//const SplashScreen(),
             ),
           );
         });

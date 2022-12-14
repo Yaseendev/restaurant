@@ -6,36 +6,62 @@ import '../widgets/account_header.dart';
 import '../widgets/followus_footer.dart';
 import '../widgets/login_content.dart';
 
-class AccountScreen extends StatelessWidget {
+class AccountScreen extends StatefulWidget {
   const AccountScreen({Key? key}) : super(key: key);
 
   @override
+  State<AccountScreen> createState() => _AccountScreenState();
+}
+
+class _AccountScreenState extends State<AccountScreen> {
+  final GlobalKey loadingKey = GlobalKey();
+
+  @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      padding: const EdgeInsets.symmetric(horizontal: 8.0),
-      child: BlocListener<AccountBloc, AccountState>(
-        listener: (context, state) {
-          if (state is AccountLoggedIn) {
-            Navigator.of(context).popUntil((route) {
-              print(route.settings.name);
-              return route.settings.name == '/primary';
-            });
-          } else if (state is AccountError) {
-            showDialog(
-              context: context,
-              builder: (ctx) => AlertDialog(
-                title: Text('Error'),
-                content: Text('Error'),
-                actions: [
-                  TextButton(
-                    onPressed: () => Navigator.of(ctx).pop(),
-                    child: Text('Ok'),
-                  ),
-                ],
-              ),
-            );
-          }
-        },
+    return BlocListener<AccountBloc, AccountState>(
+      listener: (context, state) {
+        if (state is AccountNoInternet) {
+          ScaffoldMessenger.of(context)
+              .showSnackBar(SnackBar(content: Text('No Internet')));
+        }
+        if (state is AccountLoading) {
+          showDialog(
+            context: context,
+            builder: (ctx) {
+              return Center(
+                key: loadingKey,
+                child: CircularProgressIndicator.adaptive(),
+              );
+            },
+            barrierDismissible: false,
+            routeSettings: RouteSettings(name: 'LoggingIn'),
+          );
+        }
+        if (state is AccountError) {
+          if (loadingKey.currentContext != null)
+            Navigator.of(loadingKey.currentContext!).pop();
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            content: ListTile(
+              leading: Icon(Icons.error_rounded),
+              title: Text(state.errMsg ?? 'An Error Occurred'),
+              contentPadding: EdgeInsets.zero,
+              horizontalTitleGap: 0,
+              iconColor: Colors.white,
+              textColor: Colors.white,
+            ),
+            duration: Duration(seconds: 2),
+          ));
+        }
+        if (state is AccountLoggedIn) {
+          //  context.read<AccountBloc>().add(LoadUserProfileEvent());
+          Navigator.of(context).popUntil((route) {
+            print(route.settings.name);
+            return route.settings.name == '/primary';
+          });
+        }
+      },
+      child: SingleChildScrollView(
+        padding: const EdgeInsets.symmetric(horizontal: 8.0),
         child: BlocBuilder<AccountBloc, AccountState>(
           builder: (context, state) {
             return Column(

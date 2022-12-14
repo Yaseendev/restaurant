@@ -1,9 +1,9 @@
 import 'package:flavor/flavor_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:restaurant_app/Order/models/order_item.dart';
-import 'package:restaurant_app/Product/models/product.dart';
-import 'package:restaurant_app/Shared/blocs/cubit/cart_cubit.dart';
+import 'package:restaurant_app/Order/data/models/order_item.dart';
+import 'package:restaurant_app/Product/data/models/product.dart';
+import 'package:restaurant_app/Shared/Cart/cubit/cart_cubit.dart';
 import 'package:restaurant_app/utils/constants.dart';
 
 class OrderReviewCard extends StatefulWidget {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:restaurant_app/Order/models/order_item.dart';
-import 'package:restaurant_app/Product/models/product.dart';
+import 'package:restaurant_app/Order/data/models/order_item.dart';
+import 'package:restaurant_app/Product/data/models/product.dart';
 
 class CartButton extends StatelessWidget {
   final VoidCallback onPress;
