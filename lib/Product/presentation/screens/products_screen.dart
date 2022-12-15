@@ -101,45 +101,51 @@ class _ProductsScreenState extends State<ProductsScreen>
                                       context: context,
                                       tiles: [
                                         ListTile(
-                                          title: Text(
-                                            'Hot Drinks',
-                                            // 'Burger Sandwiches',
-                                            style: TextStyle(fontSize: 16),
-                                          ),
-                                          trailing: Text(
-                                            '20',
-                                            style: TextStyle(fontSize: 18),
-                                          ),
-                                          onTap: () {
-                                            Navigator.pop(context, 0);
-                                          },
-                                        ),
-                                        ListTile(
-                                          title: Text(
-                                            'Cold Drinks',
-                                            style: TextStyle(fontSize: 16),
-                                          ),
-                                          trailing: Text(
-                                            '20',
-                                            style: TextStyle(fontSize: 18),
-                                          ),
-                                          onTap: () {
-                                            Navigator.pop(context, 1);
-                                          },
-                                        ),
-                                        ListTile(
-                                          title: Text(
-                                            'Baked Goods',
-                                            style: TextStyle(fontSize: 16),
-                                          ),
-                                          trailing: Text(
-                                            '10',
-                                            style: TextStyle(fontSize: 18),
-                                          ),
-                                          onTap: () {
-                                            Navigator.pop(context, 2);
-                                          },
-                                        ),
+                                                title: Text(
+                                                  'Pizza',
+                                                  // 'Burger Sandwiches',
+                                                  style:
+                                                      TextStyle(fontSize: 16),
+                                                ),
+                                                trailing: Text(
+                                                  '3',
+                                                  style:
+                                                      TextStyle(fontSize: 18),
+                                                ),
+                                                onTap: () {
+                                                  Navigator.pop(context, 0);
+                                                },
+                                              ),
+                                              ListTile(
+                                                title: Text(
+                                                  'Shwarma',
+                                                  style:
+                                                      TextStyle(fontSize: 16),
+                                                ),
+                                                trailing: Text(
+                                                  '3',
+                                                  style:
+                                                      TextStyle(fontSize: 18),
+                                                ),
+                                                onTap: () {
+                                                  Navigator.pop(context, 1);
+                                                },
+                                              ),
+                                              ListTile(
+                                                title: Text(
+                                                  'Burger',
+                                                  style:
+                                                      TextStyle(fontSize: 16),
+                                                ),
+                                                trailing: Text(
+                                                  '3',
+                                                  style:
+                                                      TextStyle(fontSize: 18),
+                                                ),
+                                                onTap: () {
+                                                  Navigator.pop(context, 2);
+                                                },
+                                              ),
                                       ],
                                     ),
                                   ],
@@ -163,15 +169,15 @@ class _ProductsScreenState extends State<ProductsScreen>
                     labelColor: Colors.black,
                     indicatorPadding: EdgeInsets.symmetric(horizontal: 16),
                     tabs: [
-                      Tab(
-                        text: 'Hot Drinks',
-                      ),
-                      Tab(
-                        text: 'Cold Drinks',
-                      ),
-                      Tab(
-                        text: 'Baked Goods',
-                      ),
+                       Tab(
+                              text: 'Pizza',
+                            ),
+                            Tab(
+                              text: 'Shwarma',
+                            ),
+                            Tab(
+                              text: 'Burger',
+                            ),
                     ],
                   ),
                 ),
@@ -183,62 +189,74 @@ class _ProductsScreenState extends State<ProductsScreen>
               controller: _tabController,
               children: [
                 ProductsListView(
-                  title: 'Hot Drinks',
+                  title: 'Pizza',
                   products: [
                     Product(
-                      name: 'Tea',
-                      desc: 'Hot Fresh Tea',
-                      imgUrl: AppImages.POP1,
-                      price: 20,
-                      sizes: [
-                        ProductOption(
-                          name: 'Medium',
-                          price: 10,
-                        ),
-                        ProductOption(
-                          name: 'Large',
-                          price: 20,
-                        ),
-                      ],
-                      options: null,
-                      likes: 2100,
-                    ),
-                    Product(
-                      name: 'French Coffee',
-                      desc: 'Hot French Coffee',
-                      imgUrl: AppImages.CAT1_POP2,
-                      price: 25,
-                      sizes: [
-                        ProductOption(
-                          name: 'Medium',
-                          price: 15,
-                        ),
-                        ProductOption(
-                          name: 'Large',
-                          price: 25,
-                        ),
-                      ],
-                      options: null,
-                      likes: 2100,
-                    ),
-                    Product(
-                      name: 'Flat White',
-                      desc: 'Hot Flat White',
-                      imgUrl: AppImages.CAT1_POP3,
-                      price: 35,
-                      sizes: [
-                        ProductOption(
-                          name: 'Medium',
-                          price: 25,
-                        ),
-                        ProductOption(
-                          name: 'Large',
-                          price: 35,
-                        ),
-                      ],
-                      options: null,
-                      likes: 2100,
-                    ),
+                    name: 'Pizza Margherita',
+                    desc: 'Mozzarella Cheese, Fresh basil and Tomatoes',
+                    imgUrl: AppImages.POP1,
+                    price: 30,
+                    sizes: [
+                      ProductOption(
+                        name: 'Small',
+                        price: 30,
+                      ),
+                      ProductOption(
+                        name: 'Medium',
+                        price: 50,
+                      ),
+                      ProductOption(
+                        name: 'Large',
+                        price: 60,
+                      ),
+                    ],
+                    options: null,
+                    likes: 2100,
+                  ),
+                  Product(
+                    name: 'Chiken Pizza',
+                    desc: 'Chiken Pizza',
+                    imgUrl: AppImages.CAT1_POP2,
+                    price: 45,
+                    sizes: [
+                      ProductOption(
+                        name: 'Small',
+                        price: 45,
+                      ),
+                      ProductOption(
+                        name: 'Medium',
+                        price: 50,
+                      ),
+                      ProductOption(
+                        name: 'Large',
+                        price: 85,
+                      ),
+                    ],
+                    options: null,
+                    likes: 2100,
+                  ),
+                  Product(
+                    name: 'Romi Pizza',
+                    desc: 'Romi Pizza',
+                    imgUrl: AppImages.CAT1_POP3,
+                    price: 45,
+                    sizes: [
+                      ProductOption(
+                        name: 'Small',
+                        price: 45,
+                      ),
+                      ProductOption(
+                        name: 'Medium',
+                        price: 65,
+                      ),
+                      ProductOption(
+                        name: 'Large',
+                        price: 70,
+                      ),
+                    ],
+                    options: null,
+                    likes: 2100,
+                  ),
                   ],
                   onProducrOrder: (ordersList) {
                     print('added');
@@ -248,35 +266,70 @@ class _ProductsScreenState extends State<ProductsScreen>
                   },
                 ),
                 ProductsListView(
-                  title: 'Cold Drinks',
+                  title: 'Shwarma',
                   products: [
-                    Product(
-                      name: 'Oreo Milkshake',
-                      desc: 'Fresh Oreo Milkshake',
-                      price: 30,
-                      sizes: null,
-                      options: null,
-                      imgUrl: AppImages.CAT2_POP1,
-                      likes: 2000,
-                    ),
-                    Product(
-                      name: 'American Ice Coffee',
-                      desc: 'Cold American Ice Coffee',
-                      price: 35,
-                      sizes: null,
-                      options: null,
-                      imgUrl: AppImages.CAT2_POP2,
-                      likes: 2000,
-                    ),
-                    Product(
-                      name: 'Redbull',
-                      desc: 'Cold Redbull',
-                      price: 30,
-                      sizes: null,
-                      options: null,
-                      imgUrl: AppImages.CAT2_POP3,
-                      likes: 2000,
-                    ),
+                   Product(
+                    name: 'Chiken Shwarma',
+                    desc: 'Chiken Shwarma',
+                    price: 20,
+                    sizes: [
+                      ProductOption(
+                        name: 'Small',
+                        price: 15,
+                      ),
+                      ProductOption(
+                        name: 'Medium',
+                        price: 20,
+                      ),
+                      ProductOption(
+                        name: 'Large',
+                        price: 25,
+                      ),
+                    ],
+                    options: null,
+                    imgUrl: AppImages.CAT2_POP1,
+                    likes: 2000,
+                  ),
+                  Product(
+                    name: 'Meat Shwarma',
+                    desc: 'Meat Shwarma',
+                    price: 20,
+                    sizes: [
+                      ProductOption(
+                        name: 'Small',
+                        price: 15,
+                      ),
+                      ProductOption(
+                        name: 'Medium',
+                        price: 20,
+                      ),
+                      ProductOption(
+                        name: 'Large',
+                        price: 25,
+                      ),
+                    ],
+                    options: null,
+                    imgUrl: AppImages.CAT2_POP2,
+                    likes: 2000,
+                  ),
+                  Product(
+                    name: 'Arabian Shwarma Meal',
+                    desc: 'Arabian Shwarma Meal',
+                    price: 30,
+                    sizes: [
+                       ProductOption(
+                        name: 'Medium',
+                        price: 40,
+                      ),
+                      ProductOption(
+                        name: 'Large',
+                        price: 65,
+                      ),
+                    ],
+                    options: null,
+                    imgUrl: AppImages.CAT2_POP3,
+                    likes: 2000,
+                  ),
                   ],
                   onProducrOrder: (ordersList) {
                     // setState(() {
@@ -285,35 +338,62 @@ class _ProductsScreenState extends State<ProductsScreen>
                   },
                 ),
                 ProductsListView(
-                  title: 'Baked Goods',
+                  title: 'Burger',
                   products: [
                     Product(
-                      name: 'Romi Croissants',
-                      desc: 'Croissants with romi cheese',
-                      price: 15,
-                      sizes: null,
-                      options: null,
-                      imgUrl: AppImages.CAT3_POP1,
-                      likes: 2000,
-                    ),
-                    Product(
-                      name: 'Cheese Pateh',
-                      desc: 'Pateh with white cheese',
-                      price: 12,
-                      sizes: null,
-                      options: null,
-                      imgUrl: AppImages.CAT3_POP2,
-                      likes: 2000,
-                    ),
-                    Product(
-                      name: 'Chocolate Muffin',
-                      desc: 'Tasty Chocolate Muffin',
-                      price: 16,
-                      sizes: null,
-                      options: null,
-                      imgUrl: AppImages.CAT3_POP3,
-                      likes: 2000,
-                    ),
+                    name: 'Classic Burger',
+                    desc: 'Classic Burger',
+                    price: 25,
+                    sizes: [
+                      ProductOption(
+                        name: 'Single',
+                        price: 20,
+                      ),
+                      ProductOption(
+                        name: 'Double',
+                        price: 25,
+                      ),
+                    ],
+                    options: null,
+                    imgUrl: AppImages.CAT3_POP1,
+                    likes: 2000,
+                  ),
+                  Product(
+                    name: 'Jumbo Burger',
+                    desc: 'Jumbo Burger',
+                    price: 25,
+                    sizes: [
+                      ProductOption(
+                        name: 'Single',
+                        price: 20,
+                      ),
+                      ProductOption(
+                        name: 'Double',
+                        price: 25,
+                      ),
+                    ],
+                    options: null,
+                    imgUrl: AppImages.CAT3_POP2,
+                    likes: 2000,
+                  ),
+                  Product(
+                    name: 'Zinger Burger',
+                    desc: 'Zinger Burger',
+                    price: 25,
+                    sizes: [
+                      ProductOption(
+                        name: 'Single',
+                        price: 25,
+                      ),
+                      ProductOption(
+                        name: 'Double',
+                        price: 40,
+                      ),
+                    ],
+                    options: null,
+                    imgUrl: AppImages.CAT3_POP3,
+                    likes: 2000,
+                  ),
                   ],
                   onProducrOrder: (ordersList) {
                     // setState(() {

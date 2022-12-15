@@ -14,10 +14,12 @@ class HomeLoading extends HomeState {}
 class HomeLoaded extends HomeState {
   final AddressLocation? addressLocation;
   final List<ProductCategory> categories;
+  final List<Branch> branches;
 
   HomeLoaded({
     required this.addressLocation,
     required this.categories,
+    required this.branches,
   });
 
   @override

@@ -70,7 +70,7 @@ flutter:
     - flavor/assets/images/
 
 flutter_native_splash:
-  color: "#682a13"
+  color: "#ffffff"
   #background_image: "assets/images/splash.png"
   image: flavor/assets/images/appLogo.png
   #fullscreen: true

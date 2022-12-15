@@ -14,7 +14,7 @@ class MapScreen extends StatefulWidget {
 
 class _MapScreenState extends State<MapScreen> {
   static const CameraPosition _initialCameraPosition = CameraPosition(
-    target: LatLng(30.07505431363671, 31.50397582446508),
+    target: LatLng(30.55479017421879, 31.0125502547238),
     zoom: 12.5,
   );
   late final GoogleMapController googleMapController;
@@ -36,20 +36,20 @@ class _MapScreenState extends State<MapScreen> {
               size: const Size(140, 140),
             ),
             draggable: false,
-            position: const LatLng(30.0653609, 31.4544301),
+            position: const LatLng(30.55479017421879, 31.0125502547238),
           ),
-          Marker(
-            markerId: const MarkerId('marker2'),
-            icon: BitmapDescriptor.fromBytes(markerIcon),
-            draggable: false,
-            position: const LatLng(30.07505431363671, 31.50397582446508),
-          ),
-          Marker(
-            markerId: const MarkerId('marker3'),
-            icon: BitmapDescriptor.fromBytes(markerIcon),
-            draggable: false,
-            position: const LatLng(30.0326172, 31.3032934),
-          ),
+          // Marker(
+          //   markerId: const MarkerId('marker2'),
+          //   icon: BitmapDescriptor.fromBytes(markerIcon),
+          //   draggable: false,
+          //   position: const LatLng(30.07505431363671, 31.50397582446508),
+          // ),
+          // Marker(
+          //   markerId: const MarkerId('marker3'),
+          //   icon: BitmapDescriptor.fromBytes(markerIcon),
+          //   draggable: false,
+          //   position: const LatLng(30.0326172, 31.3032934),
+          // ),
         });
       });
     });
@@ -109,30 +109,30 @@ class _MapScreenState extends State<MapScreen> {
                             child: Row(
                               children: [
                                 PlaceCard(
-                                  address: 'الرحاب ( السوق الشرقي )',
+                                  address: 'Shebin al-Kom, El Monofiya',
                                   onPress: () {
                                     googleMapController.animateCamera(
                                         CameraUpdate.newLatLng(
-                                            LatLng(30.0653609, 31.4544301)));
+                                            LatLng(30.55479017421879, 31.0125502547238)));
                                   },
                                 ),
-                                PlaceCard(
-                                  address: 'الرحاب 2',
-                                  onPress: () {
-                                    googleMapController.animateCamera(
-                                        CameraUpdate.newLatLng(LatLng(
-                                            30.07505431363671,
-                                            31.50397582446508)));
-                                  },
-                                ),
-                                PlaceCard(
-                                  address: 'مدينة نصر',
-                                  onPress: () {
-                                    googleMapController.animateCamera(
-                                        CameraUpdate.newLatLng(
-                                            LatLng(30.0326172, 31.3032934)));
-                                  },
-                                ),
+                                // PlaceCard(
+                                //   address: 'الرحاب 2',
+                                //   onPress: () {
+                                //     googleMapController.animateCamera(
+                                //         CameraUpdate.newLatLng(LatLng(
+                                //             30.07505431363671,
+                                //             31.50397582446508)));
+                                //   },
+                                // ),
+                                // PlaceCard(
+                                //   address: 'مدينة نصر',
+                                //   onPress: () {
+                                //     googleMapController.animateCamera(
+                                //         CameraUpdate.newLatLng(
+                                //             LatLng(30.0326172, 31.3032934)));
+                                //   },
+                                // ),
                                 // PlaceCard(
                                 //   address: '423 فيصل الرئيسى، محطة مدكور، أمام العشرين',
                                 //   onPress: () {
@@ -175,31 +175,31 @@ class _MapScreenState extends State<MapScreen> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              PlaceCard(
-                                address: 'الرحاب ( السوق الشرقي )',
-                                onPress: () {
-                                  googleMapController.animateCamera(
-                                      CameraUpdate.newLatLng(
-                                          LatLng(30.0653609, 31.4544301)));
-                                },
-                              ),
-                              PlaceCard(
-                                address: 'الرحاب 2',
-                                onPress: () {
-                                  googleMapController.animateCamera(
-                                      CameraUpdate.newLatLng(LatLng(
-                                          30.07505431363671,
-                                          31.50397582446508)));
-                                },
-                              ),
-                              PlaceCard(
-                                address: 'مدينة نصر',
-                                onPress: () {
-                                  googleMapController.animateCamera(
-                                      CameraUpdate.newLatLng(
-                                          LatLng(30.0326172, 31.3032934)));
-                                },
-                              ),
+                               PlaceCard(
+                                  address: 'Shebin al-Kom, El Monofiya',
+                                  onPress: () {
+                                    googleMapController.animateCamera(
+                                        CameraUpdate.newLatLng(
+                                            LatLng(30.55479017421879, 31.0125502547238)));
+                                  },
+                                ),
+                              // PlaceCard(
+                              //   address: 'الرحاب 2',
+                              //   onPress: () {
+                              //     googleMapController.animateCamera(
+                              //         CameraUpdate.newLatLng(LatLng(
+                              //             30.07505431363671,
+                              //             31.50397582446508)));
+                              //   },
+                              // ),
+                              // PlaceCard(
+                              //   address: 'مدينة نصر',
+                              //   onPress: () {
+                              //     googleMapController.animateCamera(
+                              //         CameraUpdate.newLatLng(
+                              //             LatLng(30.0326172, 31.3032934)));
+                              //   },
+                              // ),
                             ],
                           ),
                         ),

@@ -17,7 +17,7 @@ class AddressLocationAdapter extends TypeAdapter<AddressLocation> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return AddressLocation(
-      position: fields[0] as LatLng,
+      position: fields[0] as GeoLatLng,
       name: fields[1] as String,
     );
   }

@@ -1,26 +1,39 @@
 import 'package:flavor/flavor_assets.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:restaurant_app/Branch/data/Models/branch.dart';
+import 'package:restaurant_app/Category/data/models/product_category.dart';
 import 'package:restaurant_app/Offers/presentation/screens/offers_screen.dart';
 import 'package:restaurant_app/Offers/presentation/widgets/offer_card_small.dart';
 import 'package:restaurant_app/Product/data/models/product.dart';
-import 'package:restaurant_app/Product/presentation/widgets/category_card.dart';
-import 'package:restaurant_app/Product/presentation/widgets/product_card.dart';
 import 'package:restaurant_app/Restaurant/presenation/screens/restaurant_screen.dart';
+import 'package:restaurant_app/Shared/Location/data/models/address_location.dart';
+import 'branches_section.dart';
+import 'home_categoris_list_view.dart';
 import 'home_product_card.dart';
 import 'photo_show.dart';
 import 'restaurant_card.dart';
 import 'search_box.dart';
+import 'selected_location_card.dart';
 
 class HomeLoadedWidget extends StatelessWidget {
+  final AddressLocation currentLocation;
+  final List<ProductCategory> categories;
+  final List<Branch> branches;
+
   const HomeLoadedWidget({
     Key? key,
+    required this.categories,
+    required this.currentLocation,
+    required this.branches,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
+        SelectedLocationCard(
+          currentLocation: currentLocation,
+        ),
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 14, vertical: 12),
           child: SearchBox(
@@ -66,29 +79,12 @@ class HomeLoadedWidget extends StatelessWidget {
                   ),
                 ],
               ),
-              SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  children: [
-                    CategoryCard(
-                      image: AppImages.CAT1,
-                      title: 'Hot Drinks',
-                      index: 0,
-                    ),
-                    CategoryCard(
-                      image: AppImages.CAT2,
-                      title: 'Cold Drinks',
-                      index: 1,
-                    ),
-                    CategoryCard(
-                      image: AppImages.CAT3,
-                      title: 'Baked Goods',
-                      index: 2,
-                    ),
-                  ],
-                ),
+              CategoriesListView(
+                categories: categories,
               ),
               SizedBox(height: 12),
+
+              ///Popular Section
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -125,10 +121,10 @@ class HomeLoadedWidget extends StatelessWidget {
                     //TODO
                     HomeProductCard(
                       product: Product(
-                        name: 'Tea',
-                        desc: 'Fresh Hot Tea',
+                        name: 'Pizza Margherita',
+                        desc: 'Mozzarella Cheese, Fresh basil and Tomatoes',
                         imgUrl: AppImages.POP1,
-                        price: 12,
+                        price: 30,
                         discount: 1,
                         likes: 2100,
                         options: [],
@@ -137,10 +133,10 @@ class HomeLoadedWidget extends StatelessWidget {
                     ),
                     HomeProductCard(
                       product: Product(
-                        name: 'Chocolate Muffin',
-                        desc: 'Baked Chocolate Muffin',
+                        name: 'Chicken Burger',
+                        desc: 'Chicken Burger',
                         imgUrl: AppImages.POP2,
-                        price: 16,
+                        price: 15,
                         discount: 1,
                         likes: 2100,
                         options: [],
@@ -163,6 +159,9 @@ class HomeLoadedWidget extends StatelessWidget {
                   ],
                 ),
               ),
+
+
+              ///Branches Section
               SizedBox(height: 12),
               Text(
                 'Our Branches',
@@ -172,21 +171,8 @@ class HomeLoadedWidget extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 6),
-              SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  children: [
-                    //ProductCard(),
-                    RestaurantCard(
-                      addressName: 'Rehab (Estern Sooq)',
-                      address: 'أمام بوابه الدخول',
-                    ),
-                    RestaurantCard(
-                      addressName: 'Nasr City',
-                      address: 'شرق مدينة نصر',
-                    ),
-                  ],
-                ),
+              BranchesSection(
+                branches: branches,
               ),
               /* DefaultTabController(
                 length: 2,

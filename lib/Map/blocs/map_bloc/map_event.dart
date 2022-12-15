@@ -13,7 +13,7 @@ class LoadCurrentLocation extends MapEvent {
 }
 
 class ChooseLocation extends MapEvent {
-  final LatLng position;
+  final GeoLatLng position;
   ChooseLocation(this.position);
 
   @override

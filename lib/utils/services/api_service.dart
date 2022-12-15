@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:restaurant_app/Shared/Location/data/models/geo_latLng.dart';
 import 'package:restaurant_app/User/data/models/user.dart';
 import '../constants.dart';
 
@@ -66,7 +67,7 @@ class ApiService {
     return response.data;
   }
 
-  Future<Map<String, dynamic>?> reverseGeoLocation(LatLng location) async {
+  Future<Map<String, dynamic>?> reverseGeoLocation(GeoLatLng location) async {
     Response response = await Dio().get(
       Urls.LOCATION_REVERSE,
       queryParameters: {
@@ -83,13 +84,33 @@ class ApiService {
     return response.data;
   }
 
-  Future<Map<String, dynamic>?> getBranchData(LatLng location) async {
+  Future<Map<String, dynamic>?> getBranchData(GeoLatLng location) async {
     Response response = await _dio.get(
       Urls.FIND_BRANCH,
       queryParameters: {
         'lat': location.latitude,
-        'lon': location.longitude,
+        'long': location.longitude,
       },
+      options: Options(
+        contentType: 'application/json',
+      ),
+    );
+    return response.data;
+  }
+
+  Future<List<dynamic>?> getBranchAddresses() async {
+    Response response = await _dio.get(
+      Urls.ALL_BRANCHES,
+      options: Options(
+        contentType: 'application/json',
+      ),
+    );
+    return response.data;
+  }
+
+  Future<List<dynamic>?> fetchCategories(int branchId) async {
+    Response response = await _dio.get(//TODO: needs to be corrected in backend
+      Urls.BRANCH_PATH + '/$branchId/categories', 
       options: Options(
         contentType: 'application/json',
       ),

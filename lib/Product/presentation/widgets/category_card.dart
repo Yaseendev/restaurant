@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:restaurant_app/Restaurant/presenation/screens/restaurant_screen.dart';
+import 'package:restaurant_app/utils/constants.dart';
 
 import '../screens/products_screen.dart';
 
@@ -7,6 +8,7 @@ class CategoryCard extends StatelessWidget {
   final String image;
   final String title;
   final int index;
+
   const CategoryCard({
     required this.image,
     required this.title,
@@ -30,10 +32,27 @@ class CategoryCard extends StatelessWidget {
           padding: const EdgeInsets.all(8.0),
           child: Column(
             children: [
-              Image.asset(
+              Image.network(
                 image,
                 height: 60,
                 width: 70,
+                fit: BoxFit.cover,
+                errorBuilder: (context, error, stackTrace) {
+                  return Image.asset(
+                    Images.CATEGORY_PLACEHOLDER,
+                    height: 60,
+                    width: 70,
+                    fit: BoxFit.cover,
+                  );
+                },
+                loadingBuilder: (context, child, loadingProgress) {
+                  return Image.asset(
+                    Images.CATEGORY_PLACEHOLDER,
+                    height: 60,
+                    width: 70,
+                    fit: BoxFit.cover,
+                  );
+                },
               ),
               SizedBox(
                 height: 10,

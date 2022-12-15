@@ -1,13 +1,14 @@
 import 'package:equatable/equatable.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'geo_latLng.dart';
 
 part 'address_location.g.dart';
 
 @HiveType(typeId: 2)
 class AddressLocation extends Equatable {
   @HiveField(0)
-  final LatLng position;
+  final GeoLatLng position;
 
   @HiveField(1)
   final String name;
@@ -26,7 +27,7 @@ class AddressLocation extends Equatable {
 
   factory AddressLocation.fromJson(Map<String, dynamic> jsonObj) {
     return AddressLocation(
-      position: LatLng.fromJson(jsonObj['position'])!,
+      position: GeoLatLng.fromJson(jsonObj['position'])!,
       name: jsonObj['name'],
     );
   }

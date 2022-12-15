@@ -6,6 +6,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:restaurant_app/Map/data/models/address.dart';
 import 'package:restaurant_app/Map/data/repositories/map_repository.dart';
 import 'package:restaurant_app/Shared/Location/data/models/address_location.dart';
+import 'package:restaurant_app/Shared/Location/data/models/geo_latLng.dart';
 import 'package:restaurant_app/Shared/Location/data/repositories/location_repository.dart';
 import 'package:restaurant_app/utils/locator.dart';
 
@@ -46,7 +47,7 @@ class MapBloc extends Bloc<MapEvent, MapState> {
           if (address != null) {
             final AddressLocation addressLocation = AddressLocation(
               position: event.position,
-              name: address.name,
+              name: address.name.isEmpty ? address.suburb : address.name,
             );
             await locationRepo.saveLocation(addressLocation);
             await locationRepo.setCurrentLocation(addressLocation);

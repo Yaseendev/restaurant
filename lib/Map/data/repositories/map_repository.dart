@@ -1,4 +1,5 @@
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:restaurant_app/Shared/Location/data/models/geo_latLng.dart';
 import 'package:restaurant_app/utils/locator.dart';
 import 'package:restaurant_app/utils/services/api_service.dart';
 
@@ -16,7 +17,7 @@ late final ApiService _networkApiService;
     return result.map((e) => LocationResult.fromJson(e)).toList();
   }
 
-  Future<Address?> getReversedGeoCode(LatLng position) async {
+  Future<Address?> getReversedGeoCode(GeoLatLng position) async {
     //if (text.isEmpty) return null;
     final result = await _networkApiService.reverseGeoLocation(position);
     return result != null ? Address.fromJson(result['address']) : null;

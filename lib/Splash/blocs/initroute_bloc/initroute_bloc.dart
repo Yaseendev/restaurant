@@ -50,4 +50,15 @@ class InitrouteBloc extends Bloc<InitrouteEvent, InitrouteState> {
       }
     });
   }
+   @override
+  void onEvent( event) {
+    super.onEvent(event);
+    log('Event $event Patched');
+  }
+
+  @override
+  void onChange(Change<InitrouteState> change) {
+    super.onChange(change);
+    log('State $change emmited');
+  }
 }

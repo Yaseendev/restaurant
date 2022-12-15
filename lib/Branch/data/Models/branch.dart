@@ -1,29 +1,37 @@
 import 'dart:convert';
 
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:restaurant_app/Shared/Location/data/models/geo_latLng.dart';
 
 class Branch {
-  final int id;
-  final String name;
-  final String address;
-  final LatLng? location;
+  int? id;
+  String? name;
+  String? address;
+  GeoLatLng? location;
 
   Branch({
-    required this.id,
-    required this.name,
-    required this.address,
-    required this.location,
+    this.id,
+    this.name,
+    this.address,
+    this.location,
   });
 
   factory Branch.fromJson(Map<String, dynamic>? json) {
     return Branch(
         id: json?['id'] ?? '',
-        name: json?['name']?? '',
+        name: json?['name'] ?? '',
         address: json?['address'] ?? '',
-        location: LatLng.fromJson(jsonEncode(json)));
+        location: GeoLatLng.fromJson(json));
   }
 
   // TODO: Implement update method
+  void update(Branch newBranch) {
+    this.name = newBranch.name;
+    this.id = newBranch.id;
+    this.location = newBranch.location;
+    this.address = newBranch.address;
+  }
+
   // Map<String, dynamic> toJson() {
   //   final Map<String, dynamic> data = new Map<String, dynamic>();
   //   data['id'] = this.id;

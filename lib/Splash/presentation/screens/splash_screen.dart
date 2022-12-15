@@ -34,7 +34,7 @@ class _SplashScreenState extends State<SplashScreen> {
                 return InitialMapScreen();
               }));
         }
-        // else if (state is InitrouteValidToken) {
+         else if (state is InitrouteProceed) {
         //   context.read<AccountBloc>().add(LoadUserProfileEvent());
         //   Navigator.of(context).pushReplacement(MaterialPageRoute(
         //       settings: RouteSettings(name: '/primary'),
@@ -44,12 +44,12 @@ class _SplashScreenState extends State<SplashScreen> {
         // } else if (state is InitrouteInValidToken) {
         //   //Logout
         //   context.read<AccountBloc>().add(LogoutUserEvent());
-        //   Navigator.of(context).pushReplacement(MaterialPageRoute(
-        //       settings: RouteSettings(name: '/primary'),
-        //       builder: (ctx) {
-        //         return PrimaryScreen();
-        //       }));
-        // }
+          Navigator.of(context).pushReplacement(MaterialPageRoute(
+              settings: RouteSettings(name: '/primary'),
+              builder: (ctx) {
+                return PrimaryScreen();
+              }));
+        }
         if (state is InitrouteNoInternet) {
           Navigator.of(context).pushReplacement(MaterialPageRoute(
               settings: RouteSettings(name: '/primary'),

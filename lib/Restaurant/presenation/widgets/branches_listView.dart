@@ -11,17 +11,18 @@ class BranchesListView extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         BrachTile(
-          title: 'الرحاب ( السوق الشرقي )',
-          details: 'الرحاب ( السوق الشرقي )  امام بوابه الدخول مباشره',
+          title: 'Shebin al-Kom',
+          details:
+              'البر الشرقي شارع مصطفي كامل القبلي .أمام محلات ابو شحاط Shebin al-Kom',
         ),
-        BrachTile(
-          title: 'الرحاب',
-          details: 'الرحاب امام بوابه 24',
-        ),
-        BrachTile(
-          title: 'مدينة نصر ',
-          details: 'تقاطع شارع الطاقة مع شارع أكاديمية علوم الرياضةأمام شل اوت',
-        ),
+        // BrachTile(
+        //   title: 'الرحاب',
+        //   details: 'الرحاب امام بوابه 24',
+        // ),
+        // BrachTile(
+        //   title: 'مدينة نصر ',
+        //   details: 'تقاطع شارع الطاقة مع شارع أكاديمية علوم الرياضةأمام شل اوت',
+        // ),
       ],
     );
   }

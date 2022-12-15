@@ -1,4 +1,3 @@
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:restaurant_app/Shared/Location/data/models/address_location.dart';
 import 'package:restaurant_app/utils/locator.dart';
 import 'package:restaurant_app/utils/services/api_service.dart';
@@ -15,9 +14,12 @@ class BranchRepository {
   }
 
   Future<Branch?> fetchBranchData(AddressLocation addressLocation) async {
-    //final AddressLocation? addressLocation =_databaseService.getCurrentLocation();
-    if (addressLocation == null) return null;
     return Branch.fromJson(
         await _apiService.getBranchData(addressLocation.position));
+  }
+
+  Future<List<Branch>?> fetchBranchAddresses() async {
+    final result = await _apiService.getBranchAddresses();
+    return result!.map((e) => Branch.fromJson(e)).toList();
   }
 }

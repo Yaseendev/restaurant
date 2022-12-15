@@ -1,8 +1,8 @@
 import 'dart:convert';
-
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:restaurant_app/Shared/Location/data/models/address_location.dart';
+import 'package:restaurant_app/Shared/Location/data/models/geo_latLng.dart';
 import 'package:restaurant_app/User/data/models/name.dart';
 import 'package:restaurant_app/User/data/models/user.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -18,6 +18,7 @@ class DatabaseService {
     Hive
       ..registerAdapter(UserAdapter())
       ..registerAdapter(NameAdapter())
+      ..registerAdapter(GeoLatLngAdapter())
       ..registerAdapter(AddressLocationAdapter());
   }
 

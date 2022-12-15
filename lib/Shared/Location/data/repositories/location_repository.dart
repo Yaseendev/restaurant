@@ -42,4 +42,6 @@ class LocationRepository {
   Future saveLocation(AddressLocation location) async => await _databaseService.saveLocation(location);
 
   Future setCurrentLocation(AddressLocation location) async => await _databaseService.setCurrentLocation(location);
+
+  AddressLocation? getCurrentLocation() => _databaseService.getCurrentLocation();
 }

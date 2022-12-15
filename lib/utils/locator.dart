@@ -2,6 +2,8 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get_it/get_it.dart';
+import 'package:restaurant_app/Branch/data/Models/branch.dart';
+import 'package:restaurant_app/Category/data/repositories/category_repository.dart';
 import 'package:restaurant_app/Map/data/repositories/map_repository.dart';
 import 'package:restaurant_app/Shared/Location/data/repositories/location_repository.dart';
 import 'package:restaurant_app/User/data/repositories/account_repositories.dart';
@@ -49,4 +51,6 @@ Future locatorsSetup() async {
       ));
   locator.registerLazySingleton<MapRepository>(() => MapRepository());
   locator.registerLazySingleton<BranchRepository>(() => BranchRepository());
+  locator.registerLazySingleton<Branch>(() => Branch());
+  locator.registerLazySingleton<CategoryRepository>(() => CategoryRepository());
 }

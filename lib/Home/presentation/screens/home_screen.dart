@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:restaurant_app/Home/blocs/home_bloc/home_bloc.dart';
 import '../widgets/loaded/home_loaded_content.dart';
 import '../widgets/loading/home_loading_widget.dart';
 
@@ -7,83 +9,31 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: MediaQuery.of(context).size.height,
-      child: RefreshIndicator(
-        onRefresh: () async {
-          await Future.delayed(Duration(seconds: 5)).then((value) => false);
-        },
-        child: ListView(
-          //crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(
-              height: 40,
-              child: Card(
-                color: Theme.of(context).primaryColor,
-                margin: EdgeInsets.symmetric(horizontal: 12),
-                shape: RoundedRectangleBorder(
-                    borderRadius:
-                        BorderRadius.vertical(bottom: Radius.circular(20))),
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
-                        children: [
-                          Icon(
-                            Icons.location_on,
-                            color: Colors.white,
-                          ),
-                          ConstrainedBox(
-                            constraints: BoxConstraints(
-                                maxWidth:
-                                    MediaQuery.of(context).size.width * .77),
-                            child: Text.rich(
-                              TextSpan(
-                                text: 'Delivering To: ',
-                                children: [
-                                  TextSpan(
-                                    text: 'Some Locations',
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 15,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              overflow: TextOverflow.ellipsis,
-                              style: TextStyle(
-                                color: Colors.white,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                      Icon(
-                        Icons.arrow_drop_down,
-                        color: Colors.white,
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
+    return BlocBuilder<HomeBloc, HomeState>(
+      builder: (context, state) {
+        return SizedBox(
+          height: MediaQuery.of(context).size.height,
+          child: RefreshIndicator(
+            onRefresh: () async {
+              context.read<HomeBloc>().add(FetchHomeScreenData());
 
-            //HomeLoadingWidget(),
-            HomeLoadedWidget(),
-            // Row(
-            //   // shrinkWrap: true,
-            //   children: [
-            //     RestaurantCard(),
-            //     RestaurantCard(),
-            //   ],
-            // ),
-            SizedBox(height: 30),
-          ],
-        ),
-      ),
+              //await Future.delayed(Duration(seconds: 5)).then((value) => false);
+            },
+            child: ListView(
+              children: [
+                if (state is HomeLoading) HomeLoadingWidget(),
+                if (state is HomeLoaded)
+                  HomeLoadedWidget(
+                    currentLocation: state.addressLocation!,
+                    categories: state.categories,
+                    branches: state.branches,
+                  ),
+                SizedBox(height: 30),
+              ],
+            ),
+          ),
+        );
+      },
     );
   }
 }

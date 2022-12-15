@@ -161,13 +161,13 @@ class _RestaurantScreenState extends State<RestaurantScreen>
                                             tiles: [
                                               ListTile(
                                                 title: Text(
-                                                  'Hot Drinks',
+                                                  'Pizza',
                                                   // 'Burger Sandwiches',
                                                   style:
                                                       TextStyle(fontSize: 16),
                                                 ),
                                                 trailing: Text(
-                                                  '20',
+                                                  '3',
                                                   style:
                                                       TextStyle(fontSize: 18),
                                                 ),
@@ -177,12 +177,12 @@ class _RestaurantScreenState extends State<RestaurantScreen>
                                               ),
                                               ListTile(
                                                 title: Text(
-                                                  'Cold Drinks',
+                                                  'Shwarma',
                                                   style:
                                                       TextStyle(fontSize: 16),
                                                 ),
                                                 trailing: Text(
-                                                  '20',
+                                                  '3',
                                                   style:
                                                       TextStyle(fontSize: 18),
                                                 ),
@@ -192,12 +192,12 @@ class _RestaurantScreenState extends State<RestaurantScreen>
                                               ),
                                               ListTile(
                                                 title: Text(
-                                                  'Baked Goods',
+                                                  'Burger',
                                                   style:
                                                       TextStyle(fontSize: 16),
                                                 ),
                                                 trailing: Text(
-                                                  '10',
+                                                  '3',
                                                   style:
                                                       TextStyle(fontSize: 18),
                                                 ),
@@ -245,13 +245,13 @@ class _RestaurantScreenState extends State<RestaurantScreen>
                               EdgeInsets.symmetric(horizontal: 16),
                           tabs: [
                             Tab(
-                              text: 'Hot Drinks',
+                              text: 'Pizza',
                             ),
                             Tab(
-                              text: 'Cold Drinks',
+                              text: 'Shwarma',
                             ),
                             Tab(
-                              text: 'Baked Goods',
+                              text: 'Burger',
                             ),
                             // Tab(
                             //   text: 'Burger Sandwiches',
@@ -288,57 +288,69 @@ class _RestaurantScreenState extends State<RestaurantScreen>
             controller: _tabController,
             children: [
               ItemsListView(
-                title: 'Hot Drinks',
+                title: 'Pizza',
                 items: [
                   Product(
-                    name: 'Tea',
-                    desc: 'Hot Fresh Tea',
+                    name: 'Pizza Margherita',
+                    desc: 'Mozzarella Cheese, Fresh basil and Tomatoes',
                     imgUrl: AppImages.POP1,
-                    price: 20,
+                    price: 30,
                     sizes: [
                       ProductOption(
+                        name: 'Small',
+                        price: 30,
+                      ),
+                      ProductOption(
                         name: 'Medium',
-                        price: 10,
+                        price: 50,
                       ),
                       ProductOption(
                         name: 'Large',
-                        price: 20,
+                        price: 60,
                       ),
                     ],
                     options: null,
                     likes: 2100,
                   ),
                   Product(
-                    name: 'French Coffee',
-                    desc: 'Hot French Coffee',
+                    name: 'Chiken Pizza',
+                    desc: 'Chiken Pizza',
                     imgUrl: AppImages.CAT1_POP2,
-                    price: 25,
+                    price: 45,
                     sizes: [
                       ProductOption(
+                        name: 'Small',
+                        price: 45,
+                      ),
+                      ProductOption(
                         name: 'Medium',
-                        price: 15,
+                        price: 50,
                       ),
                       ProductOption(
                         name: 'Large',
-                        price: 25,
+                        price: 85,
                       ),
                     ],
                     options: null,
                     likes: 2100,
                   ),
                   Product(
-                    name: 'Flat White',
-                    desc: 'Hot Flat White',
+                    name: 'Romi Pizza',
+                    desc: 'Romi Pizza',
                     imgUrl: AppImages.CAT1_POP3,
-                    price: 35,
+                    price: 45,
                     sizes: [
                       ProductOption(
+                        name: 'Small',
+                        price: 45,
+                      ),
+                      ProductOption(
                         name: 'Medium',
-                        price: 25,
+                        price: 65,
                       ),
                       ProductOption(
                         name: 'Large',
-                        price: 35,
+                        price: 70,
                       ),
                     ],
                     options: null,
@@ -352,31 +364,66 @@ class _RestaurantScreenState extends State<RestaurantScreen>
                 },
               ),
               ItemsListView(
-                title: 'Cold Drinks',
+                title: 'Shwarma',
                 items: [
                   Product(
-                    name: 'Oreo Milkshake',
-                    desc: 'Fresh Oreo Milkshake',
-                    price: 30,
-                    sizes: null,
+                    name: 'Chiken Shwarma',
+                    desc: 'Chiken Shwarma',
+                    price: 20,
+                    sizes: [
+                      ProductOption(
+                        name: 'Small',
+                        price: 15,
+                      ),
+                      ProductOption(
+                        name: 'Medium',
+                        price: 20,
+                      ),
+                      ProductOption(
+                        name: 'Large',
+                        price: 25,
+                      ),
+                    ],
                     options: null,
                     imgUrl: AppImages.CAT2_POP1,
                     likes: 2000,
                   ),
                   Product(
-                    name: 'American Ice Coffee',
-                    desc: 'Cold American Ice Coffee',
-                    price: 35,
-                    sizes: null,
+                    name: 'Meat Shwarma',
+                    desc: 'Meat Shwarma',
+                    price: 20,
+                    sizes: [
+                      ProductOption(
+                        name: 'Small',
+                        price: 15,
+                      ),
+                      ProductOption(
+                        name: 'Medium',
+                        price: 20,
+                      ),
+                      ProductOption(
+                        name: 'Large',
+                        price: 25,
+                      ),
+                    ],
                     options: null,
                     imgUrl: AppImages.CAT2_POP2,
                     likes: 2000,
                   ),
                   Product(
-                    name: 'Redbull',
-                    desc: 'Cold Redbull',
+                    name: 'Arabian Shwarma meal',
+                    desc: 'Arabian Shwarma meal',
                     price: 30,
-                    sizes: null,
+                    sizes: [
+                       ProductOption(
+                        name: 'Medium',
+                        price: 40,
+                      ),
+                      ProductOption(
+                        name: 'Large',
+                        price: 65,
+                      ),
+                    ],
                     options: null,
                     imgUrl: AppImages.CAT2_POP3,
                     likes: 2000,
@@ -389,31 +436,58 @@ class _RestaurantScreenState extends State<RestaurantScreen>
                 },
               ),
               ItemsListView(
-                title: 'Baked Goods',
+                title: 'Burger',
                 items: [
                   Product(
-                    name: 'Romi Croissants',
-                    desc: 'Croissants with romi cheese',
-                    price: 15,
-                    sizes: null,
+                    name: 'Classic Burger',
+                    desc: 'Classic Burger',
+                    price: 25,
+                    sizes: [
+                      ProductOption(
+                        name: 'Single',
+                        price: 20,
+                      ),
+                      ProductOption(
+                        name: 'Double',
+                        price: 25,
+                      ),
+                    ],
                     options: null,
                     imgUrl: AppImages.CAT3_POP1,
                     likes: 2000,
                   ),
                   Product(
-                    name: 'Cheese Pateh',
-                    desc: 'Pateh with white cheese',
-                    price: 12,
-                    sizes: null,
+                    name: 'Jumbo Burger',
+                    desc: 'Jumbo Burger',
+                    price: 25,
+                    sizes: [
+                      ProductOption(
+                        name: 'Single',
+                        price: 20,
+                      ),
+                      ProductOption(
+                        name: 'Double',
+                        price: 25,
+                      ),
+                    ],
                     options: null,
                     imgUrl: AppImages.CAT3_POP2,
                     likes: 2000,
                   ),
                   Product(
-                    name: 'Chocolate Muffin',
-                    desc: 'Tasty Chocolate Muffin',
-                    price: 16,
-                    sizes: null,
+                    name: 'Zinger Burger',
+                    desc: 'Zinger Burger',
+                    price: 25,
+                    sizes: [
+                      ProductOption(
+                        name: 'Single',
+                        price: 25,
+                      ),
+                      ProductOption(
+                        name: 'Double',
+                        price: 40,
+                      ),
+                    ],
                     options: null,
                     imgUrl: AppImages.CAT3_POP3,
                     likes: 2000,

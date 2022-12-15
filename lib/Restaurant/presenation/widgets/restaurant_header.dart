@@ -37,20 +37,20 @@ class RestaurantHeader extends StatelessWidget {
                 Icons.location_pin,
                 color: AppColors.PRIMARY_COLOR,
               ),
-              Text('Nasr City. '),
-              Chip(
-                label: Text.rich(TextSpan(
-                  text: 'and ',
-                  children: [
-                    TextSpan(
-                        text: '2',
-                        style: TextStyle(fontWeight: FontWeight.bold)),
-                    TextSpan(text: ' more'),
-                  ],
-                )),
-                labelStyle: TextStyle(color: Colors.white),
-                backgroundColor: AppColors.PRIMARY_COLOR,
-              ),
+              Text('Shebin al-Kom. '),
+              // Chip(
+              //   label: Text.rich(TextSpan(
+              //     text: 'and ',
+              //     children: [
+              //       TextSpan(
+              //           text: '2',
+              //           style: TextStyle(fontWeight: FontWeight.bold)),
+              //       TextSpan(text: ' more'),
+              //     ],
+              //   )),
+              //   labelStyle: TextStyle(color: Colors.white),
+              //   backgroundColor: AppColors.PRIMARY_COLOR,
+              // ),
             ],
           ),
           Row(
@@ -58,7 +58,7 @@ class RestaurantHeader extends StatelessWidget {
             children: [
               Text(
                 //' Hyper Market',
-                ' Caffee Shop',
+                ' $shopType',
                 style: TextStyle(color: AppColors.PRIMARY_COLOR),
               ),
               Row(

@@ -64,7 +64,7 @@ class MyApp extends StatelessWidget {
                 //primaryColor: Colors.red,
                 primarySwatch: AppColors.PRIMARY_SWATCH,
               ),
-              home: PrimaryScreen(),//const SplashScreen(),
+              home: const SplashScreen(), //PrimaryScreen(),//const SplashScreen(),
             ),
           );
         });
