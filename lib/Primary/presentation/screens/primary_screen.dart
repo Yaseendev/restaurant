@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:restaurant_app/Branch/data/Models/branch.dart';
 import 'package:restaurant_app/Home/blocs/home_bloc/home_bloc.dart';
 import 'package:restaurant_app/Home/data/repositories/home_repository.dart';
 import 'package:restaurant_app/Home/presentation/screens/home_screen.dart';
+import 'package:restaurant_app/Map/blocs/map_bloc/map_bloc.dart';
 import 'package:restaurant_app/Map/presentation/screens/map_screen.dart';
 import 'package:restaurant_app/Order/presentation/screens/orders_screen.dart';
 import 'package:restaurant_app/QR/presentation/screens/qr_screen.dart';
@@ -22,26 +24,26 @@ class _PrimaryScreenState extends State<PrimaryScreen> {
   int _currentIndex = 0;
   Map<String, Widget> _pages = {};
   late final PageController pageController;
+  List<Branch> branchesList = [];
 
   @override
   void initState() {
     pageController = PageController(initialPage: 0);
     _pages.addAll({
-      'Home': RepositoryProvider<HomeRepository>(
-        create: (context) => HomeRepository(),
-        child: BlocProvider<HomeBloc>(
-          create: (context) => HomeBloc(context)..add(FetchHomeScreenData()),
-          child: HomeScreen(),
-        ),
+      'Home': HomeScreen(
+        onBranchCardTap: (id) {
+          print('Going to maps $id');
+          goToPage(1).then((_) => BlocProvider.of<MapBloc>(context).add(GoToBranch(
+            index: id,
+          )));
+        },
       ),
       'Map': MapScreen(),
       'My Orders': OrdersScreen(),
       'My Account': AccountScreen(),
     });
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) async {
-      //context.read<MenuBloc>().add(LoadMenuEvent());
-    });
+    WidgetsBinding.instance.addPostFrameCallback((_) async {});
   }
 
   Future<void> goToPage(int page) async {
@@ -56,7 +58,7 @@ class _PrimaryScreenState extends State<PrimaryScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      //  extendBodyBehindAppBar: _currentIndex == 2,
+       extendBodyBehindAppBar: _currentIndex == 1,
       appBar:
           CustomAppBar.appBar(context, _pages.keys.elementAt(_currentIndex)),
       resizeToAvoidBottomInset: true,

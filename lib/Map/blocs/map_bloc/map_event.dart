@@ -19,3 +19,18 @@ class ChooseLocation extends MapEvent {
   @override
   List<Object> get props => [position];
 }
+
+class LoadMainMap extends MapEvent {
+  @override
+  List<Object> get props => [];
+}
+
+class GoToBranch extends MapEvent {
+  final int index;
+  const GoToBranch({
+   required this.index,
+    });
+
+  @override
+  List<Object> get props => [ index];
+}

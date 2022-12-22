@@ -9,7 +9,7 @@ import 'package:restaurant_app/Branch/data/repositories/branch_repo.dart';
 import 'package:restaurant_app/Category/data/models/product_category.dart';
 import 'package:restaurant_app/Category/data/repositories/category_repository.dart';
 import 'package:restaurant_app/Home/data/repositories/home_repository.dart';
-import 'package:restaurant_app/Shared/Location/data/models/address_location.dart';
+import 'package:restaurant_app/Map/data/models/address.dart';
 import 'package:restaurant_app/Shared/Location/data/repositories/location_repository.dart';
 import 'package:restaurant_app/utils/locator.dart';
 
@@ -26,6 +26,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         locator.get<LocationRepository>();
     final CategoryRepository categoryRepository =
         locator.get<CategoryRepository>();
+
     on<FetchHomeScreenData>((event, emit) async {
       emit(HomeLoading());
       if (await connectivity.checkConnectivity() != ConnectivityResult.none) {
@@ -33,20 +34,51 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         //2. get home data based on branch id
 
         try {
-          final AddressLocation? currentLocation =
+          final Address? currentLocation =
               locationRepository.getCurrentLocation();
           //TODO: if(currentLocation == null) emit No currentLocation
           final Branch? currentBranch = await branchRepository
               .fetchBranchData(currentLocation!); //TODO: Handle null case
+          final List<Branch> branches =
+              await branchRepository.fetchBranchAddresses() ?? [];
           locator.get<Branch>().update(currentBranch!);
+          locator.get<List<Branch>>()
+            ..clear()
+            ..addAll(branches);
+
           emit(HomeLoaded(
             addressLocation: currentLocation,
             categories:
                 await categoryRepository.getCategories(currentBranch.id!) ??
                     [], //TODO: Handle null case
-            branches:
-                await branchRepository.fetchBranchAddresses() ??
+            branches: branches,
+            addresses: await locationRepository.getSavedLocations(),
+          ));
+        } catch (e) {
+          //TODO: emit error
+          log('Error $e');
+        }
+      } else {
+        log('No internet');
+        //TODO: emit no internet
+      }
+    });
+
+    on<ReloadHomeScreenData>((event, emit) async {
+      if (await connectivity.checkConnectivity() != ConnectivityResult.none) {
+        emit(HomeLoading());
+        await locationRepository.saveLocation(event.currentAddress);
+        await locationRepository.setCurrentLocation(event.currentAddress);
+        try {
+          final Branch? currentBranch =
+              await branchRepository.fetchBranchData(event.currentAddress);
+          emit(HomeLoaded(
+            addressLocation: event.currentAddress,
+            categories:
+                await categoryRepository.getCategories(currentBranch!.id!) ??
                     [], //TODO: Handle null case
+            branches: event.branches,
+            addresses: await locationRepository.getSavedLocations(),
           ));
         } catch (e) {
           //TODO: emit error

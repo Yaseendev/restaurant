@@ -12,18 +12,20 @@ class HomeInitial extends HomeState {}
 class HomeLoading extends HomeState {}
 
 class HomeLoaded extends HomeState {
-  final AddressLocation? addressLocation;
+  final Address? addressLocation;
   final List<ProductCategory> categories;
   final List<Branch> branches;
+  final List<Address> addresses;
 
   HomeLoaded({
     required this.addressLocation,
     required this.categories,
     required this.branches,
+    required this.addresses,
   });
 
   @override
-  List<Object?> get props => [addressLocation, categories];
+  List<Object?> get props => [addressLocation, categories, addresses, branches];
 }
 
 class HomeError extends HomeState {}

@@ -3,12 +3,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:restaurant_app/Branch/data/Models/branch.dart';
+import 'package:restaurant_app/Home/blocs/home_bloc/home_bloc.dart';
 import 'package:restaurant_app/Map/blocs/map_bloc/map_bloc.dart';
 import 'package:restaurant_app/Map/data/models/location_result.dart';
 import 'package:restaurant_app/Map/data/repositories/map_repository.dart';
 import 'package:restaurant_app/Primary/presentation/screens/primary_screen.dart';
 import 'package:restaurant_app/Shared/Location/data/models/geo_latLng.dart';
 import 'package:restaurant_app/Shared/Location/data/repositories/location_repository.dart';
+import 'package:restaurant_app/User/blocs/account_bloc/account_bloc.dart';
 import 'package:restaurant_app/utils/locator.dart';
 
 class InitialMapScreen extends StatefulWidget {
@@ -91,6 +93,8 @@ class _InitialMapScreenState extends State<InitialMapScreen> {
             },
           );
         } else if (state is MapLocationChoosen) {
+           context.read<HomeBloc>().add(FetchHomeScreenData());
+          context.read<AccountBloc>().add(LoadUserProfileEvent());
           Navigator.of(context).pushReplacement(
               MaterialPageRoute(builder: (ctx) => PrimaryScreen()));
         }

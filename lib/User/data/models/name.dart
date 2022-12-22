@@ -1,9 +1,10 @@
+import 'package:equatable/equatable.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 part 'name.g.dart';
 
 @HiveType(typeId: 1)
-class Name {
+class Name extends Equatable {
   @HiveField(0)
   String first;
 
@@ -38,4 +39,7 @@ class Name {
       last: _lastName,
     );
   }
+  
+  @override
+  List<Object?> get props => [first, last];
 }

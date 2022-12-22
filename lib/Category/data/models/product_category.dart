@@ -1,3 +1,4 @@
+import 'package:restaurant_app/utils/constants.dart';
 import 'pivot.dart';
 
 class ProductCategory {
@@ -20,7 +21,7 @@ class ProductCategory {
         id: json['id'],
         name: json['name'],
         description: json['description'] ?? '',
-        imageUrl: json['image'] ?? '',
+        imageUrl: Urls.DOMAIN +'/'+ json['image'],
         pivot: json['pivot'] != null ? Pivot.fromJson(json['pivot']) : null);
   }
 

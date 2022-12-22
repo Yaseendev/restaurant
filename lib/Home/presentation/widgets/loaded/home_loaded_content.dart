@@ -2,11 +2,11 @@ import 'package:flavor/flavor_assets.dart';
 import 'package:flutter/material.dart';
 import 'package:restaurant_app/Branch/data/Models/branch.dart';
 import 'package:restaurant_app/Category/data/models/product_category.dart';
+import 'package:restaurant_app/Map/data/models/address.dart';
 import 'package:restaurant_app/Offers/presentation/screens/offers_screen.dart';
 import 'package:restaurant_app/Offers/presentation/widgets/offer_card_small.dart';
 import 'package:restaurant_app/Product/data/models/product.dart';
 import 'package:restaurant_app/Restaurant/presenation/screens/restaurant_screen.dart';
-import 'package:restaurant_app/Shared/Location/data/models/address_location.dart';
 import 'branches_section.dart';
 import 'home_categoris_list_view.dart';
 import 'home_product_card.dart';
@@ -16,15 +16,18 @@ import 'search_box.dart';
 import 'selected_location_card.dart';
 
 class HomeLoadedWidget extends StatelessWidget {
-  final AddressLocation currentLocation;
+  final Address currentLocation;
   final List<ProductCategory> categories;
   final List<Branch> branches;
-
+  final List<Address> addresses;
+  final Function(int bId) onBranchSelect;
   const HomeLoadedWidget({
     Key? key,
     required this.categories,
     required this.currentLocation,
     required this.branches,
+    required this.onBranchSelect,
+    required this.addresses,
   }) : super(key: key);
 
   @override
@@ -32,6 +35,7 @@ class HomeLoadedWidget extends StatelessWidget {
     return Column(
       children: [
         SelectedLocationCard(
+          addresses: addresses,
           currentLocation: currentLocation,
         ),
         Padding(
@@ -173,6 +177,7 @@ class HomeLoadedWidget extends StatelessWidget {
               SizedBox(height: 6),
               BranchesSection(
                 branches: branches,
+                onSelect: onBranchSelect,
               ),
               /* DefaultTabController(
                 length: 2,

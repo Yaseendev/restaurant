@@ -14,8 +14,12 @@ class AccountLoading extends AccountState {
 }
 
 class AccountNoInternet extends AccountState {
+  final bool? forceFlag;
+
+  AccountNoInternet([this.forceFlag]);
+
   @override
-  List<Object?> get props => [];
+  List<Object?> get props => [forceFlag];
 }
 
 class AccountLoggedIn extends AccountState {

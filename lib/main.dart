@@ -5,6 +5,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:restaurant_app/utils/constants.dart';
+import 'Home/blocs/home_bloc/home_bloc.dart';
+import 'Home/data/repositories/home_repository.dart';
 import 'Map/blocs/map_bloc/map_bloc.dart';
 import 'Primary/presentation/screens/primary_screen.dart';
 import 'Shared/Cart/cubit/cart_cubit.dart';
@@ -40,31 +42,38 @@ class MyApp extends StatelessWidget {
         designSize: const Size(315, 177),
         minTextAdapt: true,
         builder: (context, child) {
-          return MultiBlocProvider(
-            providers: [
-              BlocProvider<AccountBloc>(
-                create: (context) => AccountBloc(),
+          return RepositoryProvider<HomeRepository>(
+        create: (context) => HomeRepository(),
+            child: MultiBlocProvider(
+              providers: [
+                BlocProvider<AccountBloc>(
+                  create: (context) => AccountBloc(),
+                ),
+                BlocProvider<InitrouteBloc>(
+                  create: (context) =>
+                      InitrouteBloc(BlocProvider.of<AccountBloc>(context))
+                        ..add(UserCheckEvent()),
+                ),
+                BlocProvider<CartCubit>(
+                  create: (context) => CartCubit(),
+                ),
+                BlocProvider<MapBloc>(
+                  create: (context) => MapBloc(context),
+                ),
+                BlocProvider<HomeBloc>(
+                  create: (context) =>
+                      HomeBloc(context),),
+          
+              ],
+              child: MaterialApp(
+                title: title,
+                debugShowCheckedModeBanner: false,
+                theme: ThemeData(
+                  //primaryColor: Colors.red,
+                  primarySwatch: AppColors.PRIMARY_SWATCH,
+                ),
+                home: const SplashScreen(), //PrimaryScreen(),//const SplashScreen(),
               ),
-              BlocProvider<InitrouteBloc>(
-                create: (context) =>
-                    InitrouteBloc(BlocProvider.of<AccountBloc>(context))
-                      ..add(UserCheckEvent()),
-              ),
-              BlocProvider<CartCubit>(
-                create: (context) => CartCubit(),
-              ),
-              BlocProvider<MapBloc>(
-                create: (context) => MapBloc(),
-              ),
-            ],
-            child: MaterialApp(
-              title: title,
-              debugShowCheckedModeBanner: false,
-              theme: ThemeData(
-                //primaryColor: Colors.red,
-                primarySwatch: AppColors.PRIMARY_SWATCH,
-              ),
-              home: const SplashScreen(), //PrimaryScreen(),//const SplashScreen(),
             ),
           );
         });

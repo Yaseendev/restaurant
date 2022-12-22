@@ -1,10 +1,9 @@
 import 'package:geolocator/geolocator.dart';
+import 'package:restaurant_app/Map/data/models/address.dart';
 import 'package:restaurant_app/utils/locator.dart';
 import 'package:restaurant_app/utils/services/api_service.dart';
 import 'package:restaurant_app/utils/services/database_service.dart';
 import 'package:restaurant_app/utils/services/location_service.dart';
-
-import '../models/address_location.dart';
 
 class LocationRepository {
   late final ApiService _apiService;
@@ -39,9 +38,16 @@ class LocationRepository {
   Future<bool> openLocationSettings() async =>
       await _locationService.openSettings();
 
-  Future saveLocation(AddressLocation location) async => await _databaseService.saveLocation(location);
+  Future saveLocation(Address location) async =>
+      await _databaseService.saveLocation(location);
 
-  Future setCurrentLocation(AddressLocation location) async => await _databaseService.setCurrentLocation(location);
+  Future setCurrentLocation(Address location) async =>
+      await _databaseService.setCurrentLocation(location);
 
-  AddressLocation? getCurrentLocation() => _databaseService.getCurrentLocation();
+  Address? getCurrentLocation() =>
+      _databaseService.getCurrentLocation();
+
+  Future<List<Address>> getSavedLocations() async {
+    return await _databaseService.getSavedLocations();
+  }
 }

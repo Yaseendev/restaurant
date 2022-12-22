@@ -7,8 +7,8 @@ import '../models/address.dart';
 import '../models/location_result.dart';
 
 class MapRepository {
-late final ApiService _networkApiService;
- MapRepository() {
+  late final ApiService _networkApiService;
+  MapRepository() {
     this._networkApiService = locator.get<ApiService>();
   }
   Future<List<LocationResult>> getLoactionSearchResult(String text) async {
@@ -20,6 +20,7 @@ late final ApiService _networkApiService;
   Future<Address?> getReversedGeoCode(GeoLatLng position) async {
     //if (text.isEmpty) return null;
     final result = await _networkApiService.reverseGeoLocation(position);
-    return result != null ? Address.fromJson(result['address']) : null;
+    //result?.putIfAbsent('position', () => position.toJson());
+    return result != null ? Address.fromJson(result) : null;
   }
 }

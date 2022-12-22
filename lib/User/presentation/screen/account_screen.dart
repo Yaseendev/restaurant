@@ -21,8 +21,8 @@ class _AccountScreenState extends State<AccountScreen> {
     return BlocListener<AccountBloc, AccountState>(
       listener: (context, state) {
         if (state is AccountNoInternet) {
-          ScaffoldMessenger.of(context)
-              .showSnackBar(SnackBar(content: Text('No Internet')));
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+              duration: Duration(seconds: 1), content: Text('No Internet')));
         }
         if (state is AccountLoading) {
           showDialog(
@@ -63,6 +63,11 @@ class _AccountScreenState extends State<AccountScreen> {
       child: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: 8.0),
         child: BlocBuilder<AccountBloc, AccountState>(
+          buildWhen: (previous, current) {
+            print('Account Previous: $previous');
+            print('Account Current: $current');
+            return current is AccountInitial || current is AccountLoggedIn;
+          },
           builder: (context, state) {
             return Column(
               crossAxisAlignment: CrossAxisAlignment.start,

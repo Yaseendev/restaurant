@@ -15,6 +15,7 @@ class AccountBloc extends Bloc<AccountEvent, AccountState> {
     final Connectivity connectivity = locator.get<Connectivity>();
     final AccoountRepository accoountRepository =
         locator.get<AccoountRepository>();
+    bool forceNoInternetState = true;
     on<AccountEvent>((event, emit) async {
       final connStatus = await connectivity.checkConnectivity();
       if (event is LoginWithFacebookEvent) {
@@ -29,23 +30,25 @@ class AccountBloc extends Bloc<AccountEvent, AccountState> {
             emit(AccountError());
           });
         } else {
-          emit(AccountNoInternet());
+          forceNoInternetState = !forceNoInternetState;
+          emit(AccountNoInternet(forceNoInternetState));
         }
       } else if (event is RegisterUserEvent) {
         if (connStatus != ConnectivityResult.none) {
           emit(AccountLoading());
           await accoountRepository
               .registerUser(
-                  name: event.name,
-                  password: event.password,
-                  phoneNum: event.phoneNum,
-                  email: event.email,
-                  gender: event.gender,
-                  )
+                name: event.name,
+                password: event.password,
+                phoneNum: event.phoneNum,
+                email: event.email,
+                gender: event.gender,
+              )
               .then((result) => emit(AccountLoggedIn(result)))
               .onError((error, stackTrace) => emit(AccountError()));
         } else {
-          emit(AccountNoInternet());
+          forceNoInternetState = !forceNoInternetState;
+          emit(AccountNoInternet(forceNoInternetState));
         }
       } else if (event is LoginWithEmailEvent) {
         if (connStatus != ConnectivityResult.none) {
@@ -55,9 +58,7 @@ class AccountBloc extends Bloc<AccountEvent, AccountState> {
                 email: event.email,
                 password: event.password,
               )
-              .then((result) => 
-              emit(AccountLoggedIn(result))
-              )
+              .then((result) => emit(AccountLoggedIn(result)))
               .onError((error, stackTrace) {
             if (error is DioError)
               emit(AccountError(
@@ -65,7 +66,8 @@ class AccountBloc extends Bloc<AccountEvent, AccountState> {
               ));
           });
         } else {
-          emit(AccountNoInternet());
+          forceNoInternetState = !forceNoInternetState;
+          emit(AccountNoInternet(forceNoInternetState));
         }
       } else if (event is LogoutUserEvent) {
         await accoountRepository
@@ -76,8 +78,29 @@ class AccountBloc extends Bloc<AccountEvent, AccountState> {
         await accoountRepository.fetchUser().then((value) {
           value != null ? emit(AccountLoggedIn(value)) : emit(AccountInitial());
         }).onError((error, stackTrace) {
+          print('Error $error');
           emit(AccountInitial());
         });
+      } else if (event is UpdateUserEvent) {
+        if (connStatus != ConnectivityResult.none) {
+          emit(AccountLoading());
+          await accoountRepository
+              .updateUserData(
+            name: event.name,
+            phone: event.phoneNum,
+            gender: event.gender,
+          )
+              .then((value) {
+            value != null
+                ? emit(AccountLoggedIn(value))
+                : emit(AccountError(errMsg: 'Something went wrong'));
+          }).onError((error, stackTrace) {
+            emit(AccountError(errMsg: 'Something went wrong'));
+          });
+        } else {
+          forceNoInternetState = !forceNoInternetState;
+          emit(AccountNoInternet(forceNoInternetState));
+        }
       }
     });
   }

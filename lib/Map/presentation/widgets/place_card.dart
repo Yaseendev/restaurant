@@ -2,14 +2,15 @@ import 'package:flavor/flavor_assets.dart';
 import 'package:flavor/flavor_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:restaurant_app/Branch/data/Models/branch.dart';
 import 'package:restaurant_app/utils/constants.dart';
 
 class PlaceCard extends StatelessWidget {
   final VoidCallback onPress;
-  final String address;
+  final Branch branch;
   const PlaceCard({
     Key? key,
-    required this.address,
+    required this.branch,
     required this.onPress,
   }) : super(key: key);
 
@@ -33,7 +34,8 @@ class PlaceCard extends StatelessWidget {
                   backgroundImage: AssetImage(AppImages.APPLOGO),
                 ),
                 title: Text(
-                  appName,
+                  branch.name ?? '',
+                  //appName,
                   //'Exception'
                  // 'Gad Restaurant',
                   //'Zad',
@@ -44,7 +46,7 @@ class PlaceCard extends StatelessWidget {
                 ),
                 subtitle: Text(
                   //'Hyper Market',
-                  address,
+                  branch.address ?? '',
                   style: TextStyle(color: AppColors.PRIMARY_COLOR),
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,

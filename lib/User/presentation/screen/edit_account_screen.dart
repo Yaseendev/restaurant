@@ -2,10 +2,13 @@ import 'dart:io';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flavor/flavor_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get_utils/src/get_utils/get_utils.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:restaurant_app/Shared/Rate/presentation/widgets/custom_app_bar.dart';
+import 'package:restaurant_app/User/blocs/account_bloc/account_bloc.dart';
+import 'package:restaurant_app/User/data/models/name.dart';
 import 'package:restaurant_app/User/data/models/user.dart';
 import 'package:restaurant_app/utils/constants.dart';
 
@@ -25,9 +28,9 @@ class _EditAccountScreenState extends State<EditAccountScreen> {
   final ImagePicker _picker = ImagePicker();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   bool isMale = true;
-  late String firstName;
-  late String lastName;
+  late Name name;
   late String email;
+  late String phone;
   @override
   void initState() {
     profilePic = widget.user.photoUrl == null
@@ -66,9 +69,9 @@ class _EditAccountScreenState extends State<EditAccountScreen> {
             ),
           );
     isMale = widget.user.gender?.toLowerCase() == 'male';
-    firstName = widget.user.name.first;
-    lastName = widget.user.name.last;
+    name = Name(first: widget.user.name.first, last: widget.user.name.last);
     email = widget.user.email;
+    phone = widget.user.phoneNumber ?? '';
     super.initState();
   }
 
@@ -205,8 +208,9 @@ class _EditAccountScreenState extends State<EditAccountScreen> {
                           keyboardType: TextInputType.name,
                           maxLines: 1,
                           textAlign: TextAlign.center,
-                          initialValue: firstName,
-                          onChanged: (value) => firstName = value,
+                          initialValue: name.first,
+                          onChanged: (value) =>
+                              setState(() => name.first = value),
                           validator: (value) {
                             return (value!.isEmpty)
                                 ? 'This field is required'
@@ -228,8 +232,9 @@ class _EditAccountScreenState extends State<EditAccountScreen> {
                           keyboardType: TextInputType.name,
                           maxLines: 1,
                           textAlign: TextAlign.center,
-                          initialValue: lastName,
-                          onChanged: (value) => lastName = value,
+                          initialValue: name.last,
+                          onChanged: (value) =>
+                              setState(() => name.last = value),
                           validator: (value) {
                             return (value!.isEmpty)
                                 ? 'This field is required'
@@ -239,21 +244,21 @@ class _EditAccountScreenState extends State<EditAccountScreen> {
                       ),
                     ],
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   Row(
                     children: [
                       Icon(
-                        Icons.email_outlined,
+                        Icons.phone_android,
                         color: AppColors.PRIMARY_COLOR,
                       ),
                       SizedBox(width: 10),
                       Text(
-                        'E-mail',
+                        'Phone Number',
                         style: TextStyle(fontSize: 20),
                       ),
                     ],
                   ),
-                  SizedBox(height: 10),
+                  const SizedBox(height: 10),
                   TextFormField(
                     decoration: InputDecoration(
                       border: OutlineInputBorder(
@@ -261,18 +266,19 @@ class _EditAccountScreenState extends State<EditAccountScreen> {
                       filled: true,
                       fillColor: Colors.white,
                     ),
-                    autofocus: false,
-                    keyboardType: TextInputType.emailAddress,
+                    textInputAction: TextInputAction.next,
+                    keyboardType: TextInputType.phone,
                     maxLines: 1,
-                    initialValue: email,
-                    onChanged: (value) => email = value,
+                    maxLength: 11,
+                    initialValue: phone,
+                    onChanged: (value) => setState(() => phone = value.trim()),
                     validator: (value) {
-                      return !GetUtils.isEmail(value ?? '')
-                          ? 'Please enter a valid email'
+                      return value!.length < 11
+                          ? 'Please enter a valid phone number'
                           : null;
                     },
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   Row(
                     children: [
                       Icon(
@@ -292,9 +298,9 @@ class _EditAccountScreenState extends State<EditAccountScreen> {
                       Expanded(
                         child: ElevatedButton.icon(
                           onPressed: () {
-                              setState(() {
-                                isMale = true;
-                              });
+                            setState(() {
+                              isMale = true;
+                            });
                           },
                           icon: Icon(
                             Icons.male,
@@ -381,9 +387,31 @@ class _EditAccountScreenState extends State<EditAccountScreen> {
                             fontSize: 18,
                           ),
                         ),
-                        onPressed: () {
-                          if (_formKey.currentState!.validate()) {}
-                        },
+                        onPressed: name == widget.user.name &&
+                                (isMale ? 'male' : 'female') ==
+                                    widget.user.gender &&
+                                phone == widget.user.phoneNumber
+                            ? null
+                            : () {
+                                if (_formKey.currentState!.validate()) {
+                                  final String gender =
+                                      isMale ? 'male' : 'female';
+                                  context
+                                      .read<AccountBloc>()
+                                      .add(UpdateUserEvent(
+                                        name: name == widget.user.name
+                                            ? null
+                                            : name,
+                                        gender: gender == widget.user.gender
+                                            ? null
+                                            : gender,
+                                        phoneNum:
+                                            phone == widget.user.phoneNumber
+                                                ? null
+                                                : phone,
+                                      ));
+                                }
+                              },
                         style: ButtonStyle(
                           alignment: Alignment.center,
                           backgroundColor:

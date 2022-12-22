@@ -35,6 +35,7 @@ Future locatorsSetup() async {
             "Origin,Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,locale",
         "Access-Control-Allow-Methods": "POST, OPTIONS"
       })));
+      
   locator.registerLazySingleton<SharedPreferences>(() => prefs);
   locator.registerLazySingleton<FlutterSecureStorage>(() => secureStorage);
   locator.registerLazySingleton<DatabaseService>(() => database);
@@ -52,5 +53,6 @@ Future locatorsSetup() async {
   locator.registerLazySingleton<MapRepository>(() => MapRepository());
   locator.registerLazySingleton<BranchRepository>(() => BranchRepository());
   locator.registerLazySingleton<Branch>(() => Branch());
+  locator.registerLazySingleton<List<Branch>>(() => []);
   locator.registerLazySingleton<CategoryRepository>(() => CategoryRepository());
 }

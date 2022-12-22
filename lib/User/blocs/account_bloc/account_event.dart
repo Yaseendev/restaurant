@@ -51,3 +51,18 @@ class LogoutUserEvent extends AccountEvent {
   @override
   List<Object> get props => [];
 }
+
+class UpdateUserEvent extends AccountEvent {
+  final Name? name;
+  final String? phoneNum;
+  final String? gender;
+
+  UpdateUserEvent({
+     this.name,
+     this.gender,
+     this.phoneNum,
+  });
+
+  @override
+  List<Object?> get props => [name, phoneNum, gender];
+}

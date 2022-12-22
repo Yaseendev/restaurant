@@ -1,7 +1,7 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:restaurant_app/Restaurant/presenation/screens/restaurant_screen.dart';
 import 'package:restaurant_app/utils/constants.dart';
-
 import '../screens/products_screen.dart';
 
 class CategoryCard extends StatelessWidget {
@@ -32,27 +32,30 @@ class CategoryCard extends StatelessWidget {
           padding: const EdgeInsets.all(8.0),
           child: Column(
             children: [
-              Image.network(
-                image,
-                height: 60,
-                width: 70,
-                fit: BoxFit.cover,
-                errorBuilder: (context, error, stackTrace) {
-                  return Image.asset(
-                    Images.CATEGORY_PLACEHOLDER,
-                    height: 60,
-                    width: 70,
-                    fit: BoxFit.cover,
-                  );
-                },
-                loadingBuilder: (context, child, loadingProgress) {
-                  return Image.asset(
-                    Images.CATEGORY_PLACEHOLDER,
-                    height: 60,
-                    width: 70,
-                    fit: BoxFit.cover,
-                  );
-                },
+              ClipRRect(
+                borderRadius: BorderRadius.circular(8),
+                child: CachedNetworkImage(
+                  imageUrl: image,
+                  height: 60,
+                  width: 70,
+                  fit: BoxFit.cover,
+                  errorWidget: (context, error, stackTrace) {
+                    return Image.asset(
+                      Images.CATEGORY_PLACEHOLDER,
+                      height: 60,
+                      width: 70,
+                      fit: BoxFit.cover,
+                    );
+                  },
+                  placeholder: (context, _) {
+                    return Image.asset(
+                      Images.CATEGORY_PLACEHOLDER,
+                      height: 60,
+                      width: 70,
+                      fit: BoxFit.cover,
+                    );
+                  },
+                ),
               ),
               SizedBox(
                 height: 10,

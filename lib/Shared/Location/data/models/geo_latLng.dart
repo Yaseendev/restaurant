@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
@@ -17,13 +18,13 @@ class GeoLatLng extends Equatable {
     required this.longitude,
   });
 
-  static GeoLatLng? fromJson(Map<String,dynamic>? json) {
+  static GeoLatLng? fromJson(Map<String, dynamic>? json) {
     if (json == null) {
       return null;
     }
     return GeoLatLng(
-      latitude: json['lat']?? json['latitude'],
-      longitude: json['lng'] ?? json['longitude'],
+      latitude: double.tryParse( json['lat'].toString()) ?? double.parse(json['latitude'].toString()),
+      longitude: double.tryParse(json['lng'].toString()) ?? double.tryParse(json['longitude'].toString()) ?? double.tryParse(json['lon'].toString()) ?? double.parse(json['long'].toString()),
     );
   }
 
@@ -38,12 +39,22 @@ class GeoLatLng extends Equatable {
     );
   }
 
+  static GeoLatLng fromPosition(Position position) {
+
+    return GeoLatLng(
+      latitude: position.latitude,
+      longitude: position.longitude,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     return <String, dynamic>{
       "latitude": this.latitude,
       "longitude": this.longitude,
     };
   }
+
+  LatLng toLatLng() => LatLng(this.latitude, this.longitude);
 
   @override
   List<Object?> get props => [latitude, longitude];

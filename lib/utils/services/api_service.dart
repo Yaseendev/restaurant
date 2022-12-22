@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:restaurant_app/Shared/Location/data/models/geo_latLng.dart';
+import 'package:restaurant_app/User/data/models/name.dart';
 import 'package:restaurant_app/User/data/models/user.dart';
 import '../constants.dart';
 
@@ -32,22 +33,55 @@ class ApiService {
     return response.data;
   }
 
-  Future<dynamic> tokenVerify(String token) async {
+  Future<bool> tokenVerify(String token) async {
+    Response? response;
+    try {
+      response = await _dio.post(
+        Urls.TOKEN_USER,
+        options: Options(
+          headers: {
+            'Accept': 'application/json',
+            'Authorization': 'Bearer $token',
+          },
+        ),
+      );
+    } catch (e) {
+      if (e is DioError && e.response!.statusCode == 401) return false;
+    }
+    return response?.data;
+  }
+
+  Future<Map<String, dynamic>?> updateUser(String token,{Name? name,
+String? phone,
+String? gender,   
+   }) async{
     Response response = await _dio.post(
-      Urls.TOKEN_USER,
+      Urls.UPDATE_USER,
       data: {
-        'token': token,
+        if(name != null ) 'first_name' : name.first,
+        if(name != null ) 'last_name' : name.last,
+        if(gender != null ) 'gender' : gender,
+        if(phone != null ) 'phone' : phone,
       },
+       options: Options(
+          headers: {
+            'Accept': 'application/json',
+            'Authorization': 'Bearer $token',
+          },
+        ),
     );
     return response.data;
-  }
+   }
 
   Future logoutUser(String token) async {
     Response response = await _dio.post(
       Urls.LOGOUT_USER,
-      data: {
-        'token': token,
-      },
+       options: Options(
+          headers: {
+            'Accept': 'application/json',
+            'Authorization': 'Bearer $token',
+          },
+        ),
     );
     return response.data;
   }
@@ -109,8 +143,9 @@ class ApiService {
   }
 
   Future<List<dynamic>?> fetchCategories(int branchId) async {
-    Response response = await _dio.get(//TODO: needs to be corrected in backend
-      Urls.BRANCH_PATH + '/$branchId/categories', 
+    Response response = await _dio.get(
+      //TODO: needs to be corrected in backend
+      Urls.BRANCH_PATH + '/$branchId/categories',
       options: Options(
         contentType: 'application/json',
       ),

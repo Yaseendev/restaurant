@@ -1,5 +1,5 @@
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:restaurant_app/Shared/Location/data/models/address_location.dart';
+import 'package:restaurant_app/Map/data/models/address.dart';
 import '../User/data/models/user.dart';
 
 const String appName = 'Hekaya';
@@ -10,10 +10,12 @@ class Urls {
   static const String BASE_API = DOMAIN + '/api';
   static const String AUTH_PATH = '/auth';
   static const String BRANCH_PATH = '/branches';
+  static const String USER_PATH = '/user';
   static const String REGISTER_USER = AUTH_PATH + '/register';
   static const String LOGIN_USER = AUTH_PATH + '/login';
-  static const String TOKEN_USER = '/user/token';
-  static const String LOGOUT_USER = '/user/logout';
+  static const String TOKEN_USER = '$USER_PATH/token';
+  static const String UPDATE_USER = '$USER_PATH/update';
+  static const String LOGOUT_USER = '$USER_PATH/logout';
   static const String FIND_BRANCH = '$BRANCH_PATH' '/find';
   static const String ALL_BRANCHES = '$BRANCH_PATH' '/all';
   static const String CATEGORIES =
@@ -38,16 +40,16 @@ const String locationKey = 'pk.0b821f869258d4129c196400ab4927f0';
 class Boxes {
   static Future<Box<User>> getUserBox() async {
     if (Hive.isBoxOpen('userBox'))
-      return Hive.box('userBox');
+      return Hive.box<User>('userBox');
     else
-      return await Hive.openBox('userBox');
+      return await Hive.openBox<User>('userBox');
   }
 
-  static Future<Box<AddressLocation>> getLocationBox() async {
+  static Future<Box<Address>> getLocationBox() async {
     if (Hive.isBoxOpen('locationBox'))
-      return Hive.box('locationBox');
+      return Hive.box<Address>('locationBox');
     else
-      return await Hive.openBox('locationBox');
+      return await Hive.openBox<Address>('locationBox');
   }
 }
 

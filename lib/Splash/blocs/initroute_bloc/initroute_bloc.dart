@@ -18,18 +18,23 @@ class InitrouteBloc extends Bloc<InitrouteEvent, InitrouteState> {
     final LocationService locationr = locator.get<LocationService>();
     final LocationRepository locationRepo = locator.get<LocationRepository>();
     on<InitrouteEvent>((event, emit) async {
-      log(accountBloc.toString());
       final connStatus = await connectivity.checkConnectivity();
       if (event is UserCheckEvent) {
-        if (connStatus != ConnectivityResult.none) { //FIXME 
-          await accoountRepository.tokenCheck();
+        if (connStatus != ConnectivityResult.none) {
+          //FIXME
+          try {
+            await accoountRepository.validateUser();
+          } catch (e) {
+            print(e);
+          }
           await locationRepo.isAddressKnown().then((isKnown) {
             if (isKnown)
               emit(InitrouteProceed());
             else {
               if (connStatus != ConnectivityResult.none) {
-              emit(InitrouteNoLocation());
-              } else emit(InitrouteNoInternet());
+                emit(InitrouteNoLocation());
+              } else
+                emit(InitrouteNoInternet());
             }
           });
           // .then((value) {
@@ -50,8 +55,9 @@ class InitrouteBloc extends Bloc<InitrouteEvent, InitrouteState> {
       }
     });
   }
-   @override
-  void onEvent( event) {
+
+  @override
+  void onEvent(event) {
     super.onEvent(event);
     log('Event $event Patched');
   }

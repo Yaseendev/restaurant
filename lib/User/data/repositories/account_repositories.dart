@@ -86,6 +86,30 @@ class AccoountRepository {
     return await _ApiService.tokenVerify(token);
   }
 
+  Future validateUser() async {
+    if (!(await tokenCheck() ?? true)) {
+      await logoutUser();
+    }
+  }
+
+  Future<User?> updateUserData({
+    Name? name,
+    String? phone,
+    String? gender,
+  }) async {
+    final String? token = await _databaseService.getToken();
+    if (token == null) return null;
+    final result = await _ApiService.updateUser(
+      token,
+      name: name,
+      gender: gender,
+      phone: phone,
+    );
+    final user = User.fromJson(result!);
+    await _databaseService.setUser(user);
+    return user;
+  }
+
   Future logoutUser() async {
     final String? token = await _databaseService.getToken();
     _ApiService.logoutUser(token ?? '');

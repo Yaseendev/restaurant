@@ -35,13 +35,39 @@ class MapServiceDisabled extends MapState {
 }
 
 class MapLocationChoosen extends MapState {
-  final AddressLocation address;
+  final Address address;
   MapLocationChoosen(this.address);
   @override
   List<Object?> get props => [address];
 }
 
+class MapLoaded extends MapState {
+  final List<Branch> branches;
+  final ByteData byteData;
+  final int? index;
+  MapLoaded({
+    required this.branches,
+    required this.byteData,
+    this.index = 0,
+  });
+
+  @override
+  List<Object?> get props => [branches,index];
+}
+
 class MapNoConnection extends MapState {
   @override
   List<Object?> get props => [];
+}
+
+class MapBranchSelected extends MapState {
+  final Branch branch;
+  final int index;
+  const MapBranchSelected({
+    required this.branch,
+    required this.index,
+  });
+
+  @override
+  List<Object?> get props => [branch, index];
 }
