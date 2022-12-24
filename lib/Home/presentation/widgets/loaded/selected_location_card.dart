@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:restaurant_app/Home/blocs/home_bloc/home_bloc.dart';
 import 'package:restaurant_app/Map/data/models/address.dart';
+import 'package:restaurant_app/Map/presentation/screens/initial_map_screen.dart';
 import 'package:restaurant_app/Shared/Location/bloc/location_bloc.dart';
 
 import 'current_location_tile.dart';
@@ -97,7 +98,13 @@ class SelectedLocationCard extends StatelessWidget {
                         subtitle: Text('Choose the location on map'),
                         contentPadding: EdgeInsets.zero,
                         horizontalTitleGap: 0,
-                        //onTap: () => Navigator.pop(context, address),
+                        onTap: () {
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (ctx) {
+                            return InitialMapScreen();
+                          }));
+                          //.then((value) => Navigator.pop(context, value));
+                        },
                       ),
                     ],
                   );

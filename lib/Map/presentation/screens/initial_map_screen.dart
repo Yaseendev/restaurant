@@ -93,16 +93,18 @@ class _InitialMapScreenState extends State<InitialMapScreen> {
             },
           );
         } else if (state is MapLocationChoosen) {
-           context.read<HomeBloc>().add(FetchHomeScreenData());
+          context.read<HomeBloc>().add(FetchHomeScreenData());
           context.read<AccountBloc>().add(LoadUserProfileEvent());
-          Navigator.of(context).pushReplacement(
-              MaterialPageRoute(builder: (ctx) => PrimaryScreen()));
+          Navigator.of(context).pushAndRemoveUntil(
+              MaterialPageRoute(builder: (ctx) => PrimaryScreen()),
+              (route) => false);
         }
       },
       child: Scaffold(
         resizeToAvoidBottomInset: false,
         extendBody: true,
         extendBodyBehindAppBar: true,
+        appBar: AppBar(),
         body: SafeArea(
           child: Stack(
             children: [
