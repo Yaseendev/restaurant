@@ -2,6 +2,9 @@ import 'dart:developer';
 import 'package:bloc/bloc.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:restaurant_app/Shared/Cart/cubit/cart_cubit.dart';
 import 'package:restaurant_app/Shared/Location/data/repositories/location_repository.dart';
 import 'package:restaurant_app/User/data/repositories/account_repositories.dart';
 import 'package:restaurant_app/utils/locator.dart';
@@ -11,7 +14,7 @@ part 'initroute_event.dart';
 part 'initroute_state.dart';
 
 class InitrouteBloc extends Bloc<InitrouteEvent, InitrouteState> {
-  InitrouteBloc(Bloc accountBloc) : super(InitrouteInitial()) {
+  InitrouteBloc(Bloc accountBloc, BuildContext context) : super(InitrouteInitial()) {
     final Connectivity connectivity = locator.get<Connectivity>();
     final AccoountRepository accoountRepository =
         locator.get<AccoountRepository>();
@@ -23,7 +26,9 @@ class InitrouteBloc extends Bloc<InitrouteEvent, InitrouteState> {
         if (connStatus != ConnectivityResult.none) {
           //FIXME
           try {
-            await accoountRepository.validateUser();
+            final isToken = await accoountRepository.validateUser(); 
+            if(isToken)
+            context.read<CartCubit>().getCart();
           } catch (e) {
             print(e);
           }

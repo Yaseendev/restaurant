@@ -13,8 +13,8 @@ class RestaurantCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 140,
-      height: 216,
+      width: 150,
+      height: 190,
       child: Card(
         color: const Color(0xFFF0F9FD),
         child: Column(
@@ -51,36 +51,43 @@ class RestaurantCard extends StatelessWidget {
               textAlign: TextAlign.center,
             ),
             //SizedBox(height: 8),
-            Text(
-              //'Hyper Market',
-              branch.address ?? '',
-              style: TextStyle(
-                fontSize: 12,
-                color: Theme.of(context).primaryColor,
-              ),
-              textAlign: TextAlign.center,
-              maxLines: 2,
-              overflow: TextOverflow.ellipsis,
-            ),
             Padding(
-              padding: const EdgeInsets.only(bottom: 8.0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  SizedBox(height: 5),
-                  RatingBar.builder(
-                    itemBuilder: (context, _) => Icon(
-                      Icons.star,
-                      color: Colors.amber,
-                    ),
-                    onRatingUpdate: (value) {},
-                    ignoreGestures: true,
-                    itemSize: 12,
-                    initialRating: 3,
-                  ),
-                ],
+              padding: const EdgeInsets.only(
+                bottom: 4.0,
+                left: 4,
+                right: 4,
+              ),
+              child: Text(
+                //'Hyper Market',
+                branch.address ?? '',
+                style: TextStyle(
+                  fontSize: 12,
+                  color: Theme.of(context).primaryColor,
+                ),
+                textAlign: TextAlign.center,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
               ),
             ),
+            // Padding(
+            //   padding: const EdgeInsets.only(bottom: 8.0),
+            //   child: Column(
+            //     mainAxisAlignment: MainAxisAlignment.start,
+            //     children: [
+            //       SizedBox(height: 5),
+            //       RatingBar.builder(
+            //         itemBuilder: (context, _) => Icon(
+            //           Icons.star,
+            //           color: Colors.amber,
+            //         ),
+            //         onRatingUpdate: (value) {},
+            //         ignoreGestures: true,
+            //         itemSize: 12,
+            //         initialRating: 3,
+            //       ),
+            //     ],
+            //   ),
+            // ),
           ],
         ),
       ),

@@ -1,9 +1,12 @@
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flavor/flavor_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:numeral/numeral.dart';
 import 'package:restaurant_app/Product/presentation/screens/product_screen.dart';
 import 'package:restaurant_app/Product/data/models/product.dart';
 import 'package:restaurant_app/Shared/Cart/cubit/cart_cubit.dart';
+import 'package:restaurant_app/utils/constants.dart';
 import '../screens/item_screen.dart';
 
 class ItemTile extends StatelessWidget {
@@ -38,42 +41,87 @@ class ItemTile extends StatelessWidget {
               item.desc,
               //'A simply delicious grilled 100% beef patty with onions, pickles, mustard and a dollop'
             ),
-            trailing: Image.asset(
-              item.imgUrl,
+            trailing: ClipRRect(
+              borderRadius: BorderRadius.circular(8),
+              child: CachedNetworkImage(
+                imageUrl: item.imgUrl,
+               height: 90,
+                width: 90,
+                fit: BoxFit.fill,
+                errorWidget: (context, error, stackTrace) {
+                  return Image.asset(
+                    Images.CATEGORY_PLACEHOLDER,
+                    height: 90,
+                width: 90,
+                    fit: BoxFit.fill,
+                  );
+                },
+                placeholder: (context, _) {
+                  return Image.asset(
+                    Images.CATEGORY_PLACEHOLDER,
+                    height: 90,
+                width: 90,
+                    fit: BoxFit.fill,
+                  );
+                },
+              ),
               //'assets/images/burger.png'
-              width: 75,
-              fit: BoxFit.fill,
             ),
-            //dense: true,
             isThreeLine: true,
             contentPadding: EdgeInsets.zero,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              item.discount != null
-                  ? Row(
-                      children: [
-                        Text.rich(TextSpan(
-                          text: item.price.toString(), //'90',
-                          style: TextStyle(
-                            color: Colors.grey,
-                            fontWeight: FontWeight.bold,
-                            decoration: TextDecoration.lineThrough,
-                          ),
+              item.type == 'variable'
+                  ? Text(
+                      'Price on selection',
+                      style: TextStyle(
+                        fontSize: 16,
+                        color: AppColors.PRIMARY_COLOR,
+                      ),
+                    )
+                  : item.discount != null
+                      ? Row(
                           children: [
-                            TextSpan(
-                              text: ' EGP',
+                            Text.rich(TextSpan(
+                              text: '90',
                               style: TextStyle(
-                                fontWeight: FontWeight.normal,
-                                fontSize: 12,
+                                color: Colors.grey,
+                                fontWeight: FontWeight.bold,
+                                decoration: TextDecoration.lineThrough,
                               ),
-                            ),
+                              children: [
+                                TextSpan(
+                                  text: ' EGP',
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.normal,
+                                    fontSize: 12,
+                                  ),
+                                ),
+                              ],
+                            )),
+                            SizedBox(width: 5),
+                            Text.rich(TextSpan(
+                              text: '75.25',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 18,
+                              ),
+                              children: [
+                                TextSpan(
+                                  text: ' EGP',
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.normal,
+                                    fontSize: 12,
+                                  ),
+                                ),
+                              ],
+                            )),
                           ],
-                        )),
-                        SizedBox(width: 5),
-                        Text.rich(TextSpan(
-                          text: item.finalPrice.toString(), //'75.25',
+                        )
+                      : Text.rich(TextSpan(
+                          text: item.price.toString(),
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 18,
@@ -88,24 +136,6 @@ class ItemTile extends StatelessWidget {
                             ),
                           ],
                         )),
-                      ],
-                    )
-                  : Text.rich(TextSpan(
-                      text: item.price.toString(),
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18,
-                      ),
-                      children: [
-                        TextSpan(
-                          text: ' EGP',
-                          style: TextStyle(
-                            fontWeight: FontWeight.normal,
-                            fontSize: 12,
-                          ),
-                        ),
-                      ],
-                    )),
               Row(
                 children: [
                   IconButton(
@@ -115,11 +145,22 @@ class ItemTile extends StatelessWidget {
                     ),
                     color: Colors.grey,
                   ),
-                  Text(
-                    Numeral(item.likes).format(), //'2.1',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18,
+                  Text.rich(
+                    TextSpan(
+                      text: '2.1',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18,
+                      ),
+                      children: [
+                        TextSpan(
+                          text: 'k',
+                          style: TextStyle(
+                            fontWeight: FontWeight.normal,
+                            fontSize: 16,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ],

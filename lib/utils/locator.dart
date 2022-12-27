@@ -5,10 +5,12 @@ import 'package:get_it/get_it.dart';
 import 'package:restaurant_app/Branch/data/Models/branch.dart';
 import 'package:restaurant_app/Category/data/repositories/category_repository.dart';
 import 'package:restaurant_app/Map/data/repositories/map_repository.dart';
+import 'package:restaurant_app/Product/data/repositories/product_repository.dart';
 import 'package:restaurant_app/Shared/Location/data/repositories/location_repository.dart';
 import 'package:restaurant_app/User/data/repositories/account_repositories.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../Branch/data/repositories/branch_repo.dart';
+import '../Shared/Cart/data/repositories/cart_repository.dart';
 import 'constants.dart';
 import 'services/api_service.dart';
 import 'services/database_service.dart';
@@ -55,4 +57,6 @@ Future locatorsSetup() async {
   locator.registerLazySingleton<Branch>(() => Branch());
   locator.registerLazySingleton<List<Branch>>(() => []);
   locator.registerLazySingleton<CategoryRepository>(() => CategoryRepository());
+  locator.registerLazySingleton<CartRepository>(() => CartRepository());
+  locator.registerLazySingleton<ProductRepository>(() => ProductRepository());
 }

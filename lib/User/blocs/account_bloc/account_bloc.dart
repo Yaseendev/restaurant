@@ -43,7 +43,7 @@ class AccountBloc extends Bloc<AccountEvent, AccountState> {
                 phoneNum: event.phoneNum,
                 email: event.email,
                 gender: event.gender,
-              )
+              ) //TODO: Handle the error proporly
               .then((result) => emit(AccountLoggedIn(result)))
               .onError((error, stackTrace) => emit(AccountError()));
         } else {
@@ -61,9 +61,7 @@ class AccountBloc extends Bloc<AccountEvent, AccountState> {
               .then((result) => emit(AccountLoggedIn(result)))
               .onError((error, stackTrace) {
             if (error is DioError)
-              emit(AccountError(
-                errMsg: error.response?.data['errors'][0],
-              ));
+              emit(AccountError(errMsg: error.response?.data['errors'][0]));
           });
         } else {
           forceNoInternetState = !forceNoInternetState;
@@ -72,7 +70,7 @@ class AccountBloc extends Bloc<AccountEvent, AccountState> {
       } else if (event is LogoutUserEvent) {
         await accoountRepository
             .logoutUser()
-            .then((_) => emit(AccountInitial()))
+            .then((_) => emit(AccountLoggedOut()))
             .onError((error, stackTrace) => emit(AccountError()));
       } else if (event is LoadUserProfileEvent) {
         await accoountRepository.fetchUser().then((value) {

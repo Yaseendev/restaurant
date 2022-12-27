@@ -61,7 +61,12 @@ class SelectedLocationCard extends StatelessWidget {
                                 color: Theme.of(context).primaryColor,
                               ),
                               title: Text(
-                                address.city,
+                                address.neighbourhood.isNotEmpty
+                                    ? address.neighbourhood
+                                    : address.suburb,
+                                // address.city.isEmpty
+                                //     ? address.state
+                                //     : address.city,
                                 style: TextStyle(
                                     fontSize: 18, fontWeight: FontWeight.w500),
                               ),
@@ -95,13 +100,15 @@ class SelectedLocationCard extends StatelessWidget {
                           style: TextStyle(
                               fontSize: 18, fontWeight: FontWeight.w500),
                         ),
-                        subtitle: Text('Choose the location on map'),
+                        subtitle: const Text('Choose the location on map'),
                         contentPadding: EdgeInsets.zero,
                         horizontalTitleGap: 0,
                         onTap: () {
                           Navigator.push(context,
                               MaterialPageRoute(builder: (ctx) {
-                            return InitialMapScreen();
+                            return InitialMapScreen(
+                              fromHome: true,
+                            );
                           }));
                           //.then((value) => Navigator.pop(context, value));
                         },
@@ -150,7 +157,7 @@ class SelectedLocationCard extends StatelessWidget {
                           children: [
                             TextSpan(
                               text:
-                                  '${currentLocation.name.isEmpty ? currentLocation.neighbourhood : currentLocation.name}, ${currentLocation.city}',
+                                  '${currentLocation.name.isEmpty ? currentLocation.neighbourhood.isNotEmpty ? currentLocation.neighbourhood : currentLocation.suburb : currentLocation.name}, ${currentLocation.city.isNotEmpty ? currentLocation.city : currentLocation.state}',
                               style: TextStyle(
                                 color: Colors.white,
                                 fontWeight: FontWeight.bold,

@@ -1,5 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:restaurant_app/Product/bloc/product_bloc.dart';
 import 'package:restaurant_app/Restaurant/presenation/screens/restaurant_screen.dart';
 import 'package:restaurant_app/utils/constants.dart';
 import '../screens/products_screen.dart';
@@ -20,8 +22,11 @@ class CategoryCard extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         Navigator.of(context).push(MaterialPageRoute(
-            builder: (_) => ProductsScreen(
-                  initIndex: index,
+            builder: (_) => BlocProvider<ProductBloc>(
+                  create: (context) => ProductBloc()..add(LoadProducts()),
+                  child: ProductsScreen(
+                    initIndex: index,
+                  ),
                 )));
       },
       child: Card(

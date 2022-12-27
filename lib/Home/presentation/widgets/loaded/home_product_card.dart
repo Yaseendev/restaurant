@@ -15,7 +15,7 @@ class HomeProductCard extends StatelessWidget {
     return GestureDetector(
       child: SizedBox(
         width: 142.w,
-        height: 60.h,
+        height: 63.h,
         child: Card(
           elevation: 2.0,
           shape:

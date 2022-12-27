@@ -1,7 +1,6 @@
 import 'package:flavor/flavor_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:restaurant_app/Product/data/models/product.dart';
-import 'package:restaurant_app/utils/constants.dart';
 
 class DescriptionSection extends StatefulWidget {
   final Product item;
@@ -46,55 +45,62 @@ class _DescriptionSectionState extends State<DescriptionSection> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                'Price on selection',
-                style: TextStyle(
-                  fontSize: 16,
-                  color: AppColors.PRIMARY_COLOR,
-                ),
-              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Expanded(
-                    child: Row(
-                      children: [
-                        // Text.rich(TextSpan(
-                        //   text: '${widget.item.price}',
-                        //   style: TextStyle(
-                        //     color: Colors.grey,
-                        //     fontWeight: FontWeight.bold,
-                        //     decoration: TextDecoration.lineThrough,
-                        //   ),
-                        //   children: [
-                        //     TextSpan(
-                        //       text: ' EGP',
-                        //       style: TextStyle(
-                        //         fontWeight: FontWeight.normal,
-                        //         fontSize: 12,
-                        //       ),
-                        //     ),
-                        //   ],
-                        // )),
-                        //SizedBox(width: 15),
-                        Text.rich(TextSpan(
-                          text: '${widget.item.price}',//'75.25',
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 18,
-                          ),
-                          children: [
-                            TextSpan(
-                              text: ' EGP',
-                              style: TextStyle(
-                                fontWeight: FontWeight.normal,
-                                fontSize: 12,
-                              ),
+                    child: widget.item.type?.toLowerCase() == 'variable'
+                        ? Text(
+                            'Price on selection',
+                            style: TextStyle(
+                              fontSize: 16,
+                              color: AppColors.PRIMARY_COLOR,
                             ),
-                          ],
-                        )),
-                      ],
-                    ),
+                          )
+                        : Row(
+                            children: [
+                              if (widget.item.discount != null)
+                                Row(
+                                  children: [
+                                    Text.rich(TextSpan(
+                                      text: '${widget.item.price}',
+                                      style: TextStyle(
+                                        color: Colors.grey,
+                                        fontWeight: FontWeight.bold,
+                                        decoration: TextDecoration.lineThrough,
+                                      ),
+                                      children: [
+                                        TextSpan(
+                                          text: ' EGP',
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.normal,
+                                            fontSize: 12,
+                                          ),
+                                        ),
+                                      ],
+                                    )),
+                                    const SizedBox(width: 15),
+                                  ],
+                                ),
+                              Text.rich(TextSpan(
+                                text:
+                                    '${widget.item.discount == null ? widget.item.price : widget.item.price - widget.item.discount!}', //'75.25',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18,
+                                ),
+                                children: [
+                                  TextSpan(
+                                    text: ' EGP',
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.normal,
+                                      fontSize: 12,
+                                    ),
+                                  ),
+                                ],
+                              )),
+                            ],
+                          ),
                   ),
                   SizedBox(width: 40),
                   Expanded(

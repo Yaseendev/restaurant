@@ -31,6 +31,12 @@ class AccountLoggedIn extends AccountState {
   List<Object?> get props => [this.user];
 }
 
+class AccountLoggedOut extends AccountState {
+
+  @override
+  List<Object?> get props => [];
+}
+
 class AccountError extends AccountState {
   final String? errMsg;
   AccountError({this.errMsg});

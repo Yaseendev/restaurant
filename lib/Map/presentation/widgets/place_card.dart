@@ -37,7 +37,7 @@ class PlaceCard extends StatelessWidget {
                   branch.name ?? '',
                   //appName,
                   //'Exception'
-                 // 'Gad Restaurant',
+                  // 'Gad Restaurant',
                   //'Zad',
                   //'Abo Saleh'
                   // 'HeatAttack'
@@ -51,20 +51,20 @@ class PlaceCard extends StatelessWidget {
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                 ),
-                trailing: Padding(
-                  padding: const EdgeInsets.only(top: 25),
-                  child: RatingBar.builder(
-                    itemBuilder: (context, _) => Icon(
-                      Icons.star,
-                      color: Colors.amber,
-                    ),
-                    onRatingUpdate: (value) {},
-                    ignoreGestures: true,
-                    itemSize: 12,
-                    initialRating: 3.5,
-                    allowHalfRating: true,
-                  ),
-                ),
+                // trailing: Padding(
+                //   padding: const EdgeInsets.only(top: 25),
+                //   child: RatingBar.builder(
+                //     itemBuilder: (context, _) => Icon(
+                //       Icons.star,
+                //       color: Colors.amber,
+                //     ),
+                //     onRatingUpdate: (value) {},
+                //     ignoreGestures: true,
+                //     itemSize: 12,
+                //     initialRating: 3.5,
+                //     allowHalfRating: true,
+                //   ),
+                // ),
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8),

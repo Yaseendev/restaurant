@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:restaurant_app/Order/data/models/order_item.dart';
@@ -7,6 +8,7 @@ import 'package:restaurant_app/Order/presentation/widgets/order_footer_button.da
 import 'package:restaurant_app/Product/data/models/product_option.dart';
 import 'package:restaurant_app/Product/presentation/widgets/size_listView.dart';
 import 'package:restaurant_app/Product/data/models/product.dart';
+import 'package:restaurant_app/utils/constants.dart';
 
 class ProductScreen extends StatefulWidget {
   final Product product;
@@ -25,7 +27,8 @@ class _ProductScreenState extends State<ProductScreen> {
 
   @override
   void initState() {
-    size = widget.product.sizes?.last;
+    if (widget.product.sizes != null) if (widget.product.sizes!.isNotEmpty)
+      size = widget.product.sizes?.last;
     options = widget.product.options;
     super.initState();
   }
@@ -68,12 +71,27 @@ class _ProductScreenState extends State<ProductScreen> {
                   children: [
                     Align(
                       alignment: Alignment.topCenter,
-                      child: Image.asset(
-                        widget.product.imgUrl,
-                        //'assets/images/cover.png',
-                        fit: BoxFit.fill,
+                      child: CachedNetworkImage(
+                        imageUrl: widget.product.imgUrl,
                         height: MediaQuery.of(context).size.height * .3,
                         width: MediaQuery.of(context).size.width,
+                        fit: BoxFit.cover,
+                        errorWidget: (context, error, stackTrace) {
+                          return Image.asset(
+                            Images.CATEGORY_PLACEHOLDER,
+                            height: MediaQuery.of(context).size.height * .3,
+                            width: MediaQuery.of(context).size.width,
+                            fit: BoxFit.cover,
+                          );
+                        },
+                        placeholder: (context, _) {
+                          return Image.asset(
+                            Images.CATEGORY_PLACEHOLDER,
+                            height: MediaQuery.of(context).size.height * .3,
+                            width: MediaQuery.of(context).size.width,
+                            fit: BoxFit.cover,
+                          );
+                        },
                       ),
                     ),
                     Align(

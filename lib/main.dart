@@ -8,7 +8,6 @@ import 'package:restaurant_app/utils/constants.dart';
 import 'Home/blocs/home_bloc/home_bloc.dart';
 import 'Home/data/repositories/home_repository.dart';
 import 'Map/blocs/map_bloc/map_bloc.dart';
-import 'Primary/presentation/screens/primary_screen.dart';
 import 'Shared/Cart/cubit/cart_cubit.dart';
 import 'Splash/blocs/initroute_bloc/initroute_bloc.dart';
 import 'Splash/presentation/screens/splash_screen.dart';
@@ -43,27 +42,26 @@ class MyApp extends StatelessWidget {
         minTextAdapt: true,
         builder: (context, child) {
           return RepositoryProvider<HomeRepository>(
-        create: (context) => HomeRepository(),
+            create: (context) => HomeRepository(),
             child: MultiBlocProvider(
               providers: [
                 BlocProvider<AccountBloc>(
                   create: (context) => AccountBloc(),
                 ),
-                BlocProvider<InitrouteBloc>(
-                  create: (context) =>
-                      InitrouteBloc(BlocProvider.of<AccountBloc>(context))
-                        ..add(UserCheckEvent()),
-                ),
                 BlocProvider<CartCubit>(
                   create: (context) => CartCubit(),
+                ),
+                BlocProvider<InitrouteBloc>(
+                  create: (context) =>
+                      InitrouteBloc(BlocProvider.of<AccountBloc>(context), context)
+                        ..add(UserCheckEvent()),
                 ),
                 BlocProvider<MapBloc>(
                   create: (context) => MapBloc(context),
                 ),
                 BlocProvider<HomeBloc>(
-                  create: (context) =>
-                      HomeBloc(context),),
-          
+                  create: (context) => HomeBloc(context),
+                ),
               ],
               child: MaterialApp(
                 title: title,
@@ -72,7 +70,8 @@ class MyApp extends StatelessWidget {
                   //primaryColor: Colors.red,
                   primarySwatch: AppColors.PRIMARY_SWATCH,
                 ),
-                home: const SplashScreen(), //PrimaryScreen(),//const SplashScreen(),
+                home:
+                    const SplashScreen(), //PrimaryScreen(),//const SplashScreen(),
               ),
             ),
           );

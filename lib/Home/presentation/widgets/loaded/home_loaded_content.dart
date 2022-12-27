@@ -1,10 +1,12 @@
 import 'package:flavor/flavor_assets.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:restaurant_app/Branch/data/Models/branch.dart';
 import 'package:restaurant_app/Category/data/models/product_category.dart';
 import 'package:restaurant_app/Map/data/models/address.dart';
 import 'package:restaurant_app/Offers/presentation/screens/offers_screen.dart';
 import 'package:restaurant_app/Offers/presentation/widgets/offer_card_small.dart';
+import 'package:restaurant_app/Product/bloc/product_bloc.dart';
 import 'package:restaurant_app/Product/data/models/product.dart';
 import 'package:restaurant_app/Restaurant/presenation/screens/restaurant_screen.dart';
 import 'branches_section.dart';
@@ -69,7 +71,13 @@ class HomeLoadedWidget extends StatelessWidget {
                     child: TextButton.icon(
                       onPressed: () {
                         Navigator.of(context).push(MaterialPageRoute(
-                            builder: (ctx) => RestaurantScreen()));
+                            builder: (ctx) => BlocProvider<ProductBloc>(
+                                  create: (context) =>
+                                      ProductBloc()..add(LoadProducts()),
+                                  child: RestaurantScreen(
+                                    branches: branches,
+                                  ),
+                                )));
                       },
                       label: const Text('See All'),
                       icon: Icon(
@@ -104,7 +112,9 @@ class HomeLoadedWidget extends StatelessWidget {
                     child: TextButton.icon(
                       onPressed: () {
                         Navigator.of(context).push(MaterialPageRoute(
-                            builder: (ctx) => RestaurantScreen()));
+                            builder: (ctx) => RestaurantScreen(
+                              branches: branches,
+                            )));
                       },
                       label: const Text('See All'),
                       icon: Icon(
@@ -125,6 +135,7 @@ class HomeLoadedWidget extends StatelessWidget {
                     //TODO
                     HomeProductCard(
                       product: Product(
+                        id: 3,
                         name: 'Pizza Margherita',
                         desc: 'Mozzarella Cheese, Fresh basil and Tomatoes',
                         imgUrl: AppImages.POP1,
@@ -133,10 +144,12 @@ class HomeLoadedWidget extends StatelessWidget {
                         likes: 2100,
                         options: [],
                         sizes: null,
+                        categories: [],
                       ),
                     ),
                     HomeProductCard(
                       product: Product(
+                        id: 4,
                         name: 'Chicken Burger',
                         desc: 'Chicken Burger',
                         imgUrl: AppImages.POP2,
@@ -145,6 +158,7 @@ class HomeLoadedWidget extends StatelessWidget {
                         likes: 2100,
                         options: [],
                         sizes: null,
+                        categories: [],
                       ),
                     ),
                     // HomeProductCard(
@@ -164,7 +178,6 @@ class HomeLoadedWidget extends StatelessWidget {
                 ),
               ),
 
-
               ///Branches Section
               SizedBox(height: 12),
               Text(
@@ -179,6 +192,7 @@ class HomeLoadedWidget extends StatelessWidget {
                 branches: branches,
                 onSelect: onBranchSelect,
               ),
+              
               /* DefaultTabController(
                 length: 2,
                 child: Column(

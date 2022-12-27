@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:restaurant_app/Branch/data/Models/branch.dart';
 import 'package:restaurant_app/Shared/Rate/presentation/widgets/custom_app_bar.dart';
 import 'package:restaurant_app/Shared/Rate/presentation/widgets/restaurant_rate_card.dart';
 import '../widgets/branches_listView.dart';
 
 class RestauantInfoScreen extends StatelessWidget {
-  const RestauantInfoScreen({Key? key}) : super(key: key);
+  final List<Branch> branches;
+  const RestauantInfoScreen({Key? key,
+  required this.branches,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +23,7 @@ class RestauantInfoScreen extends StatelessWidget {
               padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
               children: [
                 RestaurantRateCard(
-                  withRating: true,
+                  withRating: false,
                 ),
                 const SizedBox(height: 25),
                 Row(
@@ -64,7 +68,9 @@ class RestauantInfoScreen extends StatelessWidget {
                   ],
                 ),
                 SizedBox(height: 12),
-                BranchesListView(),
+                BranchesListView(
+                  branches: branches,
+                ),
                 SizedBox(height: 12),
                 Divider(),
                 Row(

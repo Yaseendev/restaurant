@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flavor/flavor_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -111,9 +112,30 @@ class _OrderReviewCardState extends State<OrderReviewCard> {
         ],
       ),
       isThreeLine: true,
-      trailing: Image.asset(
-        widget.order.product.imgUrl,
-        fit: BoxFit.fill,
+      trailing: ClipRRect(
+        borderRadius: BorderRadius.circular(8),
+        child: CachedNetworkImage(
+          imageUrl: widget.order.product.imgUrl,
+          height: 90,
+                width: 90,
+          fit: BoxFit.cover,
+          errorWidget: (context, error, stackTrace) {
+            return Image.asset(
+              Images.CATEGORY_PLACEHOLDER,
+              height: 90,
+                width: 90,
+              fit: BoxFit.cover,
+            );
+          },
+          placeholder: (context, _) {
+            return Image.asset(
+              Images.CATEGORY_PLACEHOLDER,
+            height: 90,
+                width: 90,
+              fit: BoxFit.cover,
+            );
+          },
+        ),
       ),
     );
   }

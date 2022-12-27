@@ -1,13 +1,16 @@
 import 'package:flavor/flavor_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:restaurant_app/Branch/data/Models/branch.dart';
 import 'package:restaurant_app/utils/constants.dart';
 
 import '../screens/rate_screen.dart';
 
 class RestaurantHeader extends StatelessWidget {
+  final List<Branch> branches;
   const RestaurantHeader({
     Key? key,
+    required this.branches,
   }) : super(key: key);
 
   @override
@@ -21,11 +24,6 @@ class RestaurantHeader extends StatelessWidget {
             ' $appName',
             //' Gad Restaurant',
             //' Pizza Master',
-            //' Zad',
-            //' Abo Saleh',
-            //' HeatAttack',
-            //' Tata\s Sons',
-            //' Burger King',
             style: TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.bold,
@@ -37,20 +35,21 @@ class RestaurantHeader extends StatelessWidget {
                 Icons.location_pin,
                 color: AppColors.PRIMARY_COLOR,
               ),
-              Text('Shebin al-Kom. '),
-              // Chip(
-              //   label: Text.rich(TextSpan(
-              //     text: 'and ',
-              //     children: [
-              //       TextSpan(
-              //           text: '2',
-              //           style: TextStyle(fontWeight: FontWeight.bold)),
-              //       TextSpan(text: ' more'),
-              //     ],
-              //   )),
-              //   labelStyle: TextStyle(color: Colors.white),
-              //   backgroundColor: AppColors.PRIMARY_COLOR,
-              // ),
+              Text('${branches[0].name ?? ''}. '),
+              if (branches.length > 1)
+                Chip(
+                  label: Text.rich(TextSpan(
+                    text: 'and ',
+                    children: [
+                      TextSpan(
+                          text: '${branches.length - 1}',
+                          style: TextStyle(fontWeight: FontWeight.bold)),
+                      TextSpan(text: ' more'),
+                    ],
+                  )),
+                  labelStyle: TextStyle(color: Colors.white),
+                  backgroundColor: AppColors.PRIMARY_COLOR,
+                ),
             ],
           ),
           Row(
@@ -61,38 +60,40 @@ class RestaurantHeader extends StatelessWidget {
                 ' $shopType',
                 style: TextStyle(color: AppColors.PRIMARY_COLOR),
               ),
-              Row(
-                children: [
-                  RatingBar.builder(
-                    itemBuilder: (context, _) => Icon(
-                      Icons.star,
-                      color: Colors.amber,
-                    ),
-                    onRatingUpdate: (value) {},
-                    ignoreGestures: true,
-                    itemSize: 14,
-                    initialRating: 5,
-                    allowHalfRating: true,
+              TextButton(
+                child: Text(
+                  '(178) Rate',
+                  style: TextStyle(
+                    color: Colors.blue,
+                    fontWeight: FontWeight.bold,
+                    decoration: TextDecoration.underline,
                   ),
-                  SizedBox(width: 10),
-                  TextButton(
-                    child: Text(
-                      '(178) Rate',
-                      style: TextStyle(
-                        color: Colors.blue,
-                        fontWeight: FontWeight.bold,
-                        decoration: TextDecoration.underline,
-                      ),
-                    ),
-                    onPressed: () {
-                      Navigator.of(context)
-                          .push(MaterialPageRoute(builder: (ctx) {
-                        return RateScreen();
-                      }));
-                    },
-                  )
-                ],
+                ),
+                onPressed: () {
+                  Navigator.of(context).push(MaterialPageRoute(builder: (ctx) {
+                    return RateScreen();
+                  }));
+                },
               ),
+
+              // Row(
+              //   children: [
+              //     RatingBar.builder(
+              //       itemBuilder: (context, _) => Icon(
+              //         Icons.star,
+              //         color: Colors.amber,
+              //       ),
+              //       onRatingUpdate: (value) {},
+              //       ignoreGestures: true,
+              //       itemSize: 14,
+              //       initialRating: 5,
+              //       allowHalfRating: true,
+              //     ),
+              //     SizedBox(width: 10),
+
+              //   ],
+              // ),
+              
             ],
           ),
         ],

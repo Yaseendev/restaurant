@@ -86,7 +86,7 @@ class Address extends Equatable {
       "state": this.state,
       "postcode": this.postcode,
       "country": this.country,
-      "countryCode": this.countryCode,
+      "country_code": this.countryCode,
       "town": this.town,
       "title" : this.title,
       "city" : this.city,
@@ -95,7 +95,6 @@ class Address extends Equatable {
 
   @override
   List<Object?> get props => [
-        position,
         name,
         road,
         neighbourhood,

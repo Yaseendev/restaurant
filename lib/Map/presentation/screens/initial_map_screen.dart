@@ -15,8 +15,10 @@ import 'package:restaurant_app/utils/locator.dart';
 
 class InitialMapScreen extends StatefulWidget {
 //  final LatLng currentLocation;
+  final bool fromHome;
   const InitialMapScreen({
     super.key,
+    this.fromHome = false,
   });
 
   @override
@@ -96,7 +98,10 @@ class _InitialMapScreenState extends State<InitialMapScreen> {
           context.read<HomeBloc>().add(FetchHomeScreenData());
           context.read<AccountBloc>().add(LoadUserProfileEvent());
           Navigator.of(context).pushAndRemoveUntil(
-              MaterialPageRoute(builder: (ctx) => PrimaryScreen()),
+              MaterialPageRoute(
+                settings: const RouteSettings(name: '/primary'),
+                builder: (ctx) => const PrimaryScreen(),
+              ),
               (route) => false);
         }
       },
@@ -104,7 +109,11 @@ class _InitialMapScreenState extends State<InitialMapScreen> {
         resizeToAvoidBottomInset: false,
         extendBody: true,
         extendBodyBehindAppBar: true,
-        appBar: AppBar(),
+        appBar: widget.fromHome
+            ? AppBar(
+                title: Text('Different Delivery Location'),
+              )
+            : null,
         body: SafeArea(
           child: Stack(
             children: [

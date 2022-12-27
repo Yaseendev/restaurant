@@ -1,21 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:restaurant_app/Home/blocs/home_bloc/home_bloc.dart';
-import 'package:restaurant_app/Map/blocs/map_bloc/map_bloc.dart';
 import 'package:restaurant_app/Map/presentation/screens/initial_map_screen.dart';
 import 'package:restaurant_app/Primary/presentation/screens/primary_screen.dart';
 import 'package:restaurant_app/Splash/blocs/initroute_bloc/initroute_bloc.dart';
 import 'package:restaurant_app/User/blocs/account_bloc/account_bloc.dart';
 import '../widgets/loading_widget.dart';
 
-class SplashScreen extends StatefulWidget {
+class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});
 
-  @override
-  State<SplashScreen> createState() => _SplashScreenState();
-}
-
-class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return BlocListener<InitrouteBloc, InitrouteState>(
@@ -29,15 +23,7 @@ class _SplashScreenState extends State<SplashScreen> {
         } else if (state is InitrouteProceed || state is InitrouteError) {
           context.read<HomeBloc>().add(FetchHomeScreenData());
           context.read<AccountBloc>().add(LoadUserProfileEvent());
-          //   Navigator.of(context).pushReplacement(MaterialPageRoute(
-          //       settings: RouteSettings(name: '/primary'),
-          //       builder: (ctx) {
-          //         return PrimaryScreen();
-          //       }));
-          // } else if (state is InitrouteInValidToken) {
-          //   //Logout
-          //   context.read<AccountBloc>().add(LogoutUserEvent());
-          Navigator.of(context).pushReplacement(MaterialPageRoute(
+         Navigator.of(context).pushReplacement(MaterialPageRoute(
               settings: RouteSettings(name: '/primary'),
               builder: (ctx) {
                 return PrimaryScreen();
@@ -47,6 +33,7 @@ class _SplashScreenState extends State<SplashScreen> {
           //TODO: To be checked
           context.read<HomeBloc>().add(FetchHomeScreenData());
           context.read<AccountBloc>().add(LoadUserProfileEvent());
+          
           Navigator.of(context).pushReplacement(MaterialPageRoute(
               settings: RouteSettings(name: '/primary'),
               builder: (ctx) {
@@ -55,7 +42,7 @@ class _SplashScreenState extends State<SplashScreen> {
         }
       },
       child: Scaffold(
-        backgroundColor: //Theme.of(context).primaryColor,
+        backgroundColor:
             Colors.white,
         body: Center(
           child: LoadingWidget(),

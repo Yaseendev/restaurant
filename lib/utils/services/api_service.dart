@@ -14,8 +14,16 @@ class ApiService {
     required User user,
     required String password,
   }) async {
-    Response response =
-        await _dio.post(Urls.REGISTER_USER, data: user.toJson(password));
+    Response response = await _dio.post(
+      Urls.REGISTER_USER,
+      data: user.toJson(password),
+      options: Options(
+        contentType: 'application/json',
+        headers: {
+          'Accept': 'application/json',
+        },
+      ),
+    );
     return response.data;
   }
 
@@ -51,37 +59,39 @@ class ApiService {
     return response?.data;
   }
 
-  Future<Map<String, dynamic>?> updateUser(String token,{Name? name,
-String? phone,
-String? gender,   
-   }) async{
+  Future<Map<String, dynamic>?> updateUser(
+    String token, {
+    Name? name,
+    String? phone,
+    String? gender,
+  }) async {
     Response response = await _dio.post(
       Urls.UPDATE_USER,
       data: {
-        if(name != null ) 'first_name' : name.first,
-        if(name != null ) 'last_name' : name.last,
-        if(gender != null ) 'gender' : gender,
-        if(phone != null ) 'phone' : phone,
+        if (name != null) 'first_name': name.first,
+        if (name != null) 'last_name': name.last,
+        if (gender != null) 'gender': gender,
+        if (phone != null) 'phone': phone,
       },
-       options: Options(
-          headers: {
-            'Accept': 'application/json',
-            'Authorization': 'Bearer $token',
-          },
-        ),
+      options: Options(
+        headers: {
+          'Accept': 'application/json',
+          'Authorization': 'Bearer $token',
+        },
+      ),
     );
     return response.data;
-   }
+  }
 
   Future logoutUser(String token) async {
     Response response = await _dio.post(
       Urls.LOGOUT_USER,
-       options: Options(
-          headers: {
-            'Accept': 'application/json',
-            'Authorization': 'Bearer $token',
-          },
-        ),
+      options: Options(
+        headers: {
+          'Accept': 'application/json',
+          'Authorization': 'Bearer $token',
+        },
+      ),
     );
     return response.data;
   }
@@ -146,6 +156,66 @@ String? gender,
     Response response = await _dio.get(
       //TODO: needs to be corrected in backend
       Urls.BRANCH_PATH + '/$branchId/categories',
+      options: Options(
+        contentType: 'application/json',
+      ),
+    );
+    return response.data;
+  }
+
+  Future<Map<String, dynamic>?> fetchCart(String token) async {
+    Response response = await _dio.get(
+      Urls.GET_CART,
+      options: Options(
+        contentType: 'application/json',
+        headers: {
+          'Authorization': 'Bearer $token',
+        },
+      ),
+    );
+    return response.data;
+  }
+
+  Future<Map<String, dynamic>?> addToCart(
+      String token, int prodId, int quantity) async {
+    Response response = await _dio.post(
+      Urls.ADD_TO_CART,
+      options: Options(
+        //contentType: 'application/json',
+        headers: {
+          'Authorization': 'Bearer $token',
+          'Accept': 'application/json',
+        },
+      ),
+      data: {
+        'prod_id': prodId,
+        'qty': quantity,
+      },
+    );
+    return response.data;
+  }
+
+  Future<Map<String, dynamic>?> updateCart(
+      String token, int prodId, int quantity) async {
+    Response response = await _dio.post(
+      Urls.UPDATE_CART,
+      options: Options(
+        contentType: 'application/json',
+        headers: {
+          'Authorization': 'Bearer $token',
+        },
+      ),
+      data: {
+        'prod_id': prodId,
+        'qty': quantity,
+      },
+    );
+    return response.data;
+  }
+
+  Future<List<dynamic>?> getProducts(int branchId) async {
+    Response response = await _dio.get(
+      Urls.BRANCH_PATH + '/$branchId/products',
       options: Options(
         contentType: 'application/json',
       ),

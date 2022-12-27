@@ -9,6 +9,7 @@ import 'package:restaurant_app/Category/data/models/product_category.dart';
 import 'package:restaurant_app/Category/data/repositories/category_repository.dart';
 import 'package:restaurant_app/Home/data/repositories/home_repository.dart';
 import 'package:restaurant_app/Map/data/models/address.dart';
+import 'package:restaurant_app/Product/data/repositories/product_repository.dart';
 import 'package:restaurant_app/Shared/Location/data/repositories/location_repository.dart';
 import 'package:restaurant_app/utils/locator.dart';
 
@@ -25,6 +26,8 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         locator.get<LocationRepository>();
     final CategoryRepository categoryRepository =
         locator.get<CategoryRepository>();
+    final ProductRepository productRepository =
+        locator.get<ProductRepository>();
 
     on<FetchHomeScreenData>((event, emit) async {
       emit(HomeLoading());
@@ -44,12 +47,12 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
           locator.get<List<Branch>>()
             ..clear()
             ..addAll(branches);
-
+          final categories =
+              await categoryRepository.getCategories(currentBranch.id!);
+          //categories?.sort((a, b) => a.id.compareTo(b.id));
           emit(HomeLoaded(
             addressLocation: currentLocation,
-            categories:
-                await categoryRepository.getCategories(currentBranch.id!) ??
-                    [], //TODO: Handle null case
+            categories: categories ?? [], //TODO: Handle null case
             branches: branches,
             addresses: await locationRepository.getSavedLocations(),
           ));

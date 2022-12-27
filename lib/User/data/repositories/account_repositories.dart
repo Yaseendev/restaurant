@@ -86,10 +86,12 @@ class AccoountRepository {
     return await _ApiService.tokenVerify(token);
   }
 
-  Future validateUser() async {
-    if (!(await tokenCheck() ?? true)) {
+  Future<bool> validateUser() async {
+    final bool? tokenPres = await tokenCheck();
+    if (!(tokenPres ?? true)) {
       await logoutUser();
     }
+    return tokenPres ?? false;
   }
 
   Future<User?> updateUserData({

@@ -15,4 +15,18 @@ class OrderItem {
     this.options,
     required this.totalPrice,
   });
+
+  factory OrderItem.fromJson(Map<String, dynamic> json) {
+    return OrderItem(
+      product: Product(
+        id: json['id'],
+        name: json['title'] ?? '',
+        price: json['price'],
+        imgUrl: json['img'] ?? '',
+        categories: [],
+      ),
+      quantity: json['qty'],
+      totalPrice: json['total'],
+    );
+  }
 }

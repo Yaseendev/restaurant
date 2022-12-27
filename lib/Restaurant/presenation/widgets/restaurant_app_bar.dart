@@ -1,17 +1,20 @@
 import 'package:flavor/flavor_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:restaurant_app/Branch/data/Models/branch.dart';
 import '../screens/restaurant_info_screen.dart';
 
 class RestaurantAppBar extends StatelessWidget {
   final String coverUri;
   final String profileUri;
   final VoidCallback onFavTap;
+  final List<Branch> branches;
   const RestaurantAppBar({
     Key? key,
     required this.coverUri,
     required this.profileUri,
     required this.onFavTap,
+    required this.branches,
   }) : super(key: key);
 
   @override
@@ -86,7 +89,9 @@ class RestaurantAppBar extends StatelessWidget {
                       onPressed: () {
                         Navigator.of(context)
                             .push(MaterialPageRoute(builder: (ctx) {
-                          return RestauantInfoScreen();
+                          return RestauantInfoScreen(
+                            branches: branches,
+                          );
                         }));
                       },
                       child: Icon(
@@ -96,32 +101,6 @@ class RestaurantAppBar extends StatelessWidget {
                       ),
                     ),
                   ),
-                  // Row(
-                  //   children: [
-
-                  //     Padding(
-                  //       padding: const EdgeInsets.only(bottom: 22),
-                  //       child: ElevatedButton(
-                  //         style: ButtonStyle(
-                  //           elevation: MaterialStateProperty.all(15),
-                  //           shape: MaterialStateProperty.all(
-                  //             CircleBorder(),
-                  //           ),
-                  //           padding:
-                  //               MaterialStateProperty.all(EdgeInsets.all(8)),
-                  //           backgroundColor:
-                  //               MaterialStateProperty.all(Colors.white),
-                  //         ),
-                  //         onPressed: onFavTap,
-                  //         child: Icon(
-                  //           Icons.favorite_outline_rounded,
-                  //           size: 35,
-                  //           color: Theme.of(context).textTheme.bodyText1!.color,
-                  //         ),
-                  //       ),
-                  //     ),
-                  //   ],
-                  // ),
                 ],
               ),
             ),

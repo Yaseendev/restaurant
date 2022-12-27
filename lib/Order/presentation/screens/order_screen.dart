@@ -24,9 +24,12 @@ class OrderScreen extends StatelessWidget {
               RestaurantAppBar(
                 coverUri: 'assets/images/cover.png',
                 profileUri: AppImages.TRANSAPPLOGO,
+                branches: [],
                 onFavTap: () {},
               ),
-              RestaurantHeader(),
+              RestaurantHeader(
+                branches: [],
+              ),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 10),
                 child: RestaurantStatsWidget(),

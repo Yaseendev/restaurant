@@ -52,8 +52,7 @@ class DatabaseService {
 
   Future<void> saveLocation(Address location) async {
     final locationBox = await Boxes.getLocationBox();
-    if(!locationBox.values.contains(location))
-    await locationBox.add(location);
+    if (!locationBox.values.contains(location)) await locationBox.add(location);
   }
 
   Future<List<Address>> getSavedLocations() async {
@@ -65,7 +64,7 @@ class DatabaseService {
       await sharedPreferences.setString(
           'currentLocation', jsonEncode(location));
 
-  Address? getCurrentLocation()  {
+  Address? getCurrentLocation() {
     final String? jsonString = sharedPreferences.getString('currentLocation');
     if (jsonString == null) return null;
     final Map<String, dynamic> jsonData = jsonDecode(jsonString);
