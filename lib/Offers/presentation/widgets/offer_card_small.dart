@@ -48,20 +48,20 @@ class OfferCardSmall extends StatelessWidget {
             //   'Fast Food',
             //   style: TextStyle(color: AppColors.PRIMARY_COLOR),
             // ),
-            trailing: Padding(
-              padding: const EdgeInsets.only(top: 25),
-              child: RatingBar.builder(
-                itemBuilder: (context, _) => Icon(
-                  Icons.star,
-                  color: Colors.amber,
-                ),
-                onRatingUpdate: (value) {},
-                ignoreGestures: true,
-                itemSize: 12,
-                initialRating: 3.5,
-                allowHalfRating: true,
-              ),
-            ),
+            // trailing: Padding(
+            //   padding: const EdgeInsets.only(top: 25),
+            //   child: RatingBar.builder(
+            //     itemBuilder: (context, _) => Icon(
+            //       Icons.star,
+            //       color: Colors.amber,
+            //     ),
+            //     onRatingUpdate: (value) {},
+            //     ignoreGestures: true,
+            //     itemSize: 12,
+            //     initialRating: 3.5,
+            //     allowHalfRating: true,
+            //   ),
+            // ),
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8),

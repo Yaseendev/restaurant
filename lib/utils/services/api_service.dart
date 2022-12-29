@@ -222,4 +222,20 @@ class ApiService {
     );
     return response.data;
   }
+
+  Future<List<dynamic>?> getSearchResult(int branchId, String term,[num? startPrice, num? endPrice, List<String>? category]) async {
+    Response response = await _dio.get(
+      Urls.BRANCH_PATH + '/$branchId/products',
+      options: Options(
+        contentType: 'application/json',
+      ),
+        queryParameters: {
+          'search' : term,
+          'from' : startPrice,
+          'to' : endPrice,
+          'category' : category,
+        },  
+    );
+    return response.data;
+  }
 }

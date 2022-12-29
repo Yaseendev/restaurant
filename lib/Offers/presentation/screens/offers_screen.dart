@@ -11,8 +11,8 @@ class OffersScreen extends StatelessWidget {
       appBar: CustomAppBar.appBarWithBackBttn(context, 'Offers'),
       body: ListView(
         children: [
-          OffercardLarge(),
-          OffercardLarge(),
+          OfferCardLarge(),
+          OfferCardLarge(),
         ],
       ),
     );

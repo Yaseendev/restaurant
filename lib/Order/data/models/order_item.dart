@@ -1,7 +1,8 @@
+import 'package:equatable/equatable.dart';
 import 'package:restaurant_app/Product/data/models/product.dart';
 import 'package:restaurant_app/Product/data/models/product_option.dart';
 
-class OrderItem {
+class OrderItem extends Equatable {
   final Product product;
   final ProductOption? size;
   final List<ProductOption>? options;
@@ -29,4 +30,7 @@ class OrderItem {
       totalPrice: json['total'],
     );
   }
+
+  @override
+  List<Object?> get props => [product, size, options];
 }

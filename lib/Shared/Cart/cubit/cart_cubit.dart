@@ -15,14 +15,17 @@ class CartCubit extends Cubit<List<OrderItem>> {
   }
 
   void addItem(OrderItem item) async {
-    cartRepository.addItem(item).onError((error, stackTrace) {
-      print('Cant add item to cart $error');
-    });
-    //.then((value) => null);
-    emit([
-      ...state,
-      item,
-    ]);
+    if (state.contains(item)) {
+      increaseItemQnt(item);
+    } else {
+      cartRepository.addItem(item).onError((error, stackTrace) {
+        print('Cant add item to cart $error');
+      });
+      emit([
+        ...state,
+        item,
+      ]);
+    }
   }
 
   void removeItem(OrderItem item) {

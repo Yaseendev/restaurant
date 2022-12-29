@@ -10,6 +10,7 @@ import 'package:restaurant_app/Map/data/repositories/map_repository.dart';
 import 'package:restaurant_app/Primary/presentation/screens/primary_screen.dart';
 import 'package:restaurant_app/Shared/Location/data/models/geo_latLng.dart';
 import 'package:restaurant_app/Shared/Location/data/repositories/location_repository.dart';
+import 'package:restaurant_app/Shared/Rate/presentation/widgets/custom_app_bar.dart';
 import 'package:restaurant_app/User/blocs/account_bloc/account_bloc.dart';
 import 'package:restaurant_app/utils/locator.dart';
 
@@ -110,9 +111,7 @@ class _InitialMapScreenState extends State<InitialMapScreen> {
         extendBody: true,
         extendBodyBehindAppBar: true,
         appBar: widget.fromHome
-            ? AppBar(
-                title: Text('Different Delivery Location'),
-              )
+            ? CustomAppBar.appBarWithBackBttn(context, 'Different Delivery Location')
             : null,
         body: SafeArea(
           child: Stack(

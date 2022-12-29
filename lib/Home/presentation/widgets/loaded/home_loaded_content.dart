@@ -13,8 +13,7 @@ import 'branches_section.dart';
 import 'home_categoris_list_view.dart';
 import 'home_product_card.dart';
 import 'photo_show.dart';
-import 'restaurant_card.dart';
-import 'search_box.dart';
+import '../../../../Search/presentation/widgets/search_box.dart';
 import 'selected_location_card.dart';
 
 class HomeLoadedWidget extends StatelessWidget {
@@ -40,13 +39,8 @@ class HomeLoadedWidget extends StatelessWidget {
           addresses: addresses,
           currentLocation: currentLocation,
         ),
-        Padding(
-          padding: EdgeInsets.symmetric(horizontal: 14, vertical: 12),
-          child: SearchBox(
-            onPress: (value) {
-              print(value);
-            },
-          ),
+       const SearchBox(
+        
         ),
         SizedBox(height: 8),
         PhotoShow(),

@@ -1,4 +1,3 @@
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:restaurant_app/Shared/Location/data/models/geo_latLng.dart';
 import 'package:restaurant_app/utils/locator.dart';
 import 'package:restaurant_app/utils/services/api_service.dart';

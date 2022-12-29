@@ -1,11 +1,10 @@
 import 'package:flavor/flavor_assets.dart';
 import 'package:flavor/flavor_colors.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:restaurant_app/utils/constants.dart';
 
-class OffercardLarge extends StatelessWidget {
-  const OffercardLarge({Key? key}) : super(key: key);
+class OfferCardLarge extends StatelessWidget {
+  const OfferCardLarge({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +36,7 @@ class OffercardLarge extends StatelessWidget {
               backgroundImage: AssetImage(AppImages.APPLOGO),
             ),
             title: Text(
-              'Pizza Master',
+              '$appName',
               //'Zad',
               //'Abo Saleh'
               //'HeatAttack',
@@ -46,20 +45,21 @@ class OffercardLarge extends StatelessWidget {
             ),
             subtitle: Text(
               //'Hyper Market',
-              'Fast Food',
+              shopType,
               style: TextStyle(color: AppColors.PRIMARY_COLOR),
             ),
-            trailing: RatingBar.builder(
-              itemBuilder: (context, _) => Icon(
-                Icons.star,
-                color: Colors.amber,
-              ),
-              onRatingUpdate: (value) {},
-              ignoreGestures: true,
-              itemSize: 12,
-              initialRating: 3.5,
-              allowHalfRating: true,
-            ),
+
+            // trailing: RatingBar.builder(
+            //   itemBuilder: (context, _) => Icon(
+            //     Icons.star,
+            //     color: Colors.amber,
+            //   ),
+            //   onRatingUpdate: (value) {},
+            //   ignoreGestures: true,
+            //   itemSize: 12,
+            //   initialRating: 3.5,
+            //   allowHalfRating: true,
+            // ),
           ),
           Padding(
             padding: const EdgeInsets.only(left: 8, right: 8, bottom: 0),
