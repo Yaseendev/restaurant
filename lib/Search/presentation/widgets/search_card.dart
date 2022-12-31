@@ -1,14 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:restaurant_app/Category/data/models/product_category.dart';
 import 'package:restaurant_app/Search/bloc/search_bloc.dart';
 
-class SearchCard extends StatelessWidget {
+import 'filter_sheet.dart';
+
+class SearchCard extends StatefulWidget {
+  final List<ProductCategory> categories;
   const SearchCard({
     Key? key,
     required this.searchTerm,
+    required this.categories,
   }) : super(key: key);
 
   final String searchTerm;
+
+  @override
+  State<SearchCard> createState() => _SearchCardState();
+}
+
+class _SearchCardState extends State<SearchCard> {
+  num? startPriceFilter;
+  num? endPriceFilter;
+  List<String>? selectedCategoriesFilter;
+  String searchTerm = '';
 
   @override
   Widget build(BuildContext context) {
@@ -36,11 +51,15 @@ class SearchCard extends StatelessWidget {
                   hintText: 'Search',
                   prefixIcon: const Icon(Icons.search),
                 ),
-                initialValue: searchTerm,
+                initialValue: widget.searchTerm,
                 onChanged: (value) {
-                  context
-                      .read<SearchBloc>()
-                      .add(FetchSearchData(searchTxt: value));
+                  searchTerm = value;
+                  context.read<SearchBloc>().add(FetchSearchData(
+                        searchTxt: value,
+                        startPrice: startPriceFilter,
+                        endPrice: endPriceFilter,
+                        categories: selectedCategoriesFilter,
+                      ));
                 },
               ),
             ),
@@ -54,7 +73,52 @@ class SearchCard extends StatelessWidget {
                   borderRadius: BorderRadius.circular(8),
                 ),
               ),
-              onPressed: () {},
+              onPressed: () {
+                showModalBottomSheet(
+                  context: context,
+                  isScrollControlled: true,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.vertical(
+                    top: Radius.circular(20),
+                  )),
+                  builder: (ctx) {
+                    return FilterSheet(
+                      startPrice: startPriceFilter,
+                      endPrice: endPriceFilter,
+                      selectedCategories: selectedCategoriesFilter,
+                      categories: widget.categories,
+                      onApply: (stPrice, edPrice, cats) {
+                        startPriceFilter = stPrice;
+                        endPriceFilter = edPrice;
+                        selectedCategoriesFilter = cats;
+                        if (searchTerm.isNotEmpty) {
+                          context.read<SearchBloc>().add(FetchSearchData(
+                                searchTxt: searchTerm,
+                                startPrice: startPriceFilter,
+                                endPrice: endPriceFilter,
+                                categories: selectedCategoriesFilter,
+                              ));
+                        }
+                        Navigator.of(ctx).pop();
+                      },
+                      onClear: () {
+                        if (startPriceFilter != null ||
+                            endPriceFilter != null ||
+                            selectedCategoriesFilter != null) {
+                          startPriceFilter = null;
+                          endPriceFilter = null;
+                          selectedCategoriesFilter = null;
+                          if (searchTerm.isNotEmpty)
+                            context
+                                .read<SearchBloc>()
+                                .add(FetchSearchData(searchTxt: searchTerm));
+                        }
+                        Navigator.of(ctx).pop();
+                      },
+                    );
+                  },
+                );
+              },
               child: Center(child: const Icon(Icons.tune)),
             ),
           ),

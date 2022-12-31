@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:restaurant_app/Product/data/models/product.dart';
 import 'name.dart';
 
 part 'user.g.dart';
@@ -24,6 +25,9 @@ class User extends Equatable {
   @HiveField(5)
   String? photoUrl;
 
+  @HiveField(6)
+  final List<Product> favorites;
+
   User({
     this.id,
     required this.name,
@@ -31,6 +35,7 @@ class User extends Equatable {
     this.phoneNumber,
     this.gender,
     this.photoUrl,
+    this.favorites = const <Product>[],
   });
 
   User.fromJson(Map<String, dynamic> parsedJson)
@@ -41,7 +46,8 @@ class User extends Equatable {
         ),
         phoneNumber = parsedJson['phone'],
         email = parsedJson['email'] ?? '',
-        gender = parsedJson['gender'] ?? '';
+        gender = parsedJson['gender'] ?? '',
+        favorites = <Product>[]; //TODO: implement from the backend
   //photoUrl = parsedJson['picture']['data']['url'];
 
   Map<String, dynamic> toJson([String? password]) {
@@ -50,7 +56,7 @@ class User extends Equatable {
       "last_name": this.name.last,
       "email": this.email,
       "phone": this.phoneNumber,
-       "gender": this.gender,
+      "gender": this.gender,
     };
     if (password != null) {
       userMap.addEntries([
@@ -69,5 +75,6 @@ class User extends Equatable {
         phoneNumber,
         gender,
         photoUrl,
+        favorites,
       ];
 }

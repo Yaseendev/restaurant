@@ -1,19 +1,17 @@
 import 'dart:collection';
-
 import 'package:bloc/bloc.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:equatable/equatable.dart';
 import 'package:restaurant_app/Category/data/models/product_category.dart';
 import 'package:restaurant_app/Product/data/models/product.dart';
+import 'package:restaurant_app/Product/data/repositories/product_repository.dart';
 import 'package:restaurant_app/utils/locator.dart';
 
-import '../data/repositories/product_repository.dart';
+part 'products_event.dart';
+part 'products_state.dart';
 
-part 'product_event.dart';
-part 'product_state.dart';
-
-class ProductBloc extends Bloc<ProductEvent, ProductState> {
-  ProductBloc() : super(ProductInitial()) {
+class ProductsBloc extends Bloc<ProductsEvent, ProductsState> {
+  ProductsBloc() : super(ProductsInitial()) {
     final Connectivity connectivity = locator.get<Connectivity>();
     final ProductRepository productRepository =
         locator.get<ProductRepository>();
@@ -40,7 +38,7 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
           });
         });
         final sorted = SplayTreeMap<ProductCategory, List<Product>>.from(categories, (a, b) => a.id.compareTo(b.id));
-        emit(ProductLoaded(sorted));
+        emit(ProductsLoaded(sorted));
       } else {
         emit(ProductNoInternet());
       }

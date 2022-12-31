@@ -3,6 +3,7 @@ import 'package:flavor/flavor_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:numeral/numeral.dart';
+import 'package:restaurant_app/Product/blocs/product_bloc/product_bloc.dart';
 import 'package:restaurant_app/Product/presentation/screens/product_screen.dart';
 import 'package:restaurant_app/Product/data/models/product.dart';
 import 'package:restaurant_app/Shared/Cart/cubit/cart_cubit.dart';
@@ -22,7 +23,12 @@ class ItemTile extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         Navigator.of(context)
-            .push(MaterialPageRoute(builder: (_) => ProductScreen(item)
+            .push(MaterialPageRoute(
+                builder: (_) => BlocProvider<ProductBloc>(
+                      create: (context) =>
+                          ProductBloc(item)..add(LoadProduct()),
+                      child: ProductScreen(item),
+                    )
                 //ItemScreen()
                 ))
             .then((value) {
@@ -45,14 +51,14 @@ class ItemTile extends StatelessWidget {
               borderRadius: BorderRadius.circular(8),
               child: CachedNetworkImage(
                 imageUrl: item.imgUrl,
-               height: 90,
+                height: 90,
                 width: 90,
                 fit: BoxFit.fill,
                 errorWidget: (context, error, stackTrace) {
                   return Image.asset(
                     Images.CATEGORY_PLACEHOLDER,
                     height: 90,
-                width: 90,
+                    width: 90,
                     fit: BoxFit.fill,
                   );
                 },
@@ -60,7 +66,7 @@ class ItemTile extends StatelessWidget {
                   return Image.asset(
                     Images.CATEGORY_PLACEHOLDER,
                     height: 90,
-                width: 90,
+                    width: 90,
                     fit: BoxFit.fill,
                   );
                 },

@@ -1,4 +1,5 @@
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
+import 'package:restaurant_app/Product/data/models/product.dart';
 import 'package:restaurant_app/User/data/models/name.dart';
 import 'package:restaurant_app/utils/services/api_service.dart';
 import 'package:restaurant_app/utils/services/database_service.dart';
@@ -118,5 +119,21 @@ class AccoountRepository {
     _databaseService
       ..deleteToken()
       ..deleteUser();
+  }
+
+  Future addToFavorite(User? user, Product product) async {
+    //TODO: add to remote api
+    if (user != null) {
+      user.favorites.add(product);
+      await _databaseService.setUser(user);
+    }
+  }
+
+  Future removeFromFavorite(User? user, Product product) async {
+    //TODO: add to remote api
+    if (user != null) {
+      user.favorites.remove(product);
+      await _databaseService.setUser(user);
+    }
   }
 }

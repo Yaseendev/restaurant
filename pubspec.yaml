@@ -15,6 +15,7 @@ dependencies:
   cached_network_image: ^3.2.1
   carousel_slider: ^4.1.1
   connectivity_plus: ^2.3.6+1
+  cool_alert: ^1.1.0
   cupertino_icons: ^1.0.2
   custom_sliding_segmented_control: ^1.7.1
   custom_text: ^0.5.1

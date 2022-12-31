@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flavor/flavor_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:restaurant_app/Product/blocs/product_bloc/product_bloc.dart';
 import 'package:restaurant_app/Product/data/models/product.dart';
 import 'package:restaurant_app/Shared/Cart/cubit/cart_cubit.dart';
 import 'package:restaurant_app/utils/constants.dart';
@@ -19,7 +20,12 @@ class ProductTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () => Navigator.of(context)
-          .push(MaterialPageRoute(builder: (_) => ProductScreen(product)))
+          .push(MaterialPageRoute(
+              builder: (_) => BlocProvider<ProductBloc>(
+                    create: (context) =>
+                        ProductBloc(product)..add(LoadProduct()),
+                    child: ProductScreen(product),
+                  )))
           .then((value) {
         if (value != null) context.read<CartCubit>().addItem(value);
         //onOrder(value);
@@ -140,12 +146,12 @@ class ProductTile extends StatelessWidget {
                         )),
               Row(
                 children: [
-                  IconButton(
-                    onPressed: () {},
-                    icon: Icon(
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Icon(
                       Icons.favorite,
+                      color: Colors.grey,
                     ),
-                    color: Colors.grey,
                   ),
                   Text.rich(
                     TextSpan(

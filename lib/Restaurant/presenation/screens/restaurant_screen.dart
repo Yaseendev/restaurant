@@ -6,7 +6,7 @@ import 'package:restaurant_app/Branch/data/Models/branch.dart';
 import 'package:restaurant_app/Order/data/models/order_item.dart';
 import 'package:restaurant_app/Order/presentation/screens/order_review_screen.dart';
 import 'package:restaurant_app/Order/presentation/widgets/cart_button.dart';
-import 'package:restaurant_app/Product/bloc/product_bloc.dart';
+import 'package:restaurant_app/Product/blocs/products_bloc/products_bloc.dart';
 import 'package:restaurant_app/Shared/Cart/cubit/cart_cubit.dart';
 import '../widgets/products_tab_bar.dart';
 import '../widgets/products_tabbar_loading.dart';
@@ -39,9 +39,9 @@ class _RestaurantScreenState extends State<RestaurantScreen>
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<ProductBloc, ProductState>(
+    return BlocListener<ProductsBloc, ProductsState>(
       listener: (context, state) {
-        if (state is ProductLoaded)
+        if (state is ProductsLoaded)
           _tabController = TabController(
               length: state.products.length,
               initialIndex: widget.initIndex,
@@ -62,9 +62,9 @@ class _RestaurantScreenState extends State<RestaurantScreen>
                   pinned: true,
                   bottom: PreferredSize(
                     preferredSize: Size(MediaQuery.of(context).size.width, kToolbarHeight),
-                    child: BlocBuilder<ProductBloc, ProductState>(
+                    child: BlocBuilder<ProductsBloc, ProductsState>(
                       builder: (context, state) {
-                        if (state is ProductLoaded)
+                        if (state is ProductsLoaded)
                           return ProductsTabBar(
                               products: state.products,
                               tabController: _tabController);
@@ -97,9 +97,9 @@ class _RestaurantScreenState extends State<RestaurantScreen>
                 ),
               ];
             },
-            body: BlocBuilder<ProductBloc, ProductState>(
+            body: BlocBuilder<ProductsBloc, ProductsState>(
               builder: (context, state) {
-                if (state is ProductLoaded)
+                if (state is ProductsLoaded)
                   return ProductsTabBarView(
                     products: state.products,
                     tabController: _tabController,

@@ -8,6 +8,7 @@ import 'package:restaurant_app/utils/constants.dart';
 import 'Home/blocs/home_bloc/home_bloc.dart';
 import 'Home/data/repositories/home_repository.dart';
 import 'Map/blocs/map_bloc/map_bloc.dart';
+import 'Order/bloc/order_bloc.dart';
 import 'Shared/Cart/cubit/cart_cubit.dart';
 import 'Splash/blocs/initroute_bloc/initroute_bloc.dart';
 import 'Splash/presentation/screens/splash_screen.dart';
@@ -40,6 +41,7 @@ class MyApp extends StatelessWidget {
     return ScreenUtilInit(
         designSize: const Size(315, 177),
         minTextAdapt: true,
+        useInheritedMediaQuery: true,
         builder: (context, child) {
           return RepositoryProvider<HomeRepository>(
             create: (context) => HomeRepository(),
@@ -52,15 +54,18 @@ class MyApp extends StatelessWidget {
                   create: (context) => CartCubit(),
                 ),
                 BlocProvider<InitrouteBloc>(
-                  create: (context) =>
-                      InitrouteBloc(BlocProvider.of<AccountBloc>(context), context)
-                        ..add(UserCheckEvent()),
+                  create: (context) => InitrouteBloc(
+                      BlocProvider.of<AccountBloc>(context), context)
+                    ..add(UserCheckEvent()),
                 ),
                 BlocProvider<MapBloc>(
                   create: (context) => MapBloc(context),
                 ),
                 BlocProvider<HomeBloc>(
                   create: (context) => HomeBloc(context),
+                ),
+                BlocProvider<OrderBloc>(
+                  create: (context) => OrderBloc(),
                 ),
               ],
               child: MaterialApp(
@@ -70,11 +75,20 @@ class MyApp extends StatelessWidget {
                   //primaryColor: Colors.red,
                   primarySwatch: AppColors.PRIMARY_SWATCH,
                 ),
-                home:
-                    const SplashScreen(), //PrimaryScreen(),//const SplashScreen(),
+                home: const SplashScreen(), //PrimaryScreen(),//const SplashScreen(),
               ),
             ),
           );
         });
   }
 }
+
+//TODO: Things to add in the backend:
+//1. Addresses to user
+//2. Delivery fee for a branch
+//3. Delivery area boundries
+//4. Implement home screen
+//5. Add orders to user
+//6. Get Cart Problems
+//7. Add likes to products
+//8. 7war el QR

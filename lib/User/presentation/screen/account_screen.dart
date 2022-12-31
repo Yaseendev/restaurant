@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:restaurant_app/Order/bloc/order_bloc.dart';
 import 'package:restaurant_app/Shared/Cart/cubit/cart_cubit.dart';
 import 'package:restaurant_app/User/blocs/account_bloc/account_bloc.dart';
 import '../widgets/account_content.dart';
@@ -55,14 +56,16 @@ class _AccountScreenState extends State<AccountScreen> {
         }
         if (state is AccountLoggedIn) {
           //  context.read<AccountBloc>().add(LoadUserProfileEvent());
-         context.read<CartCubit>().getCart();
+          context.read<CartCubit>().getCart();
           Navigator.of(context).popUntil((route) {
             print(route.settings.name);
             return route.settings.name == '/primary';
           });
         }
         if (state is AccountLoggedOut) {
-          context.read<CartCubit>().clear();
+          context
+            ..read<CartCubit>().clear()
+            ..read<OrderBloc>().add(CheckoutEvent());
         }
       },
       child: SingleChildScrollView(
@@ -71,7 +74,9 @@ class _AccountScreenState extends State<AccountScreen> {
           buildWhen: (previous, current) {
             print('Account Previous: $previous');
             print('Account Current: $current');
-            return current is AccountInitial || current is AccountLoggedIn || current is AccountLoggedOut;
+            return current is AccountInitial ||
+                current is AccountLoggedIn ||
+                current is AccountLoggedOut;
           },
           builder: (context, state) {
             return Column(

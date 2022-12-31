@@ -32,9 +32,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     on<FetchHomeScreenData>((event, emit) async {
       emit(HomeLoading());
       if (await connectivity.checkConnectivity() != ConnectivityResult.none) {
-        //TODO: 1.get branch id
-        //2. get home data based on branch id
-
         try {
           final Address? currentLocation =
               locationRepository.getCurrentLocation();

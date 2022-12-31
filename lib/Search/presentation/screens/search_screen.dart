@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:restaurant_app/Category/data/models/product_category.dart';
 import 'package:restaurant_app/Product/data/models/product.dart';
 import 'package:restaurant_app/Restaurant/presenation/widgets/products_tabview_loading.dart';
 import 'package:restaurant_app/Search/bloc/search_bloc.dart';
@@ -10,11 +11,12 @@ import '../widgets/search_result_tiles.dart';
 class SearchScreen extends StatefulWidget {
   final String initText;
   final List<Product> initResult;
-
+final List<ProductCategory> categories;
   const SearchScreen({
     super.key,
     this.initText = '',
     this.initResult = const [],
+    required this.categories,
   });
 
   @override
@@ -43,7 +45,9 @@ class _SearchScreenState extends State<SearchScreen> {
         body: ListView(
           shrinkWrap: true,
           children: [
-            SearchCard(searchTerm: searchTerm),
+            SearchCard(
+              categories: widget.categories,
+              searchTerm: searchTerm),
             const SizedBox(height: 12),
             BlocBuilder<SearchBloc, SearchState>(
               builder: (context, state) {

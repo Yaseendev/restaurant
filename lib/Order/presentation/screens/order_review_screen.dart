@@ -1,6 +1,7 @@
 import 'package:flavor/flavor_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:restaurant_app/Order/bloc/order_bloc.dart';
 import 'package:restaurant_app/Order/data/models/order_item.dart';
 import 'package:restaurant_app/Product/data/models/product.dart';
 import 'package:restaurant_app/Shared/Cart/cubit/cart_cubit.dart';
@@ -88,13 +89,42 @@ class _OrderReviewScreenState extends State<OrderReviewScreen> {
                     ),
                   ],
                 ),
-                Spacer(),
-                OrderFooterButton(
-                  text: 'Confirm Order',
-                  priceTxt: '${state.fold(0, (num previousValue, element) => previousValue + element.totalPrice)}',
-                  onPress: () {
-                    Navigator.of(context).push(MaterialPageRoute(builder: (_)=>CheckoutScreen()));
+                const Spacer(),
+                BlocListener<OrderBloc, OrderState>(
+                  listener: (context, orderState) {
+                    if (orderState is OrderNotLoggedIn) {
+                      print('Not Loggedin');
+                      //TODO: diplay a log in dialog
+                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                          duration: Duration(seconds: 2),
+                          content: ListTile(
+                            contentPadding: EdgeInsets.zero,
+                            horizontalTitleGap: 0,
+                            leading: Icon(Icons.error),
+                            subtitle: Text(
+                                'You are not logged in\nLog in to add it to your favorites'),
+                            iconColor: Colors.white,
+                            textColor: Colors.white,
+                          )));
+                    }
+                    //TODO: diplay a no internet dialog
+                    else if (orderState is OrderReady) {
+                      Navigator.of(context).push(
+                          MaterialPageRoute(builder: (_) => CheckoutScreen()));
+                    }
                   },
+                  child: OrderFooterButton(
+                    text: 'Confirm Order',
+                    priceTxt:
+                        '${state.fold(0, (num previousValue, element) => previousValue + element.totalPrice)}',
+                    onPress: () {
+                      if (context.read<OrderBloc>().state is OrderReady) {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (_) => CheckoutScreen()));
+                      } else
+                        context.read<OrderBloc>().add(CheckoutEvent());
+                    },
+                  ),
                 ),
               ],
             );

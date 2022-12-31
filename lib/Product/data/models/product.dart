@@ -1,21 +1,36 @@
 import 'package:equatable/equatable.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:restaurant_app/Category/data/models/product_category.dart';
 import 'package:restaurant_app/utils/constants.dart';
 import 'product_option.dart';
 
-// ignore: must_be_immutable
+part 'product.g.dart';
+
+@HiveType(typeId: 4)
 class Product extends Equatable {
+  @HiveField(0)
   final int? id;
+  @HiveField(1)
   final String name;
+  @HiveField(2)
   final String desc;
+  @HiveField(3)
   final num price;
+  @HiveField(4)
   final num? discount;
+  @HiveField(5)
   final String imgUrl;
+  @HiveField(6)
   final num? likes;
+  @HiveField(7)
   final List<ProductOption>? sizes;
+  @HiveField(8)
   final List<ProductOption>? options;
-  late final num finalPrice;
+  @HiveField(9)
+  late num finalPrice;
+  @HiveField(10)
   final List<ProductCategory> categories;
+  @HiveField(11)
   String? type;
 
   Product({

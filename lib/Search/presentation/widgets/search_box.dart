@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
+import 'package:restaurant_app/Category/data/models/product_category.dart';
 import 'package:restaurant_app/Product/data/models/product.dart';
 import 'package:restaurant_app/Product/presentation/screens/product_screen.dart';
 import 'package:restaurant_app/Search/bloc/search_bloc.dart';
@@ -10,8 +11,10 @@ import 'package:restaurant_app/utils/locator.dart';
 import '../screens/search_screen.dart';
 
 class SearchBox extends StatefulWidget {
+  final List<ProductCategory> categories;
   const SearchBox({
     Key? key,
+    required this.categories,
   }) : super(key: key);
 
   @override
@@ -106,6 +109,7 @@ class _SearchBoxState extends State<SearchBox> {
                           child: SearchScreen(
                             initText: searchText,
                             initResult: products,
+                            categories: widget.categories,
                           ),
                         )));
               },

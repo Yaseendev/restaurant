@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:restaurant_app/Order/data/models/order_item.dart';
-import 'package:restaurant_app/Product/bloc/product_bloc.dart';
+import 'package:restaurant_app/Product/blocs/products_bloc/products_bloc.dart';
 import 'package:restaurant_app/Product/data/models/product.dart';
 import 'package:restaurant_app/Product/data/models/product_option.dart';
 import 'package:restaurant_app/Shared/Cart/cubit/cart_cubit.dart';
@@ -24,15 +24,15 @@ class ProductsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<ProductBloc, ProductState>(
+    return BlocListener<ProductsBloc, ProductsState>(
       listener: (context, state) {
        
       },
       child: Scaffold(
         appBar: CustomAppBar.appBarWithBackBttn(context, 'Products'),
-        body: BlocBuilder<ProductBloc, ProductState>(
+        body: BlocBuilder<ProductsBloc, ProductsState>(
           builder: (context, state) {
-            if (state is ProductLoaded) {
+            if (state is ProductsLoaded) {
               return ProductsView(state.products, initIndex: initIndex,);
             }
             return ProductsLoading();

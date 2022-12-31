@@ -8,25 +8,42 @@ abstract class ProductState extends Equatable {
 }
 
 class ProductInitial extends ProductState {
+  final Product product;
+
+  ProductInitial(this.product);
+
+
   @override
-  List<Object> get props => [];
+  List<Object> get props => [product];
 }
 
 class ProductLoading extends ProductState {
+
+
   @override
   List<Object> get props => [];
 }
 
 class ProductLoaded extends ProductState {
-  final Map<ProductCategory, List<Product>> products;
-  ProductLoaded(this.products);
+  final bool isFav;
+
+  ProductLoaded(this.isFav);
+  
 
   @override
-  List<Object> get props => [products];
+  List<Object> get props => [isFav];
 }
 
-class ProductNoInternet extends ProductState {
+class ProductNotLoggedIn extends ProductState {
   
+
+  @override
+  List<Object> get props => [];
+}
+
+class ProductError extends ProductState {
+  
+
   @override
   List<Object> get props => [];
 }

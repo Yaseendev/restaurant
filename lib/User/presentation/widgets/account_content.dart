@@ -55,7 +55,7 @@ class AccountContent extends StatelessWidget {
               icon: Icons.favorite_border_outlined,
               color: Color(0xFF00A2D7),
               title: 'Favorite',
-              count: 24,
+              count: user!.favorites.length,
               subtitle: 'ITEMS',
             ),
             // Expanded( TODO: To be handled

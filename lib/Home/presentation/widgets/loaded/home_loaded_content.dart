@@ -6,7 +6,7 @@ import 'package:restaurant_app/Category/data/models/product_category.dart';
 import 'package:restaurant_app/Map/data/models/address.dart';
 import 'package:restaurant_app/Offers/presentation/screens/offers_screen.dart';
 import 'package:restaurant_app/Offers/presentation/widgets/offer_card_small.dart';
-import 'package:restaurant_app/Product/bloc/product_bloc.dart';
+import 'package:restaurant_app/Product/blocs/products_bloc/products_bloc.dart';
 import 'package:restaurant_app/Product/data/models/product.dart';
 import 'package:restaurant_app/Restaurant/presenation/screens/restaurant_screen.dart';
 import 'branches_section.dart';
@@ -39,8 +39,8 @@ class HomeLoadedWidget extends StatelessWidget {
           addresses: addresses,
           currentLocation: currentLocation,
         ),
-       const SearchBox(
-        
+       SearchBox(
+        categories: categories,
         ),
         SizedBox(height: 8),
         PhotoShow(),
@@ -65,9 +65,9 @@ class HomeLoadedWidget extends StatelessWidget {
                     child: TextButton.icon(
                       onPressed: () {
                         Navigator.of(context).push(MaterialPageRoute(
-                            builder: (ctx) => BlocProvider<ProductBloc>(
+                            builder: (ctx) => BlocProvider<ProductsBloc>(
                                   create: (context) =>
-                                      ProductBloc()..add(LoadProducts()),
+                                      ProductsBloc()..add(LoadProducts()),
                                   child: RestaurantScreen(
                                     branches: branches,
                                   ),

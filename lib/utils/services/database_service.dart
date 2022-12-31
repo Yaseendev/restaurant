@@ -1,7 +1,10 @@
 import 'dart:convert';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:restaurant_app/Category/data/models/product_category.dart';
 import 'package:restaurant_app/Map/data/models/address.dart';
+import 'package:restaurant_app/Product/data/models/product.dart';
+import 'package:restaurant_app/Product/data/models/product_option.dart';
 import 'package:restaurant_app/Shared/Location/data/models/geo_latLng.dart';
 import 'package:restaurant_app/User/data/models/name.dart';
 import 'package:restaurant_app/User/data/models/user.dart';
@@ -19,7 +22,10 @@ class DatabaseService {
       ..registerAdapter(UserAdapter())
       ..registerAdapter(NameAdapter())
       ..registerAdapter(GeoLatLngAdapter())
-      ..registerAdapter(AddressAdapter());
+      ..registerAdapter(AddressAdapter())
+      ..registerAdapter(ProductCategoryAdapter())
+      ..registerAdapter(ProductOptionAdapter())
+      ..registerAdapter(ProductAdapter());
   }
 
   Future<void> setToken(String token) async => await secureStorage.write(

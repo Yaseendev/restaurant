@@ -219,15 +219,6 @@ class _InitialMapScreenState extends State<InitialMapScreen> {
                             ),
                           ),
                           onPressed: () {
-                            // Navigator.of(context).pushReplacement(
-                            //     MaterialPageRoute(
-                            //         builder: (_) => PrimaryScreen()));
-                            //TODO: Implement choose location
-                            //1. Save Location
-                            //2. Fetch branch data
-                            //3. Go to Home Screen
-                            //4. Fetch Home screen data
-                            //5.
 
                             if (!(state is MapLoading))
                               context.read<MapBloc>().add(ChooseLocation(
