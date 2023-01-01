@@ -189,7 +189,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                           ),
                         ],
                       ),
-                      SizedBox(height: 12),
+                      const SizedBox(height: 12),
                       SizedBox(
                         width: MediaQuery.of(context).size.width,
                         child: Padding(

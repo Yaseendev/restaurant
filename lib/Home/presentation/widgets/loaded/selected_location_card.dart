@@ -33,7 +33,7 @@ class SelectedLocationCard extends StatelessWidget {
             return BlocProvider<LocationBloc>(
               create: (context) => LocationBloc()..add(DetectCurrentLocation()),
               child: BottomSheet(
-                shape: RoundedRectangleBorder(
+                shape: const RoundedRectangleBorder(
                     borderRadius: BorderRadius.vertical(
                   top: Radius.circular(20),
                 )),
@@ -63,10 +63,9 @@ class SelectedLocationCard extends StatelessWidget {
                               title: Text(
                                 address.neighbourhood.isNotEmpty
                                     ? address.neighbourhood
-                                    : address.suburb,
-                                // address.city.isEmpty
-                                //     ? address.state
-                                //     : address.city,
+                                    : currentLocation.suburb.isNotEmpty
+                                        ? currentLocation.suburb
+                                        : currentLocation.road,
                                 style: TextStyle(
                                     fontSize: 18, fontWeight: FontWeight.w500),
                               ),
@@ -95,7 +94,7 @@ class SelectedLocationCard extends StatelessWidget {
                           size: 28,
                           color: Theme.of(context).primaryColor,
                         ),
-                        title: Text(
+                        title:const Text(
                           'Deliver to different location',
                           style: TextStyle(
                               fontSize: 18, fontWeight: FontWeight.w500),
@@ -157,7 +156,7 @@ class SelectedLocationCard extends StatelessWidget {
                           children: [
                             TextSpan(
                               text:
-                                  '${currentLocation.name.isEmpty ? currentLocation.neighbourhood.isNotEmpty ? currentLocation.neighbourhood : currentLocation.suburb : currentLocation.name}, ${currentLocation.city.isNotEmpty ? currentLocation.city : currentLocation.state}',
+                                  '${currentLocation.name.isEmpty ? currentLocation.neighbourhood.isNotEmpty ? currentLocation.neighbourhood : currentLocation.suburb.isNotEmpty ? currentLocation.suburb : currentLocation.road : currentLocation.name}, ${currentLocation.city.isNotEmpty ? currentLocation.city : currentLocation.state}',
                               style: TextStyle(
                                 color: Colors.white,
                                 fontWeight: FontWeight.bold,
