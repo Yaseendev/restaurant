@@ -35,9 +35,8 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         try {
           final Address? currentLocation =
               locationRepository.getCurrentLocation();
-          //TODO: if(currentLocation == null) emit No currentLocation
-          final Branch? currentBranch = await branchRepository
-              .fetchBranchData(currentLocation!); //TODO: Handle null case
+          final Branch? currentBranch =
+              await branchRepository.fetchBranchData(currentLocation!);
           final List<Branch> branches =
               await branchRepository.fetchBranchAddresses() ?? [];
           locator.get<Branch>().update(currentBranch!);
@@ -49,17 +48,17 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
           //categories?.sort((a, b) => a.id.compareTo(b.id));
           emit(HomeLoaded(
             addressLocation: currentLocation,
-            categories: categories ?? [], //TODO: Handle null case
+            categories: categories ?? [],
             branches: branches,
             addresses: await locationRepository.getSavedLocations(),
           ));
         } catch (e) {
-          //TODO: emit error
+          emit(HomeError());
           log('Error $e');
         }
       } else {
         log('No internet');
-        //TODO: emit no internet
+        emit(HomeNoConnection());
       }
     });
 

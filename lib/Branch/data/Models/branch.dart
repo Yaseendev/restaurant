@@ -24,7 +24,6 @@ class Branch {
         location: GeoLatLng.fromJson(json));
   }
 
-  // TODO: Implement update method
   void update(Branch newBranch) {
     this.name = newBranch.name;
     this.id = newBranch.id;

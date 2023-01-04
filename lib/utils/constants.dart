@@ -38,6 +38,7 @@ class Images {
   static const String CATEGORY_PLACEHOLDER =
       '$ROOTURI' 'placeholder_category.jpg';
   static const String SIGNEDOUT = ROOTURI + 'logging-out.png';
+  static const String NOCONN = ROOTURI + 'no-internet.png';
 }
 
 const String locationKey = 'pk.0b821f869258d4129c196400ab4927f0';
