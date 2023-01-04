@@ -111,7 +111,8 @@ class _InitialMapScreenState extends State<InitialMapScreen> {
         extendBody: true,
         extendBodyBehindAppBar: true,
         appBar: widget.fromHome
-            ? CustomAppBar.appBarWithBackBttn(context, 'Different Delivery Location')
+            ? CustomAppBar.appBarWithBackBttn(
+                context, 'Different Delivery Location')
             : null,
         body: SafeArea(
           child: Stack(
@@ -219,7 +220,6 @@ class _InitialMapScreenState extends State<InitialMapScreen> {
                             ),
                           ),
                           onPressed: () {
-
                             if (!(state is MapLoading))
                               context.read<MapBloc>().add(ChooseLocation(
                                   GeoLatLng.fromLatLng(location)!));
@@ -228,7 +228,10 @@ class _InitialMapScreenState extends State<InitialMapScreen> {
                               ? CircularProgressIndicator(
                                   color: Colors.white,
                                 )
-                              : Text('Choose Delivery Location'),
+                              : Text(
+                                  'Choose Location',
+                                  textAlign: TextAlign.center,
+                                ),
                         );
                       },
                     ),

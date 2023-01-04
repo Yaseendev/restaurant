@@ -21,8 +21,8 @@ class ProductTile extends StatelessWidget {
     return GestureDetector(
       onTap: () => Navigator.of(context)
           .push(MaterialPageRoute(
-              builder: (_) => BlocProvider<ProductBloc>(
-                    create: (context) =>
+              builder: (ctx) => BlocProvider<ProductBloc>(
+                    create: (ctx) =>
                         ProductBloc(product)..add(LoadProduct()),
                     child: ProductScreen(product),
                   )))

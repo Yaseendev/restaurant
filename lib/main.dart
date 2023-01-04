@@ -93,3 +93,4 @@ class MyApp extends StatelessWidget {
 //7. Add likes to products
 //8. 7war el QR
 //9. Payment gateway
+//10. Handle Social login/register case correctly

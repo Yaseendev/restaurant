@@ -66,3 +66,14 @@ class UpdateUserEvent extends AccountEvent {
   @override
   List<Object?> get props => [name, phoneNum, gender];
 }
+
+class RemoveProdFav extends AccountEvent {
+  final Product product;
+
+  RemoveProdFav({
+    required this.product,
+  });
+
+  @override
+  List<Object?> get props => [product];
+}

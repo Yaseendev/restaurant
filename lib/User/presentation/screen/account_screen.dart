@@ -54,14 +54,7 @@ class _AccountScreenState extends State<AccountScreen> {
             duration: Duration(seconds: 2),
           ));
         }
-        if (state is AccountLoggedIn) {
-          //  context.read<AccountBloc>().add(LoadUserProfileEvent());
-          context.read<CartCubit>().getCart();
-          Navigator.of(context).popUntil((route) {
-            print(route.settings.name);
-            return route.settings.name == '/primary';
-          });
-        }
+        
         if (state is AccountLoggedOut) {
           context
             ..read<CartCubit>().clear()
@@ -76,6 +69,7 @@ class _AccountScreenState extends State<AccountScreen> {
             print('Account Current: $current');
             return current is AccountInitial ||
                 current is AccountLoggedIn ||
+                current is AccountUpdated ||
                 current is AccountLoggedOut;
           },
           builder: (context, state) {
@@ -83,14 +77,21 @@ class _AccountScreenState extends State<AccountScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 AccountHeader(
-                  photoUrl:
-                      state is AccountLoggedIn ? state.user!.photoUrl : null,
+                  photoUrl: state is AccountLoggedIn
+                      ? state.user!.photoUrl
+                      : state is AccountUpdated
+                          ? state.user.photoUrl
+                          : null,
                 ),
                 state is AccountLoggedIn
                     ? AccountContent(
                         user: state.user,
                       )
-                    : LoginContent(),
+                    : state is AccountUpdated
+                        ? AccountContent(
+                            user: state.user,
+                          )
+                        : LoginContent(),
                 SizedBox(height: 25),
                 FollowUsFooter(),
                 SizedBox(height: kToolbarHeight),

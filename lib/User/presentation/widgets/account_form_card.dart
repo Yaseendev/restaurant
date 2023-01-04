@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:restaurant_app/Product/data/models/product.dart';
+import '../screen/favorite_screen.dart';
 
 class AccountFormCard extends StatelessWidget {
   final IconData icon;
   final String title;
-  final num count;
+  final List<Product> favorites;
   final String subtitle;
   final Color color;
   const AccountFormCard({
     Key? key,
-    required this.count,
+    required this.favorites,
     required this.icon,
     required this.subtitle,
     required this.title,
@@ -19,7 +21,9 @@ class AccountFormCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        //TODO: Open fav screen
+        Navigator.of(context).push(MaterialPageRoute(
+            builder: (_) => FavoriteScreen(
+                )));
       },
       child: Card(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
@@ -48,7 +52,7 @@ class AccountFormCard extends StatelessWidget {
               const SizedBox(height: 12),
               Text.rich(
                 TextSpan(
-                  text: '$count ',
+                  text: '${favorites.length} ',
                   style: TextStyle(
                     fontSize: 36,
                     fontWeight: FontWeight.bold,

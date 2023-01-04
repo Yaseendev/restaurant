@@ -1,14 +1,11 @@
 import 'package:blurrycontainer/blurrycontainer.dart';
-import 'package:flavor/flavor_assets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:restaurant_app/Branch/data/Models/branch.dart';
 import 'package:restaurant_app/Map/blocs/map_bloc/map_bloc.dart';
 import '../widgets/branches_list_view.dart';
 import '../widgets/branches_vertical_list_view.dart';
-import '../widgets/place_card.dart';
 
 class MapScreen extends StatefulWidget {
   const MapScreen({
@@ -93,7 +90,7 @@ class _MapScreenState extends State<MapScreen> {
                       child: BlurryContainer(
                         color: Colors.white.withOpacity(0.0),
                         //filter: ui.ImageFilter.blur(sigmaX: 4.0, sigmaY: 4.0),
-                        height: 155.sp,
+                        height: 156.sp,
                         width: MediaQuery.of(context).size.width,
                         blur: 5,
                         elevation: 0,

@@ -15,7 +15,7 @@ class HomeProductCard extends StatelessWidget {
     return GestureDetector(
       child: SizedBox(
         width: 142.w,
-        height: 63.h,
+        height: 208.w,
         child: Card(
           elevation: 2.0,
           shape:
@@ -47,7 +47,7 @@ class HomeProductCard extends StatelessWidget {
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                 ),
-                SizedBox(height: 8),
+                SizedBox(height: 5),
                 Text.rich(
                   TextSpan(
                     text: product.price.toString(),

@@ -31,6 +31,15 @@ class AccountLoggedIn extends AccountState {
   List<Object?> get props => [this.user];
 }
 
+class AccountUpdated extends AccountState {
+  final User user;
+
+  AccountUpdated(this.user);
+
+  @override
+  List<Object?> get props => [this.user];
+}
+
 class AccountLoggedOut extends AccountState {
 
   @override

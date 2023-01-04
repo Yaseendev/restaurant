@@ -1,12 +1,16 @@
+import 'dart:developer';
+
 import 'package:bloc/bloc.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dio/dio.dart';
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
+import 'package:restaurant_app/Product/data/models/product.dart';
 import 'package:restaurant_app/User/data/models/name.dart';
 import 'package:restaurant_app/User/data/models/user.dart';
 import 'package:restaurant_app/User/data/repositories/account_repositories.dart';
 import 'package:restaurant_app/utils/locator.dart';
+
 part 'account_event.dart';
 part 'account_state.dart';
 
@@ -99,7 +103,19 @@ class AccountBloc extends Bloc<AccountEvent, AccountState> {
           forceNoInternetState = !forceNoInternetState;
           emit(AccountNoInternet(forceNoInternetState));
         }
+      } else if (event is RemoveProdFav) {
+        final tempuser = state.props[0] as User;
+        await accoountRepository
+            .removeFromFavorite(tempuser, event.product)
+            .then((value) => emit(state is AccountLoggedIn ? AccountUpdated(tempuser) : AccountLoggedIn(tempuser)))
+            .onError((error, stackTrace) => emit(AccountError()));
       }
     });
+  }
+
+  @override
+  void onChange(Change<AccountState> change) {
+    log('AccountBloc $change');
+    super.onChange(change);
   }
 }

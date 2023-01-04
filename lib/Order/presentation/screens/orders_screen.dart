@@ -12,7 +12,7 @@ class OrdersScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<AccountBloc, AccountState>(
       builder: (context, state) {
-        if (state is AccountLoggedIn)
+        if (state is AccountLoggedIn || state is AccountUpdated)
           return LayoutBuilder(builder: (context, constrains) {
             return constrains.maxWidth < 500
                 ? ListView(
