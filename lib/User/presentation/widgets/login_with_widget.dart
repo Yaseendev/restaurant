@@ -55,18 +55,12 @@ class LoginWithWidget extends StatelessWidget {
         SizedBox(
           width: double.maxFinite,
           child: ElevatedButton.icon(
-            onPressed: () {
-              GoogleSignIn(
-                      scopes: [
-                        'email',
-                        'https://www.googleapis.com/auth/contacts.readonly',
-                      ],
-                     )
-                  .signIn()
-                  .then((value) => print(value));
+            onPressed: () async {
+              context.read<AccountBloc>().add(LoginWithGoogleEvent());
             },
-            icon: Icon(FontAwesomeIcons.google,
-            color: Colors.white,
+            icon: Icon(
+              FontAwesomeIcons.google,
+              color: Colors.white,
             ),
             label: Text(
               'Google',
@@ -79,7 +73,7 @@ class LoginWithWidget extends StatelessWidget {
               ),
             ),
             style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.all( Color(0xFFE6242E)),
+              backgroundColor: MaterialStateProperty.all(Color(0xFFE6242E)),
               padding: MaterialStateProperty.all(const EdgeInsets.all(16)),
               shape: MaterialStateProperty.all(RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(8),
@@ -94,8 +88,9 @@ class LoginWithWidget extends StatelessWidget {
             onPressed: () {
               context.read<AccountBloc>().add(LoginWithFacebookEvent());
             },
-            icon: Icon(FontAwesomeIcons.facebookF,
-            color: Colors.white,
+            icon: Icon(
+              FontAwesomeIcons.facebookF,
+              color: Colors.white,
             ),
             label: Text(
               'Facebook',
@@ -124,8 +119,9 @@ class LoginWithWidget extends StatelessWidget {
               // await FacebookAuth.i.logOut();
               onEmailPress();
             },
-            icon: Icon(Icons.email,
-            color: Colors.white,
+            icon: Icon(
+              Icons.email,
+              color: Colors.white,
             ),
             label: Text(
               'E-mail',

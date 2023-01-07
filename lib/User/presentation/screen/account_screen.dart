@@ -24,7 +24,7 @@ class _AccountScreenState extends State<AccountScreen> {
       listener: (context, state) {
         if (state is AccountNoInternet) {
           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-              duration: Duration(seconds: 1), content: Text('No Internet')));
+              duration: Duration(seconds: 1), content: Text('No Internet Connextion')));
         }
         if (state is AccountLoading) {
           showDialog(

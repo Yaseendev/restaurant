@@ -74,17 +74,17 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
             addressLocation: event.currentAddress,
             categories:
                 await categoryRepository.getCategories(currentBranch!.id!) ??
-                    [], //TODO: Handle null case
+                    [],
             branches: event.branches,
             addresses: await locationRepository.getSavedLocations(),
           ));
         } catch (e) {
-          //TODO: emit error
+          emit(HomeError());
           log('Error $e');
         }
       } else {
         log('No internet');
-        //TODO: emit no internet
+        emit(HomeNoConnection());
       }
     });
   }

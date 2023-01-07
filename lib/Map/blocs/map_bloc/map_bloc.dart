@@ -24,15 +24,7 @@ class MapBloc extends Bloc<MapEvent, MapState> {
     final Connectivity connectivity = locator.get<Connectivity>();
     final MapRepository mapRepo = locator.get<MapRepository>();
     final BranchRepository branchRepo = locator.get<BranchRepository>();
-    //on<MapEvent>((event, emit) {
-    // TODO: implement event handler
-    //1. Render map in zoom out
-    //2. check location permision
-    //3. request location permission if not granted
-    //4. Go to default loction if denied (e.g. downtown cairo)
-    //   or Go to current location if allowed
-    //
-    //   });
+    
     on<LoadCurrentLocation>(((event, emit) async {
       if (await locationRepo.isServiceEnable())
         emit(MapCurrentLocation(await locationRepo.getCurrentPosition()));

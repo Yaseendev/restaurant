@@ -10,6 +10,13 @@ class LoginWithFacebookEvent extends AccountEvent {
   List<Object> get props => [];
 }
 
+class LoginWithGoogleEvent extends AccountEvent {
+  LoginWithGoogleEvent();
+
+  @override
+  List<Object> get props => [];
+}
+
 class LoadUserProfileEvent extends AccountEvent {
   @override
   List<Object> get props => [];

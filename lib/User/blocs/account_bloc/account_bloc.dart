@@ -37,6 +37,21 @@ class AccountBloc extends Bloc<AccountEvent, AccountState> {
           forceNoInternetState = !forceNoInternetState;
           emit(AccountNoInternet(forceNoInternetState));
         }
+      } else if (event is LoginWithGoogleEvent) {
+        if (connStatus != ConnectivityResult.none) {
+          emit(AccountLoading());
+          await accoountRepository.loginWithGoogle().then((result) {
+            if (result != null)
+              emit(AccountLoggedIn(result));
+            else
+              emit(AccountError());
+          }).onError((error, stackTrace) {
+            emit(AccountError());
+          });
+        } else {
+          forceNoInternetState = !forceNoInternetState;
+          emit(AccountNoInternet(forceNoInternetState));
+        }
       } else if (event is RegisterUserEvent) {
         if (connStatus != ConnectivityResult.none) {
           emit(AccountLoading());

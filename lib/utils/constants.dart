@@ -13,6 +13,7 @@ class Urls {
   static const String USER_PATH = '/user';
   static const String CART_PATH = '/cart';
   static const String REGISTER_USER = AUTH_PATH + '/register';
+  static const String REGISTER_SOCIAL = AUTH_PATH + '/socialLogin';
   static const String LOGIN_USER = AUTH_PATH + '/login';
   static const String TOKEN_USER = '$USER_PATH/token';
   static const String UPDATE_USER = '$USER_PATH/update';
@@ -24,6 +25,7 @@ class Urls {
   static const String GET_CART = '$CART_PATH' '/list';
   static const String ADD_TO_CART = '$CART_PATH' '/add';
   static const String UPDATE_CART = '$CART_PATH' '/update';
+  static const String ADDRESSES = '$AUTH_PATH' '/addresses';
 
   //LocationIQ End-points
   static const String LOCATION_DOMAIN = 'https://eu1.locationiq.com';

@@ -39,12 +39,12 @@ class HomeLoadedWidget extends StatelessWidget {
           addresses: addresses,
           currentLocation: currentLocation,
         ),
-       SearchBox(
-        categories: categories,
+        SearchBox(
+          categories: categories,
         ),
-        SizedBox(height: 8),
-        PhotoShow(),
-        SizedBox(height: 12),
+        const SizedBox(height: 8),
+        const PhotoShow(),
+        const SizedBox(height: 12),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 14),
           child: Column(
@@ -53,9 +53,9 @@ class HomeLoadedWidget extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
+                  const Text(
                     'Hey, what are you looking for?',
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
                     ),
@@ -74,7 +74,7 @@ class HomeLoadedWidget extends StatelessWidget {
                                 )));
                       },
                       label: const Text('See All'),
-                      icon: Icon(
+                      icon: const Icon(
                         Icons.arrow_back,
                         size: 20,
                       ),
@@ -88,13 +88,13 @@ class HomeLoadedWidget extends StatelessWidget {
               CategoriesListView(
                 categories: categories,
               ),
-              SizedBox(height: 12),
+              const SizedBox(height: 12),
 
               ///Popular Section
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
+                  const Text(
                     'Popular Now',
                     style: TextStyle(
                       fontSize: 18,
@@ -107,11 +107,11 @@ class HomeLoadedWidget extends StatelessWidget {
                       onPressed: () {
                         Navigator.of(context).push(MaterialPageRoute(
                             builder: (ctx) => RestaurantScreen(
-                              branches: branches,
-                            )));
+                                  branches: branches,
+                                )));
                       },
                       label: const Text('See All'),
-                      icon: Icon(
+                      icon: const Icon(
                         Icons.arrow_back,
                         size: 20,
                       ),
@@ -173,20 +173,20 @@ class HomeLoadedWidget extends StatelessWidget {
               ),
 
               ///Branches Section
-              SizedBox(height: 12),
-              Text(
+              const SizedBox(height: 12),
+              const Text(
                 'Our Branches',
                 style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              SizedBox(height: 6),
+              const SizedBox(height: 6),
               BranchesSection(
                 branches: branches,
                 onSelect: onBranchSelect,
               ),
-              
+
               /* DefaultTabController(
                 length: 2,
                 child: Column(
@@ -260,11 +260,11 @@ class HomeLoadedWidget extends StatelessWidget {
                   ],
                 ),
               ),*/
-              SizedBox(height: 12),
+              const SizedBox(height: 12),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
+                  const Text(
                     'Recent Offers',
                     style: TextStyle(
                       fontSize: 22,
@@ -278,8 +278,8 @@ class HomeLoadedWidget extends StatelessWidget {
                         Navigator.of(context).push(MaterialPageRoute(
                             builder: (ctx) => OffersScreen()));
                       },
-                      label: Text('Show All'),
-                      icon: Icon(
+                      label: const Text('Show All'),
+                      icon: const Icon(
                         Icons.arrow_back,
                         size: 20,
                       ),
@@ -294,9 +294,9 @@ class HomeLoadedWidget extends StatelessWidget {
                 scrollDirection: Axis.horizontal,
                 child: Row(
                   children: [
-                    OfferCardSmall(),
+                    const OfferCardSmall(),
                     //SizedBox(width: 10),
-                    OfferCardSmall(),
+                    const OfferCardSmall(),
                   ],
                 ),
               ),

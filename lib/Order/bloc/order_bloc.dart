@@ -20,7 +20,8 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
     bool forceNoInternetState = false;
     bool forceNotLoggedInState = false;
     on<CheckoutEvent>((event, emit) async {
-      if (await connectivity.checkConnectivity() != ConnectivityResult.none) {
+      final connStat = await connectivity.checkConnectivity();
+      if (connStat != ConnectivityResult.none) {
         final user = await accoountRepository.fetchUser();
         if (user != null) {
           final Address? currentLocation =
@@ -28,9 +29,17 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
           if (currentLocation == null) {
             emit(OrderError());
           } else {
-            emit(OrderReady(user: user,
-            currentAddress: currentLocation,
-            ));
+            if (state is OrderReady) {
+              emit(OrderReady(
+                user: user,
+                currentAddress: currentLocation,
+                forceFlag: !((state as OrderReady).forceFlag ?? true),
+              ));
+            } else
+              emit(OrderReady(
+                user: user,
+                currentAddress: currentLocation,
+              ));
           }
         } else {
           forceNotLoggedInState = !forceNotLoggedInState;

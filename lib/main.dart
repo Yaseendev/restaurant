@@ -24,7 +24,7 @@ void main(List<String> arguments) async {
   HttpOverrides.global = MyHttpOverrides();
   //Stripe.publishableKey = 'pk_test_51Ls01HLynaEsGmGgB9VxL3iMEtwxRMMizxseDFzlCg3dnZvpaHids2hdnDitGN1ppzUSjmCnsH25BbovwfiHkT5h00Or9YzRrG';
   //await Stripe.instance.applySettings();
-  runApp(MyApp(
+  runApp(const MyApp(
     title: appName, //arguments.isEmpty ? 'Restaurant App' : arguments[0],
   ));
 }

@@ -27,6 +27,23 @@ class ApiService {
     return response.data;
   }
 
+  Future<Map<String, dynamic>?> registerWithGoogle(String token) async {
+    Response response = await _dio.post(
+      Urls.REGISTER_SOCIAL,
+      data: {
+        'type' : 'google',
+        'token': token,
+      },
+      options: Options(
+        contentType: 'application/json',
+        headers: {
+          'Accept': 'application/json',
+        },
+      ),
+    );
+    return response.data;
+  }
+
   Future<Map<String, dynamic>?> loginUser({
     required String email,
     required String password,
@@ -235,6 +252,20 @@ class ApiService {
           'to' : endPrice,
           'category' : category,
         },  
+    );
+    return response.data;
+  }
+
+    Future<Map<String, dynamic>?> listAddresses(
+      String token, ) async {
+    Response response = await _dio.get(
+      Urls.ADDRESSES,
+      options: Options(
+        contentType: 'application/json',
+        headers: {
+          'Authorization': 'Bearer $token',
+        },
+      ),
     );
     return response.data;
   }

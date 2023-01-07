@@ -30,7 +30,7 @@ class HomeScreen extends StatelessWidget {
             },
             child: ListView(
               children: [
-                if (state is HomeLoading) HomeLoadingWidget(),
+                if (state is HomeLoading) const HomeLoadingWidget(),
                 if (state is HomeLoaded)
                   HomeLoadedWidget(
                     currentLocation: state.addressLocation!,
@@ -40,17 +40,16 @@ class HomeScreen extends StatelessWidget {
                     addresses: state.addresses,
                   ),
                 if (state is HomeError)
-                  Center(
-                    child: Text(
+                  const Center(
+                    child: const Text(
                       'Something went wrong',
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 20,
                       ),
                     ),
                   ),
-                if (state is HomeNoConnection) 
-                    NoConnectionWidget(),
-                SizedBox(height: 30),
+                if (state is HomeNoConnection) const NoConnectionWidget(),
+                const SizedBox(height: 30),
               ],
             ),
           ),

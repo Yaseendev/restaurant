@@ -39,12 +39,14 @@ class OrderError extends OrderState {
 class OrderReady extends OrderState {
   final User user;
   final Address currentAddress;
+  final bool? forceFlag;
 
   OrderReady({
     required this.currentAddress,
     required this.user,
+    this.forceFlag,
   });
 
   @override
-  List<Object?> get props => [user, currentAddress];
+  List<Object?> get props => [user, currentAddress, forceFlag];
 }

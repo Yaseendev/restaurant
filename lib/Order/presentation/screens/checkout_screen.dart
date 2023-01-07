@@ -196,14 +196,17 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                           padding: const EdgeInsets.all(8.0),
                           child: ElevatedButton(
                             onPressed: () {
+                              //TODO: Implement with backend
+                              Navigator.of(context).popUntil(
+                                  (route) => route.settings.name == '/primary');
                               CoolAlert.show(
                                 context: context,
                                 type: CoolAlertType.success,
-                                text: "Your transaction was successful!",
+                                title: 'Order Placed',
+                                text: 'Your order is on the way',
+                                animType: CoolAlertAnimType.slideInUp,
+                                backgroundColor: Colors.transparent,
                               );
-                              //FIXME
-                              Navigator.of(context).popUntil(
-                                  (route) => route.settings.name == '/primary');
                             },
                             style: ElevatedButton.styleFrom(
                               alignment: Alignment.center,
@@ -212,7 +215,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                                 borderRadius: BorderRadius.circular(16),
                               ),
                             ),
-                            child: Text(
+                            child: const Text(
                               'Place Order',
                               style: TextStyle(
                                 fontSize: 18,

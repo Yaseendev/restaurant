@@ -66,14 +66,14 @@ class HomeLoadingWidget extends StatelessWidget {
               ),
             ),
             Row(
-              children: [ //TODO: to be added later 
-                // RestaurantCard(
-                 
-                // ),
-                // RestaurantCard(
-                //   address: '',
-                // ),
-              ],
+              children: List.filled(
+                3,
+                SizedBox(
+                  width: 150,
+                  height: 190,
+                  child: const Card(),
+                ),
+              ),
             ),
             SizedBox(height: 8),
             Container(

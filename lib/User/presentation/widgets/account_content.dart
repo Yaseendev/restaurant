@@ -1,3 +1,4 @@
+import 'package:cool_alert/cool_alert.dart';
 import 'package:flavor/flavor_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -104,11 +105,11 @@ class AccountContent extends StatelessWidget {
               width: MediaQuery.of(context).size.width,
               child: TextButton.icon(
                 onPressed: () {},
-                icon: Icon(
+                icon: const Icon(
                   Icons.share_outlined,
                   color: Colors.black,
                 ),
-                label: Text(
+                label: const Text(
                   'Share App',
                   style: TextStyle(
                     fontSize: 18,
@@ -118,7 +119,7 @@ class AccountContent extends StatelessWidget {
                 style: ButtonStyle(alignment: Alignment.topLeft),
               ),
             ),
-            Divider(
+            const Divider(
               color: Colors.grey,
             ),
             SizedBox(
@@ -139,7 +140,7 @@ class AccountContent extends StatelessWidget {
                 style: ButtonStyle(alignment: Alignment.topLeft),
               ),
             ),
-            Divider(),
+            const Divider(),
             SizedBox(
               width: MediaQuery.of(context).size.width,
               child: TextButton.icon(
@@ -149,14 +150,14 @@ class AccountContent extends StatelessWidget {
                       builder: (ctx) => AlertDialog(
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(20)),
-                            content: Text('Are you sure you want to sign out?'),
+                            content:const Text('Are you sure you want to sign out?'),
                             actions: [
                               TextButton(
-                                child: Text('Cancel'),
+                                child:const Text('Cancel'),
                                 onPressed: () => Navigator.of(ctx).pop(false),
                               ),
                               TextButton(
-                                child: Text('Log out'),
+                                child:const Text('Log out'),
                                 onPressed: () => Navigator.of(ctx).pop(true),
                               ),
                             ],

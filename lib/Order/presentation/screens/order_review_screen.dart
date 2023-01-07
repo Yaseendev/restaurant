@@ -106,9 +106,21 @@ class _OrderReviewScreenState extends State<OrderReviewScreen> {
                             iconColor: Colors.white,
                             textColor: Colors.white,
                           )));
-                    }
-                    //TODO: diplay a no internet dialog
-                    else if (orderState is OrderReady) {
+                    } else if (orderState is OrderNoInerntet) {
+                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                        duration: Duration(seconds: 1),
+                        content: ListTile(
+                          contentPadding: EdgeInsets.zero,
+                          horizontalTitleGap: 0,
+                          leading: Icon(Icons.error),
+                          title:const Text('No Internet Connextion'),
+                          textColor: Colors.white,
+                          iconColor: Colors.white,
+                        ),
+                        backgroundColor: Colors.red,
+                        padding: EdgeInsets.symmetric(horizontal: 14),
+                      ));
+                    } else if (orderState is OrderReady) {
                       Navigator.of(context).push(
                           MaterialPageRoute(builder: (_) => CheckoutScreen()));
                     }
@@ -118,11 +130,12 @@ class _OrderReviewScreenState extends State<OrderReviewScreen> {
                     priceTxt:
                         '${state.fold(0, (num previousValue, element) => previousValue + element.totalPrice)}',
                     onPress: () {
-                      if (context.read<OrderBloc>().state is OrderReady) {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (_) => CheckoutScreen()));
-                      } else
-                        context.read<OrderBloc>().add(CheckoutEvent());
+                      // context.read<OrderBloc>().add(CheckoutEvent());
+                      // if (context.read<OrderBloc>().state is OrderReady) {
+                      //   Navigator.of(context).push(MaterialPageRoute(
+                      //       builder: (_) => CheckoutScreen()));
+                      // } else
+                      context.read<OrderBloc>().add(CheckoutEvent());
                     },
                   ),
                 ),

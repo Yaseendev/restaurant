@@ -1,4 +1,5 @@
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:restaurant_app/Product/data/models/product.dart';
 import 'package:restaurant_app/User/data/models/name.dart';
 import 'package:restaurant_app/utils/services/api_service.dart';
@@ -33,6 +34,25 @@ class AccoountRepository {
       return User.fromJson(requestData);
     }
     return null;
+  }
+
+  Future<User?> loginWithGoogle() async {
+    final GoogleSignInAccount? googleSignInAccount =
+        await GoogleSignIn(
+      scopes: [
+        'email',
+        'https://www.googleapis.com/auth/contacts.readonly',
+      ],
+    ).signIn();
+    final ggAuth = await googleSignInAccount!.authentication;
+    final result =
+        await _ApiService.registerWithGoogle(ggAuth.accessToken ?? '');
+    final user = User.fromJson(result?['user']);
+
+    await _databaseService.setUser(user);
+    await _databaseService.setToken(result?['authorisation']['token']);
+
+    return user;
   }
 
   Future<User?> registerUser({
