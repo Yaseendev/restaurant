@@ -137,7 +137,7 @@ class _FilterSheetState extends State<FilterSheet> {
                     ),
                     const SizedBox(height: 8),
                     const Divider(),
-                    Text(
+                    const Text(
                       'Categories',
                       style:
                           TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
