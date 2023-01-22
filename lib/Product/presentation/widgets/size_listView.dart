@@ -22,7 +22,7 @@ class _SizeListViewState extends State<SizeListView> {
 
   @override
   void initState() {
-    selectedSize = widget.sizes.last; //TODO: change to first
+    selectedSize = widget.sizes.first; //TODO: change to first
     super.initState();
   }
 

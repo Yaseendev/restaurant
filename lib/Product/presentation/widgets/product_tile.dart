@@ -89,7 +89,7 @@ class ProductTile extends StatelessWidget {
                         color: AppColors.PRIMARY_COLOR,
                       ),
                     )
-                  : product.discount != null
+                  : product.discount != null //TODO: Implement discount
                       ? Row(
                           children: [
                             Text.rich(TextSpan(

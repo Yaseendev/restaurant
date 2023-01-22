@@ -4,7 +4,7 @@ import 'package:restaurant_app/Product/data/models/product.dart';
 
 class CartButton extends StatelessWidget {
   final VoidCallback onPress;
-  final List<OrderItem> orders; //FIXME
+  final List<OrderItem> orders;
   const CartButton({
     Key? key,
     required this.onPress,

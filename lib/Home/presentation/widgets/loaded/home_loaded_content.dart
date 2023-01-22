@@ -105,10 +105,10 @@ class HomeLoadedWidget extends StatelessWidget {
                     textDirection: TextDirection.rtl,
                     child: TextButton.icon(
                       onPressed: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (ctx) => RestaurantScreen(
-                                  branches: branches,
-                                )));
+                        // Navigator.of(context).push(MaterialPageRoute(
+                        //     builder: (ctx) => RestaurantScreen(
+                        //           branches: branches,
+                        //         )));
                       },
                       label: const Text('See All'),
                       icon: const Icon(

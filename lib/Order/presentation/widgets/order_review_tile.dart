@@ -3,7 +3,6 @@ import 'package:flavor/flavor_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:restaurant_app/Order/data/models/order_item.dart';
-import 'package:restaurant_app/Product/data/models/product.dart';
 import 'package:restaurant_app/Shared/Cart/cubit/cart_cubit.dart';
 import 'package:restaurant_app/utils/constants.dart';
 
@@ -34,7 +33,10 @@ class _OrderReviewCardState extends State<OrderReviewCard> {
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
           SizedBox(height: 8),
-          //Text('Large, Extra Onion, Add more meat'), //TODO: Implement
+          Text(
+            widget.order.size != null ? widget.order.size!.name : '',
+            //'Large, Extra Onion, Add more meat'
+          ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -82,7 +84,7 @@ class _OrderReviewCardState extends State<OrderReviewCard> {
                     disabledColor: Color(0xFFF5A7AB),
                   ),
                   Text(
-                    '${widget.order.quantity}', //TODO: Implement
+                    '${widget.order.quantity}',
                     style: TextStyle(
                       fontSize: 22,
                       fontWeight: FontWeight.bold,
@@ -93,7 +95,6 @@ class _OrderReviewCardState extends State<OrderReviewCard> {
                   IconButton(
                     onPressed: () {
                       setState(() {
-                        //TODO: Implement
                         //++quantity;
                         context.read<CartCubit>().increaseItemQnt(widget.order);
                       });
@@ -117,21 +118,21 @@ class _OrderReviewCardState extends State<OrderReviewCard> {
         child: CachedNetworkImage(
           imageUrl: widget.order.product.imgUrl,
           height: 90,
-                width: 90,
+          width: 90,
           fit: BoxFit.cover,
           errorWidget: (context, error, stackTrace) {
             return Image.asset(
               Images.CATEGORY_PLACEHOLDER,
               height: 90,
-                width: 90,
+              width: 90,
               fit: BoxFit.cover,
             );
           },
           placeholder: (context, _) {
             return Image.asset(
               Images.CATEGORY_PLACEHOLDER,
-            height: 90,
-                width: 90,
+              height: 90,
+              width: 90,
               fit: BoxFit.cover,
             );
           },

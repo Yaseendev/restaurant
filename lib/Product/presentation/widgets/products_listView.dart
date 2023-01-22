@@ -7,7 +7,7 @@ import 'package:restaurant_app/utils/constants.dart';
 import 'product_tile.dart';
 
 class ProductsListView extends StatefulWidget {
-  final String title; //FIXME: Change
+  final String title;
   final List<Product> products;
   final Function(List<num> orders) onProducrOrder;
   const ProductsListView({

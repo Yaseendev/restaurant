@@ -24,7 +24,6 @@ class InitrouteBloc extends Bloc<InitrouteEvent, InitrouteState> {
       final connStatus = await connectivity.checkConnectivity();
       if (event is UserCheckEvent) {
         if (connStatus != ConnectivityResult.none) {
-          //FIXME
           try {
             final isToken = await accoountRepository.validateUser(); 
             if(isToken)

@@ -30,7 +30,7 @@ class _ProductScreenState extends State<ProductScreen> {
   @override
   void initState() {
     if (widget.product.sizes != null) if (widget.product.sizes!.isNotEmpty)
-      size = widget.product.sizes?.last;
+      size = widget.product.sizes?.first;
     options = widget.product.options;
     super.initState();
   }
@@ -59,13 +59,23 @@ class _ProductScreenState extends State<ProductScreen> {
                 contentPadding: EdgeInsets.zero,
                 horizontalTitleGap: 0,
                 leading: Icon(Icons.error),
-                subtitle: Text(
-                    'Something went wrong'),
+                subtitle: Text('Something went wrong'),
                 iconColor: Colors.white,
                 textColor: Colors.white,
               )));
         }
-          //TODO: diplay a no internet dialog
+        if (state is ProductNoInternet) {
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+              duration: Duration(seconds: 2),
+              content: ListTile(
+                contentPadding: EdgeInsets.zero,
+                horizontalTitleGap: 0,
+                leading: Icon(Icons.error),
+                subtitle: Text('No Internet Connection'),
+                iconColor: Colors.white,
+                textColor: Colors.white,
+              )));
+        }
       },
       child: SafeArea(
         child: Scaffold(
@@ -172,18 +182,21 @@ class _ProductScreenState extends State<ProductScreen> {
                                                     textColor: Colors.white,
                                                   )));
                                         } else if (state is ProductError) {
-          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-              duration: Duration(seconds: 2),
-              content: ListTile(
-                contentPadding: EdgeInsets.zero,
-                horizontalTitleGap: 0,
-                leading: Icon(Icons.error),
-                subtitle: Text(
-                    'Something went wrong'),
-                iconColor: Colors.white,
-                textColor: Colors.white,
-              )));
-        }
+                                          ScaffoldMessenger.of(context)
+                                              .showSnackBar(SnackBar(
+                                                  duration:
+                                                      Duration(seconds: 2),
+                                                  content: ListTile(
+                                                    contentPadding:
+                                                        EdgeInsets.zero,
+                                                    horizontalTitleGap: 0,
+                                                    leading: Icon(Icons.error),
+                                                    subtitle: Text(
+                                                        'Something went wrong'),
+                                                    iconColor: Colors.white,
+                                                    textColor: Colors.white,
+                                                  )));
+                                        }
                                       },
                                 child: state is ProductLoading
                                     ? CircularProgressIndicator(

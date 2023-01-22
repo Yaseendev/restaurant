@@ -94,7 +94,7 @@ class _OrderReviewScreenState extends State<OrderReviewScreen> {
                   listener: (context, orderState) {
                     if (orderState is OrderNotLoggedIn) {
                       print('Not Loggedin');
-                      //TODO: diplay a log in dialog
+
                       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                           duration: Duration(seconds: 2),
                           content: ListTile(
@@ -102,7 +102,7 @@ class _OrderReviewScreenState extends State<OrderReviewScreen> {
                             horizontalTitleGap: 0,
                             leading: Icon(Icons.error),
                             subtitle: Text(
-                                'You are not logged in\nLog in to add it to your favorites'),
+                                'You are not logged in\nLog in to continue with your order'),
                             iconColor: Colors.white,
                             textColor: Colors.white,
                           )));
@@ -113,7 +113,7 @@ class _OrderReviewScreenState extends State<OrderReviewScreen> {
                           contentPadding: EdgeInsets.zero,
                           horizontalTitleGap: 0,
                           leading: Icon(Icons.error),
-                          title:const Text('No Internet Connextion'),
+                          title: const Text('No Internet Connextion'),
                           textColor: Colors.white,
                           iconColor: Colors.white,
                         ),

@@ -4,7 +4,7 @@ abstract class ProductState extends Equatable {
   const ProductState();
 
   @override
-  List<Object> get props => [];
+  List<Object?> get props => [];
 }
 
 class ProductInitial extends ProductState {
@@ -12,38 +12,38 @@ class ProductInitial extends ProductState {
 
   ProductInitial(this.product);
 
-
   @override
-  List<Object> get props => [product];
+  List<Object?> get props => [product];
 }
 
 class ProductLoading extends ProductState {
-
-
   @override
-  List<Object> get props => [];
+  List<Object?> get props => [];
 }
 
 class ProductLoaded extends ProductState {
   final bool isFav;
 
   ProductLoaded(this.isFav);
-  
 
   @override
-  List<Object> get props => [isFav];
+  List<Object?> get props => [isFav];
 }
 
 class ProductNotLoggedIn extends ProductState {
-  
-
   @override
-  List<Object> get props => [];
+  List<Object?> get props => [];
 }
 
 class ProductError extends ProductState {
-  
+  @override
+  List<Object?> get props => [];
+}
+
+class ProductNoInternet extends ProductState {
+  final bool? forceUpdate;
+  ProductNoInternet([this.forceUpdate]);
 
   @override
-  List<Object> get props => [];
+  List<Object?> get props => [forceUpdate];
 }

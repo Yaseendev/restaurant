@@ -28,7 +28,7 @@ class CustomAppBar {
                     child: Badge(
                       badgeColor: Theme.of(context).primaryColor,
                       badgeContent: Text(
-                        state.length.toString(),
+                        state.fold(0, (previousValue, element) => (previousValue as int) + element.quantity).toString(),
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 16,

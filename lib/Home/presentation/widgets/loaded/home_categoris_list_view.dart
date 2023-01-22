@@ -19,24 +19,6 @@ class CategoriesListView extends StatelessWidget {
           title: categories[index].name,
           index: index,
         )),
-        
-        // [
-        //   CategoryCard(
-        //     image: AppImages.CAT1,
-        //     title: 'Pizza',
-        //     index: 0,
-        //   ),
-        //   CategoryCard(
-        //     image: AppImages.CAT2,
-        //     title: 'Shwarma',
-        //     index: 1,
-        //   ),
-        //   CategoryCard(
-        //     image: AppImages.CAT3,
-        //     title: 'Burger',
-        //     index: 2,
-        //   ),
-        // ],
       ),
     );
   }
