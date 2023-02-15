@@ -214,7 +214,7 @@ class _ProductScreenState extends State<ProductScreen> {
                                                 ? Theme.of(context).primaryColor
                                                 : Theme.of(context)
                                                     .textTheme
-                                                    .bodyText1!
+                                                    .bodyLarge!
                                                     .color,
                                           )
                                         : Icon(
@@ -222,7 +222,7 @@ class _ProductScreenState extends State<ProductScreen> {
                                             size: 35,
                                             color: Theme.of(context)
                                                 .textTheme
-                                                .bodyText1!
+                                                .bodyLarge!
                                                 .color,
                                           ),
                               );

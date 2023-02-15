@@ -1,9 +1,8 @@
-import 'package:badges/badges.dart';
+import 'package:badges/badges.dart' as badge;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:restaurant_app/Order/data/models/order_item.dart';
 import 'package:restaurant_app/Order/presentation/screens/order_review_screen.dart';
-import 'package:restaurant_app/Product/data/models/product.dart';
 import 'package:restaurant_app/Shared/Cart/cubit/cart_cubit.dart';
 
 class CustomAppBar {
@@ -14,7 +13,7 @@ class CustomAppBar {
           borderRadius: BorderRadius.vertical(bottom: Radius.circular(20))),
       title: Text(title.toUpperCase()),
       titleTextStyle:
-          Theme.of(context).textTheme.headline6!.copyWith(color: Colors.black),
+          Theme.of(context).textTheme.titleLarge!.copyWith(color: Colors.black),
       centerTitle: true,
       elevation: 4,
       toolbarHeight: 65,
@@ -25,7 +24,7 @@ class CustomAppBar {
                 ? Container()
                 : Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Badge(
+                    child:badge.Badge(
                       badgeColor: Theme.of(context).primaryColor,
                       badgeContent: Text(
                         state.fold(0, (previousValue, element) => (previousValue as int) + element.quantity).toString(),
@@ -36,7 +35,7 @@ class CustomAppBar {
                         ),
                       ),
                       showBadge: state.isNotEmpty,
-                      position: BadgePosition.topEnd(
+                      position: badge.BadgePosition.topEnd(
                         end: -5,
                         // top: 5,
                       ),
@@ -76,7 +75,7 @@ class CustomAppBar {
         child: Icon(
           Icons.arrow_back,
           size: 26,
-          color: Theme.of(context).textTheme.bodyText1!.color,
+          color: Theme.of(context).textTheme.bodyLarge!.color,
         ),
       ),
       backgroundColor: Colors.white,
@@ -84,7 +83,7 @@ class CustomAppBar {
           borderRadius: BorderRadius.vertical(bottom: Radius.circular(20))),
       title: Text(title.toUpperCase()),
       titleTextStyle:
-          Theme.of(context).textTheme.headline6!.copyWith(color: Colors.black),
+          Theme.of(context).textTheme.titleLarge!.copyWith(color: Colors.black),
       centerTitle: true,
       elevation: 4,
       toolbarHeight: 65,
