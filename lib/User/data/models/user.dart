@@ -3,10 +3,10 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:restaurant_app/Product/data/models/product.dart';
 import 'name.dart';
 
-part 'user.g.dart';
+  part 'user.g.dart';
 
-@HiveType(typeId: 0)
-class User extends Equatable {
+  @HiveType(typeId: 0)
+  class User extends Equatable {
   @HiveField(0)
   int? id;
 

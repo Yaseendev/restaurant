@@ -94,7 +94,7 @@ class SelectedLocationCard extends StatelessWidget {
                           size: 28,
                           color: Theme.of(context).primaryColor,
                         ),
-                        title:const Text(
+                        title: const Text(
                           'Deliver to different location',
                           style: TextStyle(
                               fontSize: 18, fontWeight: FontWeight.w500),
