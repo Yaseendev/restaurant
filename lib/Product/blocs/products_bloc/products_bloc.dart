@@ -13,15 +13,13 @@ part 'products_state.dart';
 class ProductsBloc extends Bloc<ProductsEvent, ProductsState> {
   ProductsBloc() : super(ProductsInitial()) {
     final Connectivity connectivity = locator.get<Connectivity>();
-    final ProductRepository productRepository =
-        locator.get<ProductRepository>();
+    final ProductRepository productRepository = locator.get<ProductRepository>();
     on<LoadProducts>((event, emit) async {
       final connStatus = await connectivity.checkConnectivity();
       if (connStatus != ConnectivityResult.none) {
         emit(ProductLoading());
         final products = await productRepository.fetchProducts();
-        Map<ProductCategory, List<Product>> categories =
-            Map<ProductCategory, List<Product>>();
+        Map<ProductCategory, List<Product>> categories = Map<ProductCategory, List<Product>>();
         products.forEach((element) {
           element.categories.forEach((cat) {
             categories.update(
